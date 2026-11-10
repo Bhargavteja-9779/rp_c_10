@@ -10,7 +10,7 @@ def window_metrics(y, p, d=None, thr=0.5):
     y = y.astype(int); h = (p >= thr).astype(int)
     tp = ((h == 1) & (y == 1)).sum(); tn = ((h == 0) & (y == 0)).sum()
     fp = ((h == 1) & (y == 0)).sum(); fn = ((h == 0) & (y == 1)).sum()
-    out = dict(n_windows=len(y), prevalence=y.mean(),
+    out = dict(n_windows=len(y), prevalence=y.mean(), tp=int(tp), fp=int(fp), fn=int(fn), tn=int(tn),
                sensitivity=tp / max(tp + fn, 1), specificity=tn / max(tn + fp, 1),
                ppv=tp / max(tp + fp, 1), f1=f1_score(y, h, zero_division=0),
                brier=float(np.mean((p - y) ** 2)), ece=ece(y, p))
@@ -68,3 +68,14 @@ def interval_metrics(B, lo, hi):
                 median_width_pp=float(np.median(hi - lo) * 100),
                 coverage_af_free=float(cov[B == 0].mean()) if (B == 0).any() else np.nan,
                 coverage_af_present=float(cov[B > 0].mean()) if (B > 0).any() else np.nan)
+
+
+def curves(y, p, n_points=300):
+    """Down-sampled ROC and PR curve points for figure regeneration."""
+    from sklearn.metrics import roc_curve, precision_recall_curve
+    if not (0 < y.mean() < 1):
+        return None
+    fpr, tpr, _ = roc_curve(y, p)
+    pr, rc, _ = precision_recall_curve(y, p)
+    i = np.unique(np.linspace(0, len(fpr) - 1, n_points).astype(int)); j = np.unique(np.linspace(0, len(pr) - 1, n_points).astype(int))
+    return dict(roc_fpr=fpr[i], roc_tpr=tpr[i], pr_recall=rc[j], pr_precision=pr[j])

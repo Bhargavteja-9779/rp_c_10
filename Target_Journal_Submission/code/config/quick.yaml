@@ -1,0 +1,19 @@
+# Quick pipeline-verification mode: one seed, reduced epochs, subsampled external cohorts.
+seeds: [11]
+window_beats: 60
+split: {train: 0.45, calA: 0.15, calB: 0.20, test: 0.20, inner_val_of_train: 0.15}
+dev_dbs: [ltafdb, afdb, mitdb, nsrdb, nsr2db, chfdb]
+external_dbs: [shdb-af, cpsc2021, icentia11k]
+external_patient_limit: 40
+detectors: [Classical-LR, LightGBM, RRNet]
+primary_detector: LightGBM
+threshold: 0.5
+kappa: 10.0
+kappa_grid: [0, 100]
+emission_bins: 50
+alpha: 0.10
+eps: 0.002
+ffbs_samples: 50
+rrnet: {epochs: 2, batch: 1024, lr: 0.001, patience: 1}
+lightgbm: {n_estimators: 100}
+bootstrap: 200

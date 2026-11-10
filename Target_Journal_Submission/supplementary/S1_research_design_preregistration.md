@@ -61,3 +61,16 @@ Constraint set: fit to EP Europace (arrhythmia/EP, clinical relevance, AI checkl
 * **Primary endpoint.** Per-patient absolute burden error (percentage points) on the pooled external cohorts (all three), averaged over seeds, with detector = LightGBM pre-specified as the primary detector (RRNet and Classical-LR as secondary).
 * **Primary test.** Two-sided Wilcoxon signed-rank test on per-patient (seed-averaged) absolute errors, PA-HMMQ vs each comparator; Holm correction over the 8 comparators; effect size = median paired difference with patient-level bootstrap 95% CI (2000 resamples) and matched-pairs rank-biserial correlation. Secondary: per-cohort tests, Bland–Altman bias/LoA, Lin's CCC, threshold sensitivity/specificity (≥30 s AF, ≥1%, ≥10%) with McNemar tests, conformal coverage with Clopper–Pearson 95% CI.
 * **Experiments.** Exp1 main; Exp2 baselines (3 detectors × 9 estimators); Exp3 ablation (raw-score emissions, no temporal model = EMQ, fixed dynamics = HMM-src, κ ∈ {0,1,3,10,30,100}); Exp4 robustness (missed beats 2/5%, false beats 2/5%, jitter 10/25 ms, simulated premature beats 5/10% on SHDB-AF; training-data fraction 25/50/100%); Exp5 generalisation (per external cohort, AF-free vs AF patients, AF+AFL definition, sex/age subgroups in SHDB-AF where metadata permit); Exp6 efficiency (parameters, runtime per 24-h recording); Exp7 sensitivity (κ, bins, α, ε, window length 30/120 beats for LightGBM); Exp8 error analysis (largest errors, association of error with ectopy, AFL and burden level).
+
+## 6. Amendment A1 (recorded 2026-11-10, after the one-seed *quick* pipeline check, before the full 5-seed run)
+The quick check (1 seed, 100 trees, 40-patient external subsets) suggested that the ablation
+"PA-HMMQ[rawE]" (emission likelihoods taken directly from the detector probability, (1−p, p), instead
+of calibration-set class-conditional histograms) may outperform the pre-specified calibrated emission model.
+Development-only diagnosis (calB patients): the calibrated emissions are flatter (label noise at window level
+bounds the empirical likelihood ratio), so the sticky source rhythm dynamics dominate and short non-AF
+stretches inside AF are over-smoothed (e.g., MITDB 219).
+**Decision rule fixed now:** the emission model of the final PA-HMMQ will be chosen *using development
+held-out patients only* (calB ∪ dev_test, pooled over the 5 seeds, primary detector LightGBM, mean per-patient
+absolute error). External cohorts play no role in this choice. Both variants will be reported in the
+manuscript (main tables + ablation), and the choice will be described as a post-hoc, development-data-driven
+modification. The pre-registered variant remains in all tables.

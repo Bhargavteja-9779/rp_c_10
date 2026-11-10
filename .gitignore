@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 *.part
 Target_Journal_Submission/results/preds/
+Target_Journal_Submission/results/models/

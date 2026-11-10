@@ -65,7 +65,7 @@ def ffbs(alpha: np.ndarray, L: np.ndarray, A: np.ndarray, n_samples: int, rng: n
         act = t < (L - 1)  # positions before last valid
         nxt = Z[:, :, t + 1]
         # P(z_t = 1 | z_{t+1}, y_{1:t}) ∝ alpha_t(1) A[1, z_{t+1}]
-        A_to = np.take_along_axis(A[None, :, :, :].repeat(K, 0), nxt[:, :, None, None].repeat(2, 2).astype(np.int64), axis=3)[..., 0]  # (K,S,2)
+        A_to = np.where(nxt[..., None] == 1, A[None, :, :, 1], A[None, :, :, 0])  # (K,S,2): A[s, i, z_{t+1}]
         w = alpha[None, :, t, :] * A_to
         pr = w[..., 1] / (w.sum(-1) + EPS)
         draw = (rng.random((K, S)) < pr).astype(np.int8)
