@@ -1,0 +1,7 @@
+mitdb: windows=1787 patients=47 AFwin=0.106 (1s)
+afdb: windows=20312 patients=25 AFwin=0.425 (15s)
+nsrdb: windows=28454 patients=18 AFwin=0.000 (22s)
+chfdb: windows=27000 patients=15 AFwin=0.059 (20s)
+cpsc2021: windows=34706 patients=105 AFwin=0.359 (32s)
+nsr2db: windows=92190 patients=54 AFwin=0.000 (69s)
+ltafdb: windows=149760 patients=84 AFwin=0.581 (111s)
