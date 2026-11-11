@@ -8,8 +8,9 @@ from src.visualization.style import plt, SERIES, TEXT, TEXT2, COHORT_ORDER, COHO
 from matplotlib.patches import FancyBboxPatch
 
 EXT = ["ext_shdb-af", "ext_cpsc2021", "ext_icentia11k"]
-EST_ORDER = ["CC", "CC-MF", "PCC", "PCC-iso", "ACC", "PACC", "EMQ", "HMM-src", "PA-HMMQ", "PA-HMMQ[rawE]"]
-EST_LABEL = {"PA-HMMQ": "PA-HMMQ (pre-registered)", "PA-HMMQ[rawE]": "PA-HMMQ (final)"}
+EST_ORDER = ["CC", "CC-MF", "PCC", "PCC-iso", "ACC", "PACC", "EMQ", "HMM-src", "HMM-src[rawE]", "PA-HMMQ", "PA-HMMQ[rawE]", "PA-HMMQ[sel]"]
+EST_LABEL = {"PA-HMMQ": "PA-HMMQ (pre-registered)", "PA-HMMQ[rawE]": "PA-HMMQ (final)", "PA-HMMQ[sel]": "PA-HMMQ (R1, post hoc)",
+             "HMM-src[rawE]": "HMM-src (final emissions)"}
 
 
 def fig_method(out):
@@ -100,6 +101,7 @@ def fig_main(per_seed, out, det="LightGBM"):
     for j, c in enumerate(COHORT_ORDER):
         for i, e in enumerate(ests):
             g = per_seed[(per_seed.detector == det) & (per_seed.estimator == e) & (per_seed.cohort == c)].mae_pp
+            if g.empty: continue
             col = SERIES[0] if e.startswith("PA-HMMQ") else TEXT2
             axs[j].errorbar(g.mean(), i, xerr=g.std(), fmt="o", ms=4, color=col, ecolor=col, elinewidth=1, capsize=2)
         axs[j].set_title(COHORT_LABEL[c], fontsize=7)
@@ -155,18 +157,32 @@ def fig_ablation(per_seed, out, det="LightGBM"):
 def fig_intervals(res, out, final, det="LightGBM"):
     I = pd.read_csv(os.path.join(res, "intervals.csv")); I = I[I.detector == det]
     I["cov"] = (I.true_burden >= I.lo - 1e-12) & (I.true_burden <= I.hi + 1e-12); I["w"] = (I.hi - I.lo) * 100
+    rp = os.path.join(res, "revision_intervals.csv")
+    if os.path.exists(rp):
+        I2 = pd.read_csv(rp); I2 = I2[I2.detector == det]
+        I2["cov"] = (I2.true_burden >= I2.lo - 1e-12) & (I2.true_burden <= I2.hi + 1e-12); I2["w"] = (I2.hi - I2.lo) * 100
+        I = pd.concat([I, I2])
     meths = ["CC+conformal(const)", "PCC-iso+conformal(const)", "PA-HMMQ posterior 90% CrI", "PA-HMMQ+conformal(const)",
-             "PA-HMMQ+conformal(norm)", "PA-HMMQ[rawE]+conformal(const)", "PA-HMMQ[rawE]+conformal(norm)"]
-    fig, axs = plt.subplots(1, 2, figsize=(7.2, 2.9), sharey=True)
+             "PA-HMMQ+conformal(norm)", "PA-HMMQ[rawE]+conformal(const)", "PA-HMMQ[rawE]+conformal(norm)", "PA-HMMQ[sel]+conformal(norm)"]
+    meths = [m for m in meths if m in set(I.method)]
+    lab = {"CC+conformal(const)": "CC, constant-width conformal", "PCC-iso+conformal(const)": "PCC-iso, constant-width conformal",
+           "PA-HMMQ posterior 90% CrI": "PA-HMMQ (pre-reg.), posterior CrI", "PA-HMMQ+conformal(const)": "PA-HMMQ (pre-reg.), constant-width",
+           "PA-HMMQ+conformal(norm)": "PA-HMMQ (pre-reg.), normalised", "PA-HMMQ[rawE]+conformal(const)": "PA-HMMQ (final), constant-width",
+           "PA-HMMQ[rawE]+conformal(norm)": "PA-HMMQ (final), normalised", "PA-HMMQ[sel]+conformal(norm)": "PA-HMMQ (R1, post hoc), normalised"}
+    fig, axs = plt.subplots(1, 2, figsize=(7.2, 3.0), sharey=True)
     for j, c in enumerate(COHORT_ORDER):
         for i, m in enumerate(meths):
             g = I[(I.method == m) & (I.cohort == c)].groupby("seed").agg(cov=("cov", "mean"), w=("w", "mean"))
-            axs[0].errorbar(g["cov"].mean(), i + 0.15 * (j - 1.5), xerr=g["cov"].std(), fmt="o", ms=3.5, color=COHORT_COLOR[c], elinewidth=1,
-                            label=COHORT_LABEL[c] if i == 0 else None)
-            axs[1].errorbar(g.w.mean(), i + 0.15 * (j - 1.5), xerr=g.w.std(), fmt="o", ms=3.5, color=COHORT_COLOR[c], elinewidth=1)
-    axs[0].axvline(0.9, color=TEXT2, ls="--", lw=1); axs[0].set_xlabel("Empirical coverage (target 0.90)")
-    axs[1].set_xlabel("Mean interval width (pp)"); axs[1].set_xscale("log")
-    axs[0].set_yticks(range(len(meths)), meths); axs[0].invert_yaxis(); axs[0].legend(fontsize=6, loc="lower left")
+            if g.empty: continue
+            y = i + 0.15 * (j - 1.5)
+            cm = g["cov"].mean()
+            axs[0].errorbar(cm, y, xerr=[[max(cm - g["cov"].min(), 0)], [max(g["cov"].max() - cm, 0)]], fmt="o", ms=3.5,
+                            color=COHORT_COLOR[c], elinewidth=1, label=COHORT_LABEL[c] if i == 0 else None)
+            wv = np.maximum(g.w.values, 0.1); wm = float(np.median(wv))
+            axs[1].errorbar(wm, y, xerr=[[max(wm - wv.min(), 0)], [max(wv.max() - wm, 0)]], fmt="o", ms=3.5, color=COHORT_COLOR[c], elinewidth=1)
+    axs[0].axvline(0.9, color=TEXT2, ls="--", lw=1); axs[0].set_xlabel("Empirical coverage (target 0.90)\nmean over seeds, bars min–max")
+    axs[1].set_xlabel("Mean interval width (pp, log scale)\nmedian over seeds, bars min–max"); axs[1].set_xscale("log"); axs[1].set_xlim(0.08, 60)
+    axs[0].set_yticks(range(len(meths)), [lab.get(m, m) for m in meths], fontsize=6.5); axs[0].invert_yaxis(); axs[0].legend(fontsize=6, loc="lower left")
     save(fig, os.path.join(out, "fig6_intervals"))
 
 
@@ -205,9 +221,9 @@ def fig_forest(stats_json, out, final, det="LightGBM"):
     for i, b in enumerate(names):
         v = t[b]
         ax.errorbar(v["mean_diff"], i, xerr=[[v["mean_diff"] - v["mean_ci"][0]], [v["mean_ci"][1] - v["mean_diff"]]], fmt="o", ms=4, color=SERIES[0], capsize=2)
-        ax.text(1.02, i, f"p={v['p_holm']:.1g}", transform=ax.get_yaxis_transform(), fontsize=6, va="center", color=TEXT2)
-    ax.axvline(0, color=TEXT2, lw=1); ax.set_yticks(range(len(names)), names); ax.invert_yaxis()
-    ax.set_xlabel("Mean paired difference in AE (pp)\n(final PA-HMMQ − comparator; <0 favours PA-HMMQ)")
+        ax.text(1.02, i, f"P={v['p_holm']:.1g}", transform=ax.get_yaxis_transform(), fontsize=6, va="center", color=TEXT2)
+    ax.axvline(0, color=TEXT2, lw=1); ax.set_yticks(range(len(names)), [n.replace(" (post hoc, same emissions)", "\n(same emissions, post hoc)") for n in names], fontsize=6); ax.invert_yaxis()
+    ax.set_xlabel("Mean paired difference in AE (pp), bootstrap 95% CI\n(final PA-HMMQ − comparator; <0 favours PA-HMMQ)\nP: Wilcoxon signed-rank, Holm-adjusted")
     ax.set_title("Pooled external cohorts", loc="left")
     save(fig, os.path.join(out, "fig9_forest"))
 
@@ -219,9 +235,10 @@ def fig_robustness(res, out):
     conds = list(dict.fromkeys(X.condition))
     fig, axs = plt.subplots(1, 2, figsize=(7.2, 2.8), sharey=True)
     for a, det in zip(axs, ["LightGBM", "RRNet"]):
-        for i, est in enumerate(["CC", "CC-MF", "HMM-src", "PA-HMMQ", "PA-HMMQ[rawE]"]):
+        for i, est in enumerate(["CC", "CC-MF", "HMM-src", "PA-HMMQ", "PA-HMMQ[rawE]", "PA-HMMQ[sel]"]):
             y = [X[(X.detector == det) & (X.estimator == est) & (X.condition == c)].groupby("seed").ae.mean() for c in conds]
-            a.errorbar(np.arange(len(conds)) + 0.08 * (i - 2), [v.mean() for v in y], yerr=[v.std() for v in y], marker="o", ms=3, lw=1.2,
+            if all(len(v) == 0 for v in y): continue
+            a.errorbar(np.arange(len(conds)) + 0.07 * (i - 2.5), [v.mean() for v in y], yerr=[v.std() for v in y], marker="o", ms=3, lw=1.2,
                        color=SERIES[i], capsize=1.5, label=EST_LABEL.get(est, est))
         a.set_xticks(range(len(conds)), conds, rotation=60, ha="right", fontsize=6); a.set_title(f"{det}, SHDB-AF", loc="left")
     axs[0].set_ylabel("MAE (pp)"); axs[0].legend(fontsize=5.5)
@@ -242,7 +259,10 @@ def fig_efficiency(res, out):
 
 def main(res, out):
     style.apply(); os.makedirs(out, exist_ok=True)
-    R = pd.read_csv(os.path.join(res, "raw_results.csv")); R["ae"] = (R.estimate - R.true_burden).abs() * 100
+    R = pd.read_csv(os.path.join(res, "raw_results.csv"))
+    if os.path.exists(os.path.join(res, "revision_results.csv")):
+        R = pd.concat([R, pd.read_csv(os.path.join(res, "revision_results.csv"))], ignore_index=True)
+    R["ae"] = (R.estimate - R.true_burden).abs() * 100
     per_seed = pd.read_csv(os.path.join(res, "burden_metrics_per_seed.csv"))
     final = json.load(open(os.path.join(res, "statistics.json")))["final_method"]
     fig_method(out); fig_cohorts(R, out); fig_training(res, out); fig_roc_pr(res, out); fig_confusion(res, out)

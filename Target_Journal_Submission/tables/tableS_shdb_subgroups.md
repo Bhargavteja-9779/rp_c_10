@@ -1,0 +1,14 @@
+| Estimator | Subgroup | n | MAE (pp) |
+|---|---|---|---|
+| CC | female | 42 | 3.78 |
+| CC | male | 51 | 5.12 |
+| CC | age < 69 | 45 | 1.91 |
+| CC | age ≥ 69 | 48 | 6.96 |
+| PA-HMMQ | female | 42 | 3.30 |
+| PA-HMMQ | male | 51 | 5.57 |
+| PA-HMMQ | age < 69 | 45 | 1.68 |
+| PA-HMMQ | age ≥ 69 | 48 | 7.23 |
+| PA-HMMQ[rawE] | female | 42 | 3.63 |
+| PA-HMMQ[rawE] | male | 51 | 4.73 |
+| PA-HMMQ[rawE] | age < 69 | 45 | 1.73 |
+| PA-HMMQ[rawE] | age ≥ 69 | 48 | 6.58 |

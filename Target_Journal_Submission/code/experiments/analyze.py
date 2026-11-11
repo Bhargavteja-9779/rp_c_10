@@ -181,7 +181,7 @@ def main(res, tab, cfg_primary="LightGBM"):
         ps = g.groupby("seed").agg(cov=("cov", "mean"), w=("width", "mean"), wmed=("width", "median"),
                                    cov_free=("cov", lambda s: s[g.loc[s.index, "true_burden"] == 0].mean()),
                                    cov_af=("cov", lambda s: s[g.loc[s.index, "true_burden"] > 0].mean()))
-        n = g.patient.nunique(); k = int(round(ps["cov"].mean() * n))
+        n = int(round(g.groupby("seed").patient.nunique().mean())); k = int(round(ps["cov"].mean() * n))  # patients per seed
         lo, hi = clopper_pearson(k, n)
         M["intervals"][f"{det}|{meth}|{c}"] = dict(coverage=[float(ps["cov"].mean()), float(ps["cov"].std())], cp95=[lo, hi], n=n,
                                                   mean_width_pp=[float(ps.w.mean()), float(ps.w.std())], median_width_pp=[float(ps.wmed.mean()), float(ps.wmed.std())],

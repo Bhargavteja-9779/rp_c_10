@@ -104,6 +104,20 @@ def tok_afl(est, field, d="2"):
     v = S["afl"][est][field]; return f"{v:.{int(d)}f}" if isinstance(v, float) else str(v)
 
 
+def tok_fpr(det, est, coh, thr):
+    return f"{100*(1-M['burden'][f'{det}|{est}|{coh}'][thr + '_spec'][0]):.0f}%"
+
+
+def tok_mcn(thr, field):
+    v = S["mcnemar"][f"PA-HMMQ[rawE]_vs_CC|{thr}"][field]
+    if field == "p": return "<0.001" if v < 0.001 else f"{v:.3f}"
+    return str(v)
+
+
+def tok_R1(field, d="2"):
+    v = S["R1_summary"][field]; return f"{v:.{int(d)}f}" if isinstance(v, float) else str(v)
+
+
 def tok_L(key): return str(L[key]) if not isinstance(L[key], list) else str(len(L[key]))
 
 
