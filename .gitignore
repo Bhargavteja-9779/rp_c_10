@@ -5,4 +5,5 @@ __pycache__/
 *.part
 Target_Journal_Submission/results/preds/
 Target_Journal_Submission/results/models/
-Target_Journal_Submission/results/   # TEMPORARY while experiments run; final results committed at the end
+# TEMPORARY while experiments run; final results committed at the end
+Target_Journal_Submission/results/
