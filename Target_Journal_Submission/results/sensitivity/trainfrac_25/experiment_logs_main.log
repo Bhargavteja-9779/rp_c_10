@@ -4,3 +4,4 @@
 [03:02:52] seed 11 LightGBM: trained in 159s, params=7991
 [03:03:32] seed 11 LightGBM: burden + intervals done (199s total)
 [03:03:32] seed 22: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=23 val=17
+[03:06:53] seed 22 LightGBM: trained in 200s, params=8113

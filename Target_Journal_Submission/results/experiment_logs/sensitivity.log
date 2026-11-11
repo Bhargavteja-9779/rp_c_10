@@ -8,3 +8,4 @@
 [03:03:32] seed 22: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=23 val=17
 /usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
   eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:06:53] seed 22 LightGBM: trained in 200s, params=8113
