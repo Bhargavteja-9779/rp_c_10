@@ -9,29 +9,29 @@ from matplotlib.patches import FancyBboxPatch
 
 EXT = ["ext_shdb-af", "ext_cpsc2021", "ext_icentia11k"]
 EST_ORDER = ["CC", "CC-MF", "PCC", "PCC-iso", "ACC", "PACC", "EMQ", "HMM-src", "PA-HMMQ", "PA-HMMQ[rawE]"]
-EST_LABEL = {"PA-HMMQ": "PA-HMMQ (pre-reg., calibrated emissions)", "PA-HMMQ[rawE]": "PA-HMMQ (final, probability emissions)"}
+EST_LABEL = {"PA-HMMQ": "PA-HMMQ (pre-registered)", "PA-HMMQ[rawE]": "PA-HMMQ (final)"}
 
 
 def fig_method(out):
-    fig, ax = plt.subplots(figsize=(7.2, 3.0)); ax.axis("off"); ax.set_xlim(0, 10); ax.set_ylim(0, 4)
+    fig, ax = plt.subplots(figsize=(7.2, 3.0)); ax.axis("off"); ax.set_xlim(0, 10.2); ax.set_ylim(0, 4)
     boxes = [(0.1, 2.2, 1.7, 1.3, "Ambulatory ECG\nbeat annotations\n→ RR intervals"),
              (2.1, 2.2, 1.7, 1.3, "60-beat windows\n(non-overlapping)"),
              (4.1, 2.2, 1.9, 1.3, "Window detector\n(Classical-LR /\nLightGBM / RRNet)\n→ p(AF | window)"),
              (6.3, 2.2, 1.7, 1.3, "Patient-adaptive\nHMM quantifier\n(MAP-EM dynamics)"),
-             (8.3, 2.2, 1.6, 1.3, "Burden B̂ + 90%\nconformal interval"),
-             (4.1, 0.2, 1.9, 1.3, "Calibration patients A\nemissions, source\nrhythm dynamics"),
+             (8.3, 2.2, 1.8, 1.3, "Burden B̂ +\n90% conformal\ninterval"),
+             (4.1, 0.2, 1.9, 1.3, "Calibration\npatients A: source\nrhythm dynamics"),
              (6.3, 0.2, 1.7, 1.3, "Posterior sampling\n(FFBS) → σ̂ per\npatient"),
-             (8.3, 0.2, 1.6, 1.3, "Calibration patients B\nconformal quantile")]
+             (8.3, 0.2, 1.8, 1.3, "Calibration\npatients B:\nconformal quantile")]
     for i, (x, y, w, h, t) in enumerate(boxes):
         ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.02,rounding_size=0.08", fc="#f3f2ee" if i < 5 else "#ffffff",
                                     ec=SERIES[0] if i == 3 else TEXT2, lw=1.2))
-        ax.text(x + w / 2, y + h / 2, t, ha="center", va="center", fontsize=7, color=TEXT)
+        ax.text(x + w / 2, y + h / 2, t, ha="center", va="center", fontsize=6.5, color=TEXT)
     arr = dict(arrowstyle="->", color=TEXT2, lw=1)
     for x0, x1 in [(1.8, 2.1), (3.8, 4.1), (6.0, 6.3), (8.0, 8.3)]:
         ax.annotate("", (x1, 2.85), (x0, 2.85), arrowprops=arr)
     ax.annotate("", (6.6, 2.2), (5.6, 1.5), arrowprops=arr)
     ax.annotate("", (7.15, 2.2), (7.15, 1.5), arrowprops=arr)
-    ax.annotate("", (9.1, 2.2), (9.1, 1.5), arrowprops=arr)
+    ax.annotate("", (9.2, 2.2), (9.2, 1.5), arrowprops=arr)
     save(fig, os.path.join(out, "fig1_method"))
 
 
@@ -51,7 +51,9 @@ def fig_cohorts(R, out):
 
 
 def fig_training(res, out):
-    H = pd.read_csv(os.path.join(res, "training_history.csv"))
+    p = os.path.join(res, "training_history.csv")
+    if not os.path.exists(p) or os.path.getsize(p) < 5: return
+    H = pd.read_csv(p)
     fig, ax = plt.subplots(figsize=(3.5, 2.5))
     for s, g in H.groupby("seed"):
         ax.plot(g.epoch, g.train_loss, color=SERIES[0], lw=1, alpha=0.8, label="train" if s == H.seed.min() else None)
@@ -67,6 +69,7 @@ def fig_roc_pr(res, out):
         for det, col in DET_COLOR.items():
             for i, cv in enumerate(["roc", "pr"]):
                 g = C[(C.cohort == c) & (C.detector == det) & (C.curve == cv)]
+                if g.empty: continue
                 axs[i, j].plot(g.x, g.y, color=col, lw=1.4, label=det)
         axs[0, j].set_title(COHORT_LABEL[c], fontsize=7)
         axs[0, j].set_xlabel("1 − specificity"); axs[1, j].set_xlabel("Recall")
@@ -99,9 +102,10 @@ def fig_main(per_seed, out, det="LightGBM"):
             g = per_seed[(per_seed.detector == det) & (per_seed.estimator == e) & (per_seed.cohort == c)].mae_pp
             col = SERIES[0] if e.startswith("PA-HMMQ") else TEXT2
             axs[j].errorbar(g.mean(), i, xerr=g.std(), fmt="o", ms=4, color=col, ecolor=col, elinewidth=1, capsize=2)
-        axs[j].set_title(COHORT_LABEL[c], fontsize=7); axs[j].set_xlabel("MAE (percentage points)")
+        axs[j].set_title(COHORT_LABEL[c], fontsize=7)
         axs[j].set_xlim(left=0)
-    axs[0].set_yticks(range(len(ests)), [EST_LABEL.get(e, e).replace(" (", "\n(") for e in ests]); axs[0].invert_yaxis()
+    fig.supxlabel("Mean absolute burden error (percentage points)", fontsize=8)
+    axs[0].set_yticks(range(len(ests)), [EST_LABEL.get(e, e) for e in ests]); axs[0].invert_yaxis()
     fig.suptitle(f"Per-patient AF-burden error by estimator ({det} detector; mean ± SD over 5 seeds)", fontsize=8, x=0.01, ha="left")
     fig.tight_layout(); save(fig, os.path.join(out, "fig3_main_mae"))
 
@@ -110,11 +114,13 @@ def fig_bland_altman(R, out, final, det="LightGBM"):
     x = R[(R.detector == det) & R.cohort.isin(EXT)]
     fig, axs = plt.subplots(1, 2, figsize=(7.2, 2.8), sharey=True)
     for ax, est in zip(axs, ["CC", final]):
-        g = x[x.estimator == est].groupby(["patient", "cohort"]).agg(t=("true_burden", "first"), e=("estimate", "mean")).reset_index()
+        g = x[x.estimator == est].groupby(["patient", "cohort"]).agg(t=("true_burden", "first"), e=("estimate", "mean"), afl=("afl_burden", "first")).reset_index()
         m = (g.t + g.e) / 2 * 100; d = (g.e - g.t) * 100
         for c in EXT:
-            k = g.cohort == c
+            k = (g.cohort == c) & (g.afl == 0)
             ax.scatter(m[k], d[k], s=8, color=COHORT_COLOR[c], alpha=0.6, lw=0, label=COHORT_LABEL[c])
+            k = (g.cohort == c) & (g.afl > 0)
+            ax.scatter(m[k], d[k], s=14, facecolors="none", edgecolors=COHORT_COLOR[c], lw=0.8, label=f"{COHORT_LABEL[c]}, any AFL" if k.any() else None)
         mu, sd = d.mean(), d.std(ddof=1)
         for v, ls in [(mu, "-"), (mu - 1.96 * sd, "--"), (mu + 1.96 * sd, "--")]:
             ax.axhline(v, color=TEXT2, lw=1, ls=ls)

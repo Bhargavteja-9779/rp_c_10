@@ -1,0 +1,10 @@
+Database,Role,Country,Source/version,Licence,Recordings,Patients,Hours analysed,Windows (60 beats),Patients with AF,Patients with AFL,AF windows (%)
+Long-Term AF Database,development,USA,PhysioNet ltafdb 1.0.0,ODC-By 1.0,84,84,1897,149760,83,0,58.1
+MIT-BIH AF Database,development,USA,PhysioNet afdb 1.0.0,ODC-By 1.0,25,25,248,20312,25,8,42.5
+MIT-BIH Arrhythmia Database,development,USA,PhysioNet mitdb 1.0.0,ODC-By 1.0,48,47,23,1787,7,3,10.6
+MIT-BIH Normal Sinus Rhythm Database,development,USA,PhysioNet nsrdb 1.0.0,ODC-By 1.0,18,18,378,28454,0,0,0.0
+Normal Sinus Rhythm RR Interval Database,development,USA,PhysioNet nsr2db 1.0.0,ODC-By 1.0,54,54,1200,92190,0,0,0.0
+BIDMC Congestive Heart Failure Database,development,USA,PhysioNet chfdb 1.0.0,ODC-By 1.0,15,15,298,27000,4,0,5.9
+SHDB-AF Japanese Holter AF database,external validation,Japan,PhysioNet shdb-af 1.0.1,ODC-By 1.0,97,93,2297,170001,72,12,23.8
+4th China Physiological Signal Challenge 2021,external validation,China,PhysioNet cpsc2021 1.0.0,see LICENSE.txt,1405,105,471,34706,53,2,35.9
+Icentia11k continuous ECG (random subset),external validation,Canada,PhysioNet icentia11k-continuous-ecg 1.0,see LICENSE.txt,790,790,5808,404267,50,25,5.9

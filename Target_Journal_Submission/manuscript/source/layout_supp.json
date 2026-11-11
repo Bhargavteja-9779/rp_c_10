@@ -1,0 +1,18 @@
+{
+ "kind": "supplement",
+ "sections": ["S00_supplement.md"],
+ "count_words": [],
+ "out_json": "supplement.json",
+ "out_md": "Supplementary_Material.md",
+ "tables_fn": "supp_tables",
+ "figures": [
+  {"file": "fig2_cohorts", "label": "Figure S1", "legend": "Distribution of reference AF burden (A) and analysed monitoring time per patient (B) in the development test set (seed 11) and the external cohorts.", "alt": "Two cumulative distribution plots, one per panel, with four lines for the cohorts."},
+  {"file": "figS2_roc_pr", "label": "Figure S2", "legend": "Window-level ROC (top; x-axis truncated at 0.3) and precision–recall (bottom) curves of the three detectors in each cohort (seed 11).", "alt": "Grid of eight small line charts showing ROC and precision-recall curves for three detectors in four cohorts."},
+  {"file": "figS3_confusion_lightgbm", "label": "Figure S3", "legend": "Row-normalised window-level confusion matrices of the LightGBM detector (all seeds pooled).", "alt": "Four two-by-two heat maps with proportions of correctly and incorrectly classified AF and non-AF windows."},
+  {"file": "figS1_training_curves", "label": "Figure S4", "legend": "RRNet training and inner-validation binary cross-entropy per epoch for the five seeds.", "alt": "Line chart of loss against epoch, ten lines for five seeds."},
+  {"file": "fig5_ablation_kappa", "label": "Figure S5", "legend": "Mean absolute burden error as a function of the prior strength κ for calibrated-histogram and probability emissions, in the development test set and pooled external cohorts (LightGBM; mean ± SD over seeds).", "alt": "Line chart with six κ values on the horizontal axis and error on the vertical axis for four combinations of emission model and cohort."},
+  {"file": "fig9_forest", "label": "Figure S6", "legend": "Mean paired difference in per-patient absolute burden error between the final PA-HMMQ and each comparator in the pooled external cohorts (LightGBM), with bootstrap 95% CI and Holm-adjusted P values.", "alt": "Forest plot with eight comparators, all point estimates left of zero."},
+  {"file": "fig8_error_analysis", "label": "Figure S7", "legend": "Per-patient absolute error of the final PA-HMMQ versus the proportion of ectopic beats (A) and atrial flutter burden (B), pooled external cohorts (log–log axes).", "alt": "Two scatter plots on logarithmic axes; large errors cluster at high flutter burden."},
+  {"file": "fig11_efficiency", "label": "Figure S8", "legend": "Median CPU time per 24-h recording of each pipeline component.", "alt": "Horizontal bar chart of milliseconds per 24-hour recording for feature extraction, detector inference and burden estimators on a logarithmic axis."}
+ ]
+}

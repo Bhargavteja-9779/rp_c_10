@@ -192,12 +192,29 @@ def main(res, tab, cfg_primary="LightGBM"):
     md_table(pd.DataFrame(rows), os.path.join(tab, "table8_ablation"))
 
     # ---------------- AF+AFL sensitivity & burden strata & subgroups ----------------
-    rows = []
-    for est in ["CC", "CC-MF", "HMM-src", PA_PRE, PA_RAW]:
+    rows = []; S["afl"] = {}
+    for est in BASELINES + [PA_PRE, PA_RAW]:
         g = RP[(RP.detector == cfg_primary) & (RP.estimator == est) & (RP.cohort == "ext_pooled")]
-        rows.append({"Estimator": est, "MAE vs AF reference (pp)": f"{g.groupby('seed').ae.mean().mean():.2f}",
-                     "MAE vs AF+AFL reference (pp)": f"{g.groupby('seed').ae_afafl.mean().mean():.2f}"})
-    md_table(pd.DataFrame(rows), os.path.join(tab, "tableS_afl_sensitivity"))
+        g0 = g[g.afl_burden == 0]
+        a, b, c = g.groupby('seed').ae.mean(), g.groupby('seed').ae_afafl.mean(), g0.groupby('seed').ae.mean()
+        rows.append({"Estimator": est, "MAE vs AF reference (pp)": fmt(a.mean(), a.std()),
+                     "MAE vs AF+AFL reference (pp)": fmt(b.mean(), b.std()),
+                     f"MAE excluding patients with any AFL, n={g0.patient.nunique()} (post hoc)": fmt(c.mean(), c.std())})
+        S["afl"][est] = dict(mae_af=float(a.mean()), mae_afafl=float(b.mean()), mae_no_afl=float(c.mean()), n_no_afl=int(g0.patient.nunique()),
+                             n_with_afl=int(g[g.afl_burden > 0].patient.nunique()))
+    md_table(pd.DataFrame(rows), os.path.join(tab, "table14_afl_sensitivity"))
+    # post-hoc tests in AF+AFL reference and in patients without AFL
+    for label, col, filt in [("afafl_reference", "ae_afafl", None), ("no_afl_patients", "ae", "noafl")]:
+        x = RP[(RP.detector == cfg_primary) & (RP.cohort == "ext_pooled")]
+        if filt: x = x[x.afl_burden == 0]
+        a = x[x.estimator == FINAL].groupby("patient")[col].mean().sort_index()
+        res_ = {}
+        for b in BASELINES:
+            bb = x[x.estimator == b].groupby("patient")[col].mean().loc[a.index]
+            res_[b] = paired_wilcoxon(a.values, bb.values, n_boot=2000, seed=0)
+        adj = holm({b: v["p"] for b, v in res_.items()})
+        for b in res_: res_[b]["p_holm"] = adj[b]
+        S["tests"][f"{cfg_primary}|{FINAL}|ext_pooled|{label}"] = res_
     bins = [-0.001, 0, 0.01, 0.10, 0.50, 1.0]; labels = ["0 (AF-free)", "(0,1%]", "(1,10%]", "(10,50%]", ">50%"]
     RP["stratum"] = pd.cut(RP.true_burden, bins, labels=labels)
     rows = []

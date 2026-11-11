@@ -3,3 +3,19 @@
 [22:20:40] seed 11: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
 [22:20:40] seed 11 Classical-LR: trained in 0s, params=4
 [22:24:43] seed 11 Classical-LR: burden + intervals done (243s total)
+[02:45:06] device=cpu torch threads=4
+[02:45:11] dev windows=319503 patients=243; shdb-af: windows=170001 patients=93; cpsc2021: windows=34706 patients=105; icentia11k: windows=404267 patients=790
+[02:45:12] resuming: already done [(11, 'Classical-LR')]
+[02:45:12] seed 11: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
+[02:45:16] seed 11 LightGBM: trained in 1s, params=17690
+[02:48:35] seed 11 LightGBM: burden + intervals done (203s total)
+[02:51:33]     RRNet seed=11 epoch 1 train=0.1301 val=0.0238 (174s)
+[02:51:53]     RRNet seed=11 epoch 2 train=0.0658 val=0.0345 (20s)
+[02:52:12]     RRNet seed=11 epoch 3 train=0.0595 val=0.0236 (19s)
+[02:52:33]     RRNet seed=11 epoch 4 train=0.0545 val=0.0317 (20s)
+[02:52:52]     RRNet seed=11 epoch 5 train=0.0501 val=0.0473 (19s)
+[02:53:12]     RRNet seed=11 epoch 6 train=0.0469 val=0.0275 (20s)
+[02:53:57] seed 11 RRNet: trained in 276s, params=27681
+[02:56:53] seed 11 RRNet: burden + intervals done (497s total)
+[02:56:54] seed 22: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
+[02:56:54] seed 22 Classical-LR: trained in 0s, params=4
