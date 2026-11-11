@@ -82,6 +82,18 @@ def tok_LR(coh, nl, field, d="2"):
     v = S["local_recalibration"][f"{coh}|{nl}"][field]; return f"{v:.{int(d)}f}"
 
 
+def tok_SM(field, d="2"):
+    v = S["smoother_check"]
+    if field == "k": return str(v["k_selected_on_dev"])
+    if field == "ext_ksel": return f"{v['ext_pooled_mae_by_k'][str(v['k_selected_on_dev'])]:.{int(d)}f}"
+    if field.startswith("ext_k"): return f"{v['ext_pooled_mae_by_k'][field[5:]]:.{int(d)}f}"
+    if field.startswith("dev_k"): return f"{v['dev_mae_by_k'][field[5:]]:.{int(d)}f}"
+    r = v["final_vs_best_mf"]
+    if field == "mean_diff": return f"{r['mean_diff']:.{int(d)}f}"
+    if field == "mean_ci": return f"{r['mean_ci'][0]:.{int(d)}f} to {r['mean_ci'][1]:.{int(d)}f}"
+    raise KeyError(field)
+
+
 def tok_NM(field, d="1"):
     v = S["newly_missed"][field]; return f"{v:.{int(d)}f}" if isinstance(v, float) else str(v)
 
@@ -130,7 +142,7 @@ def tok_fpr(det, est, coh, thr):
 
 def tok_mcn(thr, field):
     v = S["mcnemar"][f"PA-HMMQ[rawE]_vs_CC|{thr}"][field]
-    if field == "p": return "<0.001" if v < 0.001 else f"{v:.3f}"
+    if field == "p": return "< 0.001" if v < 0.001 else f"= {v:.3f}"
     return str(v)
 
 
@@ -162,6 +174,7 @@ def resolve(text):
                 out = "[PENDING]"; PENDING.append(body)
         else:
             raise KeyError(f"unknown token {body}")
+        out = re.sub(r"(?<![\w.])-(?=\d)", "\u2212", str(out))  # typographic minus
         TOKLOG.append((body, out))
         return out
     return re.sub(r"\{\{([^}]+)\}\}", rep, text)

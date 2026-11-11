@@ -43,6 +43,7 @@ def main():
     sh(f"python experiments/run_efficiency.py --res {res} --config {cfg}")
     sh(f"python experiments/analyze.py --res {res} --tables {tab}")
     sh(f"python experiments/local_recalibration.py {res} {tab}")  # post hoc (review round 5); appends to statistics.json
+    if not q: sh(f"python experiments/run_smoother_check.py {res} {tab}")  # post hoc (review round 8)
     sh(f"python experiments/summarize_sensitivity.py --res {res} --tables {tab}")
     sh(f"python -m src.visualization.figures --res {res} --out {fig}")
     sh("python -m pytest -q tests")

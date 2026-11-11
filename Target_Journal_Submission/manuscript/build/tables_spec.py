@@ -74,4 +74,6 @@ def supp_tables(tb):
     T.append(tb("table18_local_recalibration", "Table S18 Post-hoc local recalibration of the normalised conformal quantile in each external cohort (final PA-HMMQ, LightGBM)",
                 "For each seed, n locally labelled patients were drawn at random (200 repeats) to compute the conformal quantile; coverage and width evaluated on the remaining patients of the cohort. Target coverage 0.90.",
                 filt=lambda d: d.assign(Cohort=d.Cohort.map(COH))))
+    T.append(tb("table19_median_filter_lengths", "Table S19 Post-hoc comparison of median-filter lengths for classify-and-count (LightGBM, mean over seeds)",
+                "Filter length selected on development patients (calibration B and development test) before inspecting the external results of this analysis."))
     return T

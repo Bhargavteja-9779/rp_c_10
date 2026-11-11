@@ -1,7 +1,6 @@
 token,value
 D:dev_total|patients,243
 D:ext_total|patients,988
-D:ext_total|hours,"8,576"
 mae:LightGBM|PA-HMMQ|ext_pooled,3.07 ± 0.30
 mae:LightGBM|CC|ext_pooled,2.99 ± 0.26
 mae:LightGBM|PA-HMMQ[rawE]|ext_pooled,2.52 ± 0.24
@@ -43,7 +42,7 @@ mae:LightGBM|PA-HMMQ|ext_pooled,3.07 ± 0.30
 mae:LightGBM|CC|ext_pooled,2.99 ± 0.26
 test:LightGBM|PA-HMMQ|ext_pooled|CC|mean_diff,0.09
 test:LightGBM|PA-HMMQ|ext_pooled|CC|mean_ci,-0.07 to 0.26
-test:LightGBM|PA-HMMQ|ext_pooled|CC|p_holm,0.541
+P:LightGBM|PA-HMMQ|ext_pooled|CC,P = 0.541
 mae:LightGBM|CC-MF|ext_pooled,2.73 ± 0.23
 S:amendment_A1|dev_mae_raw_emission,2.858
 S:amendment_A1|dev_mae_pre_registered,3.186
@@ -62,10 +61,14 @@ test:LightGBM|PA-HMMQ[rawE]|ext_pooled|CC-MF|mean_diff,-0.21
 test:LightGBM|PA-HMMQ[rawE]|ext_pooled|CC-MF|mean_ci,-0.27 to -0.17
 test:LightGBM|PA-HMMQ[rawE]|ext_pooled|PCC-iso|mean_diff,-1.33
 test:LightGBM|PA-HMMQ[rawE]|ext_pooled|PCC-iso|mean_ci,-1.50 to -1.16
-test:LightGBM|PA-HMMQ[rawE]|ext_pooled|CC|p_holm,<0.001
-test:LightGBM|PA-HMMQ[rawE]|ext_pooled|CC-MF|p_holm,0.229
-test:LightGBM|PA-HMMQ[rawE]|ext_pooled|ACC|p_holm,0.229
-test:LightGBM|PA-HMMQ[rawE]|ext_pooled|PACC|p_holm,0.198
+P:LightGBM|PA-HMMQ[rawE]|ext_pooled|CC,P < 0.001
+P:LightGBM|PA-HMMQ[rawE]|ext_pooled|CC-MF,P = 0.229
+P:LightGBM|PA-HMMQ[rawE]|ext_pooled|ACC,P = 0.229
+P:LightGBM|PA-HMMQ[rawE]|ext_pooled|PACC,P = 0.198
+testr:PA-HMMQ[rawE]|CC-MF|mean_diff,-0.22
+testr:PA-HMMQ[rawE]|CC-MF|p_holm,P < 0.001
+testr:PA-HMMQ[rawE]|ACC|p_holm,P < 0.001
+testr:PA-HMMQ[rawE]|PACC|p_holm,P < 0.001
 bm:LightGBM|PA-HMMQ[rawE]|ext_pooled|mae_af_present_pp,3.82
 bm:LightGBM|CC|ext_pooled|mae_af_present_pp,4.49
 bm:LightGBM|PA-HMMQ[rawE]|ext_pooled|af_free_mean_false_burden_pp,2.24
@@ -81,6 +84,11 @@ bm:LightGBM|CC|ext_pooled|ccc|3,0.900
 mae:LightGBM|HMM-src[rawE]|ext_pooled,2.52 ± 0.22
 "test:LightGBM|PA-HMMQ[rawE]|ext_pooled|HMM-src[rawE] (post hoc, same emissions)|mean_diff",0.00
 "test:LightGBM|PA-HMMQ[rawE]|ext_pooled|HMM-src[rawE] (post hoc, same emissions)|mean_ci",-0.02 to 0.02
+SM:k,7
+SM:ext_ksel,2.63
+mae:LightGBM|PA-HMMQ[rawE]|ext_pooled,2.52 ± 0.24
+SM:mean_diff,-0.11
+SM:mean_ci,-0.15 to -0.07
 mae:LightGBM|PCC-iso|ext_pooled,3.85 ± 0.51
 bm:LightGBM|CC|ext_pooled|present_30s_spec|3,0.744
 bm:LightGBM|PA-HMMQ[rawE]|ext_pooled|present_30s_spec|3,0.914
@@ -89,6 +97,11 @@ bm:LightGBM|PA-HMMQ[rawE]|ext_pooled|present_30s_sens|3,0.941
 mcn:present_30s|a_correct_b_wrong,140
 mcn:present_30s|a_wrong_b_correct,9
 mcn:present_30s|p,<0.001
+NM:n,9
+NM:af_minutes_min,0.9
+NM:af_minutes_max,8.7
+NM:burden_max_pct|2,3.61
+NM:n_ge_6min,1
 bm:LightGBM|PA-HMMQ[rawE]|ext_pooled|ge1pct_spec|3,0.923
 bm:LightGBM|CC|ext_pooled|ge1pct_spec|3,0.850
 bm:LightGBM|PA-HMMQ[rawE]|ext_pooled|ge1pct_sens|3,0.971
@@ -106,6 +119,14 @@ iv:LightGBM|PA-HMMQ[rawE]+conformal(norm)|ext_pooled|coverage_af_free,0.961
 iv:LightGBM|CC+conformal(const)|ext_pooled|coverage,0.926
 iv:LightGBM|CC+conformal(const)|ext_pooled|mean_width_pp|2,13.97
 iv:LightGBM|PA-HMMQ posterior 90% CrI|ext_pooled|coverage,0.834
+LR:ext_shdb-af|20|mean_cov,0.91
+LR:ext_cpsc2021|20|mean_cov,0.90
+LR:ext_icentia11k|20|mean_cov,0.91
+LR:ext_shdb-af|20|p05_cov,0.78
+LR:ext_shdb-af|20|mean_cov_af,0.88
+LR:ext_cpsc2021|20|mean_cov_af,0.88
+LR:ext_icentia11k|20|mean_cov_af,0.81
+LR:ext_shdb-af|20|mean_width,17.02
 mae:LightGBM|PA-HMMQ[sel]|ext_pooled,2.74 ± nan
 mae:Classical-LR|PA-HMMQ[sel]|ext_pooled,11.07 ± nan
 mae:RRNet|PA-HMMQ[sel]|ext_pooled,[PENDING]
@@ -128,5 +149,9 @@ D:ext_total|patients,988
 D:ext_total|hours,"8,576"
 fpr:LightGBM|CC|ext_pooled|present_30s,26%
 fpr:LightGBM|PA-HMMQ[rawE]|ext_pooled|present_30s,9%
+NM:n,9
+NM:af_minutes_min,0.9
+NM:af_minutes_max,8.7
+NM:n_ge_6min,1
 test:LightGBM|PA-HMMQ[rawE]|ext_pooled|CC|mean_diff,-0.47
 D:dev_total|patients,243

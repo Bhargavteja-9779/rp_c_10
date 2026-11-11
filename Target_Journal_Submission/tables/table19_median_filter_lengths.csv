@@ -1,0 +1,6 @@
+Median-filter length (windows),Development MAE (pp),Pooled external MAE (pp)
+3,3.00,2.73
+5,2.96,2.66
+7,2.91,2.63
+9,2.94,2.60
+15,3.00,2.56
