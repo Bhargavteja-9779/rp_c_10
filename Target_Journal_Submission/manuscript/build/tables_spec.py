@@ -40,6 +40,8 @@ def tables(tb):
 
 def supp_tables(tb):
     T = []
+    T.append(tb("tableS1_databases", "Table S1 Databases: sources, versions, licences and window counts",
+                "All databases from PhysioNet; counts after exclusions (see Supplementary S2). ODC-By, Open Data Commons Attribution License; CC BY, Creative Commons Attribution; CC BY-NC-SA, Creative Commons Attribution-NonCommercial-ShareAlike."))
     T.append(tb("table2_window_metrics", "Table S2 Window-level detector performance (mean ± SD over seeds)",
                 "Threshold 0.5. ECE, expected calibration error (15 bins).", filt=lambda d: d.assign(Cohort=d.Cohort.map(COH))))
     for i, det in enumerate(["Classical-LR", "RRNet"]):

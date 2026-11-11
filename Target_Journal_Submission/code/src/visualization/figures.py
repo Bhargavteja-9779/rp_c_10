@@ -257,6 +257,43 @@ def fig_efficiency(res, out):
     save(fig, os.path.join(out, "fig11_efficiency"))
 
 
+def fig_graphical_abstract(per_seed, res, out, det="LightGBM"):
+    M = json.load(open(os.path.join(res, "metrics.json"))); DS = json.load(open(os.path.join(res, "dataset_summary.json")))
+    fig = plt.figure(figsize=(10, 4.4))
+    fig.text(0.01, 0.96, "Temporal modelling of detector outputs reduced AF-burden error and spurious AF; atrial flutter remains the main failure mode",
+             fontsize=9.5, color=TEXT, weight="bold")
+    ax0 = fig.add_axes([0.01, 0.05, 0.25, 0.8]); ax0.axis("off"); ax0.set_xlim(0, 1); ax0.set_ylim(0, 1)
+    ax0.text(0.5, 0.99, f"Developed: {DS['dev_total']['patients']} US patients\nTested: {DS['ext_total']['patients']} patients, Japan · China · Canada",
+             ha="center", va="top", fontsize=7.5, color=TEXT2)
+    steps = ["Ambulatory ECG → RR intervals", "60-beat windows → AF detector\n(any model)", "Hidden Markov burden layer\n(rhythm persistence)", "AF burden + 90% conformal interval"]
+    for i, t in enumerate(steps):
+        y = 0.74 - i * 0.21
+        ax0.add_patch(FancyBboxPatch((0.03, y - 0.07), 0.94, 0.14, boxstyle="round,pad=0.01,rounding_size=0.03", fc="#f3f2ee", ec=SERIES[0] if i >= 2 else TEXT2, lw=1.2))
+        ax0.text(0.5, y, t, ha="center", va="center", fontsize=7.5, color=TEXT)
+        if i < 3: ax0.annotate("", (0.5, y - 0.14), (0.5, y - 0.07), arrowprops=dict(arrowstyle="-|>", color=TEXT2))
+    ax1 = fig.add_axes([0.33, 0.16, 0.28, 0.66])
+    cohorts = ["ext_shdb-af", "ext_cpsc2021", "ext_icentia11k"]; xs = np.arange(3)
+    for k, (est, lab, col) in enumerate([("CC", "Counting AF windows", TEXT2), ("PA-HMMQ[rawE]", "Hidden Markov burden layer", SERIES[0])]):
+        v = [per_seed[(per_seed.detector == det) & (per_seed.estimator == est) & (per_seed.cohort == c)].mae_pp for c in cohorts]
+        ax1.errorbar(xs + (k - 0.5) * 0.2, [g.mean() for g in v], yerr=[g.std() for g in v], fmt="o", ms=6, color=col, capsize=2, lw=1.5, label=lab)
+    ax1.set_xticks(xs, ["Japan\n(SHDB-AF)", "China\n(CPSC2021)", "Canada\n(Icentia11k)"]); ax1.set_ylabel("Mean absolute burden error (pp)")
+    ax1.set_ylim(0, None); ax1.set_xlim(-0.5, 2.5); ax1.legend(fontsize=7, loc="lower left")
+    ax1.set_title("Burden error (mean ± SD, 5 seeds)", loc="left", fontsize=9)
+    ax2 = fig.add_axes([0.70, 0.16, 0.28, 0.66])
+    g = lambda est, m: M["burden"][f"{det}|{est}|ext_pooled"][m][0]
+    for k, (est, col, lab) in enumerate([("CC", TEXT2, "Counting"), ("PA-HMMQ[rawE]", SERIES[0], "Hidden Markov layer")]):
+        ax2.plot([0 + (k - 0.5) * 0.2, 1 + (k - 0.5) * 0.2], [g(est, "present_30s_spec"), g(est, "present_30s_sens")], "o", ms=6, color=col, label=lab)
+    for j, c in enumerate(cohorts):
+        cv = M["intervals"][f"{det}|PA-HMMQ[rawE]+conformal(norm)|{c}"]["coverage"][0]
+        ax2.plot(2 + (j - 1) * 0.18, cv, "s", ms=6, color=SERIES[2], label="Interval coverage by cohort" if j == 0 else None)
+        ax2.text(2 + (j - 1) * 0.18, cv - 0.035, ["JP", "CN", "CA"][j], ha="center", fontsize=6, color=TEXT2)
+    ax2.axhline(0.9, xmin=0.72, xmax=0.98, color=TEXT2, ls="--", lw=1)
+    ax2.set_xticks([0, 1, 2], ["Specificity\nAF ≥30 s", "Sensitivity\nAF ≥30 s", "Interval coverage\n(target 0.90)"], fontsize=7)
+    ax2.set_ylim(0.6, 1.02); ax2.set_xlim(-0.5, 2.5); ax2.legend(fontsize=6.5, loc="lower left")
+    ax2.set_title("Patient-level performance", loc="left", fontsize=9)
+    save(fig, os.path.join(out, "graphical_abstract"))
+
+
 def main(res, out):
     style.apply(); os.makedirs(out, exist_ok=True)
     R = pd.read_csv(os.path.join(res, "raw_results.csv"))
@@ -268,7 +305,7 @@ def main(res, out):
     fig_method(out); fig_cohorts(R, out); fig_training(res, out); fig_roc_pr(res, out); fig_confusion(res, out)
     fig_main(per_seed, out); fig_bland_altman(R, out, final); fig_ablation(per_seed, out); fig_intervals(res, out, final)
     fig_strata(R, out, final); fig_error_ectopy(R, out, final); fig_forest(os.path.join(res, "statistics.json"), out, final)
-    fig_robustness(res, out); fig_efficiency(res, out)
+    fig_robustness(res, out); fig_efficiency(res, out); fig_graphical_abstract(per_seed, res, out)
     print("figures done")
 
 

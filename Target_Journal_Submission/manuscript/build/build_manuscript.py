@@ -150,6 +150,12 @@ def tok_R1(field, d="2"):
     v = S["R1_summary"][field]; return f"{v:.{int(d)}f}" if isinstance(v, float) else str(v)
 
 
+def tok_T2(name, c1, v1, c2, v2, col, part="mean"):
+    df = pd.read_csv(os.path.join(TAB, name + ".csv"), dtype=str)
+    cell = str(df.loc[(df[c1] == v1) & (df[c2] == v2), col].iloc[0])
+    return cell.split(" ± ")[0] if part == "mean" else cell
+
+
 def tok_L(key): return str(L[key]) if not isinstance(L[key], list) else str(len(L[key]))
 
 
