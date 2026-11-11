@@ -23,14 +23,19 @@ const pb = () => new Paragraph({ children: [new PageBreak()] });
 const children = [];
 // ---------- title page ----------
 const T = M.title_page;
-children.push(new Paragraph({ heading: HeadingLevel.TITLE, children: [new TextRun({ text: T.title, bold: true, font: FONT, size: 28 })], spacing: { ...DOUBLE, after: 240 } }));
-children.push(text(`Short title: ${T.running_title}`));
-children.push(text(T.authors));
-for (const a of T.affiliations) children.push(text(a));
-children.push(text(""));
-children.push(text("Corresponding author: " + T.corresponding));
-children.push(text(`Word count (main text, excluding abstract, references, tables and figure legends): ${T.word_count}`));
-children.push(text(`Article type: ${T.article_type}`));
+const SUPP = T.kind === "supplement";
+children.push(new Paragraph({ heading: HeadingLevel.TITLE, children: [new TextRun({ text: (SUPP ? "Supplementary material for: " : "") + T.title, bold: true, font: FONT, size: 28 })], spacing: { ...DOUBLE, after: 240 } }));
+if (!SUPP) {
+  children.push(text(`Short title: ${T.running_title}`));
+  children.push(text(T.authors));
+  for (const a of T.affiliations) children.push(text(a));
+  children.push(text(""));
+  children.push(text("Corresponding author: " + T.corresponding));
+  children.push(text(`Word count (main text, excluding abstract, references, tables and figure legends): ${T.word_count}`));
+  children.push(text(`Article type: ${T.article_type}`));
+} else {
+  children.push(text(T.authors));
+}
 children.push(pb());
 
 // ---------- body ----------
@@ -48,9 +53,11 @@ for (const s of M.sections) {
   }
 }
 // ---------- references ----------
-children.push(pb());
-children.push(new Paragraph({ heading: HeadingLevel.HEADING_1, children: [new TextRun({ text: "References", bold: true, font: FONT, size: 26 })], spacing: { ...DOUBLE, after: 0 } }));
-for (const r of M.references) children.push(text(r));
+if (M.references.length) {
+  children.push(pb());
+  children.push(new Paragraph({ heading: HeadingLevel.HEADING_1, children: [new TextRun({ text: "References", bold: true, font: FONT, size: 26 })], spacing: { ...DOUBLE, after: 0 } }));
+  for (const r of M.references) children.push(text(r));
+}
 
 // ---------- tables ----------
 const PAGEW = 11906 - 2 * 1418; // A4 width minus 2.5 cm margins (DXA)

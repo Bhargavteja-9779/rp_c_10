@@ -64,9 +64,9 @@ def supp_tables(tb):
     T.append(tb("tableS_shdb_subgroups", "Table S12 Subgroup MAE (pp) in SHDB-AF by sex and age (LightGBM)", "Age split at the cohort median.", filt=lambda d: _rename_est(d, "Estimator")))
     T.append(tb("table10_worst_patients", "Table S13 The 15 external patients with the largest absolute error of the final PA-HMMQ (LightGBM, seed-averaged)",
                 "ae, absolute error (pp); err, signed error (pp); true_burden, fraction; ectopy and AFL as fractions of beats/time."))
-    T.append(tb("tableS_all_tests", "Table S14 All paired comparisons (all detectors, cohorts and both PA-HMMQ variants)", "As Table 4.",
+    T.append(tb("tableS_all_tests", "Table S14 Paired comparisons in the pooled external cohorts for all detectors and PA-HMMQ variants", "As Table 4. Comparisons for each individual cohort and the development test set are provided in the code repository (tables/tableS_all_tests.csv).",
                 keep_cols=["Detector", "Proposed", "Cohort", "Comparator", "n patients", "Mean AE proposed (pp)", "Mean AE comparator (pp)", "Mean paired diff (pp) [95% CI]", "p (Holm)"],
-                filt=lambda d: _rename_est(_rename_est(d, "Proposed").assign(Cohort=lambda x: x.Cohort.map(COH)), "Proposed")))
+                filt=lambda d: _rename_est(d[d.Cohort == "ext_pooled"].drop(columns=[]), "Proposed").assign(Cohort=lambda x: x.Cohort.map(COH))))
     T.append(tb("table15_R1_emission_selection", "Table S15 Revision R1 (post hoc): emission model selected on calibration-A patients per seed and detector",
                 "Mean per-patient burden error of the fixed-dynamics HMM on calibration-A patients for each candidate emission (hist: calibration-set histogram; T: likelihood ratio (p/(1−p))^(1/T))."))
     T.append(tb("table16_newly_missed", "Table S16 External patients with ≥30 s of reference AF classified as AF-present by classify-and-count but AF-free by the final PA-HMMQ (LightGBM, seed-majority; post hoc)",
