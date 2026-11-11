@@ -12,8 +12,8 @@ INFO = {"ltafdb": ("Long-Term AF Database", "USA", "PhysioNet ltafdb 1.0.0", "OD
         "nsr2db": ("Normal Sinus Rhythm RR Interval Database", "USA", "PhysioNet nsr2db 1.0.0", "ODC-By 1.0"),
         "chfdb": ("BIDMC Congestive Heart Failure Database", "USA", "PhysioNet chfdb 1.0.0", "ODC-By 1.0"),
         "shdb-af": ("SHDB-AF Japanese Holter AF database", "Japan", "PhysioNet shdb-af 1.0.1", "ODC-By 1.0"),
-        "cpsc2021": ("4th China Physiological Signal Challenge 2021", "China", "PhysioNet cpsc2021 1.0.0", "see LICENSE.txt"),
-        "icentia11k": ("Icentia11k continuous ECG (random subset)", "Canada", "PhysioNet icentia11k-continuous-ecg 1.0", "see LICENSE.txt")}
+        "cpsc2021": ("4th China Physiological Signal Challenge 2021", "China", "PhysioNet cpsc2021 1.0.0", "CC BY 4.0"),
+        "icentia11k": ("Icentia11k continuous ECG (random subset)", "Canada", "PhysioNet icentia11k-continuous-ecg 1.0", "CC BY-NC-SA 4.0")}
 
 
 def main(out="../results/dataset_summary.json", tab="../tables"):

@@ -65,4 +65,13 @@ def supp_tables(tb):
     T.append(tb("tableS_all_tests", "Table S14 All paired comparisons (all detectors, cohorts and both PA-HMMQ variants)", "As Table 4.",
                 keep_cols=["Detector", "Proposed", "Cohort", "Comparator", "n patients", "Mean AE proposed (pp)", "Mean AE comparator (pp)", "Mean paired diff (pp) [95% CI]", "p (Holm)"],
                 filt=lambda d: _rename_est(_rename_est(d, "Proposed").assign(Cohort=lambda x: x.Cohort.map(COH)), "Proposed")))
+    T.append(tb("table15_R1_emission_selection", "Table S15 Revision R1 (post hoc): emission model selected on calibration-A patients per seed and detector",
+                "Mean per-patient burden error of the fixed-dynamics HMM on calibration-A patients for each candidate emission (hist: calibration-set histogram; T: likelihood ratio (p/(1−p))^(1/T))."))
+    T.append(tb("table16_newly_missed", "Table S16 External patients with ≥30 s of reference AF classified as AF-present by classify-and-count but AF-free by the final PA-HMMQ (LightGBM, seed-majority; post hoc)",
+                "true_burden as a fraction of analysed time; af_minutes, reference AF time; hours, analysed time."))
+    T.append(tb("table17_rounded_tests", "Table S17 Post-hoc paired comparisons with burden estimates reported at 0.1-percentage-point resolution (LightGBM, pooled external cohorts)",
+                "Same procedure as Table 4 after rounding each estimate to 0.001 (0.1 pp); fair comparator (same emissions, fixed dynamics) not included in the Holm family.", filt=lambda d: _rename_est(d, "Proposed")))
+    T.append(tb("table18_local_recalibration", "Table S18 Post-hoc local recalibration of the normalised conformal quantile in each external cohort (final PA-HMMQ, LightGBM)",
+                "For each seed, n locally labelled patients were drawn at random (200 repeats) to compute the conformal quantile; coverage and width evaluated on the remaining patients of the cohort. Target coverage 0.90.",
+                filt=lambda d: d.assign(Cohort=d.Cohort.map(COH))))
     return T

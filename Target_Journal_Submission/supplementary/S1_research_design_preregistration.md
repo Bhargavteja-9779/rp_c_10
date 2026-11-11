@@ -89,3 +89,8 @@ quantile on calB) are added. calB, development test and external cohorts are not
 **Reporting.** R1 is reported as a post-hoc analysis. The pre-registered PA-HMMQ and the A1 variant remain in all tables,
 the ablation states explicitly that patient adaptation did not contribute, and the primary pre-specified test is
 reported unchanged. The fixed-dynamics HMM with the same emission is added as the fair comparator for every PA-HMMQ variant.
+
+**Disclosure added after review round 1.** The one-seed quick check that preceded Amendment A1 also printed burden
+errors for 40-patient subsets of SHDB-AF and CPSC2021 (and the A1 variant had lower error there). The A1 decision rule
+itself was evaluated only on development patients (calB ∪ dev_test, five seeds), and the full external analysis was run
+afterwards; nevertheless, knowledge of these subset results may have influenced the decision to formalise A1.

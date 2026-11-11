@@ -66,6 +66,26 @@ def tok_test(det, target, coh, comp, field, d="2"):
     return f"{v:.{int(d)}f}" if isinstance(v, float) else str(v)
 
 
+def tok_P(det, target, coh, comp):
+    v = S["tests"][f"{det}|{target}|{coh}"][comp]["p_holm"]
+    return "P < 0.001" if v < 0.001 else f"P = {v:.3f}"
+
+
+def tok_testr(target, comp, field, d="2"):
+    v = S["tests"][f"LightGBM|{target}|ext_pooled|rounded0.1pp"][comp][field]
+    if field in ("p", "p_holm"): return "P < 0.001" if v < 0.001 else f"P = {v:.3f}"
+    if isinstance(v, list): return f"{v[0]:.{int(d)}f} to {v[1]:.{int(d)}f}"
+    return f"{v:.{int(d)}f}" if isinstance(v, float) else str(v)
+
+
+def tok_LR(coh, nl, field, d="2"):
+    v = S["local_recalibration"][f"{coh}|{nl}"][field]; return f"{v:.{int(d)}f}"
+
+
+def tok_NM(field, d="1"):
+    v = S["newly_missed"][field]; return f"{v:.{int(d)}f}" if isinstance(v, float) else str(v)
+
+
 def tok_S(*path):
     v = S
     for p in path: v = v[p] if not isinstance(v, list) else v[int(p)]
@@ -135,7 +155,11 @@ def resolve(text):
         if fn in CONST and not args:
             out = CONST[fn]
         elif fn in FUNCS:
-            out = FUNCS[fn](*args)
+            try:
+                out = FUNCS[fn](*args)
+            except (KeyError, IndexError) as ex:
+                if os.environ.get("STRICT", "1") == "1": raise
+                out = "[PENDING]"; PENDING.append(body)
         else:
             raise KeyError(f"unknown token {body}")
         TOKLOG.append((body, out))
@@ -146,6 +170,7 @@ def resolve(text):
 # ---------------- citations ----------------
 ORDER = []
 MISSING = []
+PENDING = []
 
 
 def cite(text):
@@ -153,7 +178,7 @@ def cite(text):
         keys = [k.strip().lstrip("@") for k in m.group(1).split(";")]
         nums = []
         for k in keys:
-            if k not in REFS: raise KeyError(f"unverified/unknown reference {k}")
+            if k not in REFS and k not in MANUAL_REFS: raise KeyError(f"unverified/unknown reference {k}")
             if k not in ORDER: ORDER.append(k)
             nums.append(ORDER.index(k) + 1)
         nums = sorted(set(nums)); parts = []; i = 0
@@ -166,7 +191,7 @@ def cite(text):
     return re.sub(r"\[(@[^\]]+)\]", rep, text)
 
 
-MANUAL_REFS = {"blandaltman1986": "Bland JM, Altman DG. Statistical methods for assessing agreement between two methods of clinical measurement. Lancet 1986;1(8476):307–310. doi:10.1016/S0140-6736(86)90837-8",
+MANUAL_REFS = {"young1999": "Young B, Brodnick D, Spaulding R. A comparative study of a hidden Markov model detector for atrial fibrillation. In: Neural Networks for Signal Processing IX: Proceedings of the 1999 IEEE Signal Processing Society Workshop. IEEE; 1999. p.468–476. doi:10.1109/NNSP.1999.788166","moody1983": "Moody GB, Mark RG. A new method for detecting atrial fibrillation using R-R intervals. Comput Cardiol 1983;10:227–230.","blandaltman1986": "Bland JM, Altman DG. Statistical methods for assessing agreement between two methods of clinical measurement. Lancet 1986;1(8476):307–310. doi:10.1016/S0140-6736(86)90837-8",
                "carter1994": "Carter CK, Kohn R. On Gibbs sampling for state space models. Biometrika 1994;81(3):541–553. doi:10.1093/biomet/81.3.541",
                "rabiner1989": "Rabiner LR. A tutorial on hidden Markov models and selected applications in speech recognition. Proc IEEE 1989;77(2):257–286. doi:10.1109/5.18626","holm1979": "Holm S. A simple sequentially rejective multiple test procedure. Scand J Stat 1979;6:65–70. Available from: https://www.jstor.org/stable/4615733"}
 
@@ -284,7 +309,7 @@ def main():
         for f in doc["figures"]:
             fh.write(f"\n**{f['label']}** " + "".join(r["text"] for r in f["legend"]) + f"\nAlt text: {f['alt']}\n")
         fh.write("\n## References\n\n" + "\n".join(doc["references"]) + "\n")
-    print(f"built: {len(ORDER)} references, {len(TOKLOG)} data tokens, main-text words ≈ {wc}")
+    print(f"built: {len(ORDER)} references, {len(TOKLOG)} data tokens, main-text words ≈ {wc}; pending tokens: {len(PENDING)} {PENDING[:5]}")
 
 
 LAYOUT = "layout.json"

@@ -147,6 +147,24 @@ def main(res, tab, cfg_primary="LightGBM"):
     md_table(T[(T.Detector == cfg_primary) & (T.Cohort == "ext_pooled")], os.path.join(tab, "table5_primary_tests"))
     md_table(T, os.path.join(tab, "tableS_all_tests"))
 
+    # post hoc (review round 3): estimates reported at 0.1-pp clinical resolution before testing
+    RP["ae_r"] = (RP.estimate.round(3) - RP.true_burden).abs() * 100
+    rows_r = []
+    for target in [FINAL] + ([PA_SEL] if has_sel else []):
+        a = RP[(RP.detector == cfg_primary) & (RP.estimator == target) & RP.cohort.isin(EXT)].groupby("patient").ae_r.mean().sort_index()
+        res_ = {}
+        for b in BASELINES + [FAIR[target]]:
+            bb = RP[(RP.detector == cfg_primary) & (RP.estimator == b) & RP.cohort.isin(EXT)].groupby("patient").ae_r.mean().loc[a.index]
+            res_[b] = paired_wilcoxon(a.values, bb.values, n_boot=2000, seed=0)
+        adj = holm({b: v["p"] for b, v in res_.items() if b in BASELINES})
+        for b, v in res_.items():
+            v["p_holm"] = adj.get(b, v["p"])
+            rows_r.append({"Proposed": target, "Comparator": b, "Mean AE proposed (pp)": f"{a.mean():.2f}",
+                           "Mean paired diff (pp) [95% CI]": f"{v['mean_diff']:.2f} [{v['mean_ci'][0]:.2f}, {v['mean_ci'][1]:.2f}]",
+                           "Non-zero pairs": v["n_nonzero"], "Rank-biserial r": f"{v['rank_biserial']:.3f}", "p (Holm)": f"{v['p_holm']:.2g}"})
+        S["tests"][f"{cfg_primary}|{target}|ext_pooled|rounded0.1pp"] = res_
+    md_table(pd.DataFrame(rows_r), os.path.join(tab, "table17_rounded_tests"))
+
     # ---------------- Threshold classification ----------------
     rows = []; S["mcnemar"] = {}
     thr_list = [("present_30s", None), ("ge1pct", 0.01), ("ge10pct", 0.10)]
@@ -169,6 +187,19 @@ def main(res, tab, cfg_primary="LightGBM"):
             return (v.pred >= 0.5).values, v.truth.values
         pa, tr = votes(FINAL); pc, _ = votes("CC")
         S["mcnemar"][f"{FINAL}_vs_CC|{t}"] = mcnemar(pa, pc, tr)
+
+    # ---------------- Patients newly missed / newly corrected for AF presence (post hoc, round-1 review) ----------------
+    x = RP[(RP.detector == cfg_primary) & (RP.cohort == "ext_pooled") & RP.estimator.isin(["CC", FINAL])].copy()
+    x["pred"] = x.estimate * x.hours * 3600 >= 30; x["truth"] = x.true_burden * x.hours * 3600 >= 30
+    v = x.groupby(["patient", "estimator"]).agg(pred=("pred", "mean")).reset_index().pivot(index="patient", columns="estimator", values="pred") >= 0.5
+    meta = x.drop_duplicates("patient").set_index("patient")
+    miss = meta[meta.truth & ~v[FINAL] & v["CC"]].assign(af_minutes=lambda d: d.true_burden * d.hours * 60)
+    fpfix = meta[~meta.truth & ~v[FINAL] & v["CC"]]
+    S["newly_missed"] = dict(n=int(len(miss)), af_minutes_min=float(miss.af_minutes.min()) if len(miss) else 0.0,
+                             af_minutes_max=float(miss.af_minutes.max()) if len(miss) else 0.0,
+                             n_ge_6min=int((miss.af_minutes >= 6).sum()), burden_max_pct=float(100 * miss.true_burden.max()) if len(miss) else 0.0,
+                             n_false_positive_corrected=int(len(fpfix)))
+    md_table(miss.reset_index()[["patient", "db", "true_burden", "af_minutes", "hours"]].round(4), os.path.join(tab, "table16_newly_missed"))
 
     # ---------------- Intervals ----------------
     I = pd.read_csv(os.path.join(res, "intervals.csv"))
