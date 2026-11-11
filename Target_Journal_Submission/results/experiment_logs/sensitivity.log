@@ -1,0 +1,81 @@
+[03:00:11] device=cpu torch threads=4
+[03:00:12] dev windows=319503 patients=243; shdb-af: windows=170001 patients=93; cpsc2021: windows=34706 patients=105
+[03:00:13] seed 11: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=23 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:02:52] seed 11 LightGBM: trained in 159s, params=7991
+[03:03:32] seed 11 LightGBM: burden + intervals done (199s total)
+[03:03:32] seed 22: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=23 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:06:53] seed 22 LightGBM: trained in 200s, params=8113
+[03:07:36] seed 22 LightGBM: burden + intervals done (244s total)
+[03:07:37] seed 33: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=23 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:08:21] seed 33 LightGBM: trained in 43s, params=10919
+[03:09:02] seed 33 LightGBM: burden + intervals done (86s total)
+[03:09:03] seed 44: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=23 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:10:55] seed 44 LightGBM: trained in 111s, params=3843
+[03:11:38] seed 44 LightGBM: burden + intervals done (155s total)
+[03:11:39] seed 55: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=23 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:11:58] seed 55 LightGBM: trained in 19s, params=3843
+[03:12:50] seed 55 LightGBM: burden + intervals done (72s total)
+[03:12:50] device=cpu torch threads=4
+[03:12:51] dev windows=319503 patients=243; shdb-af: windows=170001 patients=93; cpsc2021: windows=34706 patients=105
+[03:12:52] seed 11: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=46 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:12:59] seed 11 LightGBM: trained in 6s, params=10736
+[03:13:39] seed 11 LightGBM: burden + intervals done (47s total)
+[03:13:39] seed 22: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=46 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:16:28] seed 22 LightGBM: trained in 168s, params=9028
+[03:17:09] seed 22 LightGBM: burden + intervals done (210s total)
+[03:17:09] seed 33: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=46 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:21:27] seed 33 LightGBM: trained in 254s, params=21106
+[03:22:09] seed 33 LightGBM: burden + intervals done (300s total)
+[03:22:09] seed 44: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=46 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:24:09] seed 44 LightGBM: trained in 119s, params=3782
+[03:24:51] seed 44 LightGBM: burden + intervals done (162s total)
+[03:24:52] seed 55: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=46 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:26:48] seed 55 LightGBM: trained in 116s, params=3965
+[03:27:29] seed 55 LightGBM: burden + intervals done (157s total)
+[03:27:29] device=cpu torch threads=4
+[03:27:33] dev windows=643324 patients=243; shdb-af: windows=340701 patients=93; cpsc2021: windows=70072 patients=105
+[03:27:34] seed 11: train=108 pts, calA=38 pts, calB=48 pts, test=49 pts | inner fit=91 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:31:41] seed 11 LightGBM: trained in 245s, params=9821
+[03:33:08] seed 11 LightGBM: burden + intervals done (334s total)
+[03:33:08] seed 22: train=108 pts, calA=38 pts, calB=48 pts, test=49 pts | inner fit=91 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:37:51] seed 22 LightGBM: trained in 278s, params=18483
+[03:39:20] seed 22 LightGBM: burden + intervals done (372s total)
+[03:39:21] seed 33: train=108 pts, calA=38 pts, calB=48 pts, test=49 pts | inner fit=91 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:43:50] seed 33 LightGBM: trained in 266s, params=11102
+[03:45:13] seed 33 LightGBM: burden + intervals done (352s total)
+[03:45:14] seed 44: train=108 pts, calA=38 pts, calB=48 pts, test=49 pts | inner fit=91 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:47:02] seed 44 LightGBM: trained in 108s, params=2562
+[03:48:25] seed 44 LightGBM: burden + intervals done (191s total)
+[03:48:26] seed 55: train=108 pts, calA=38 pts, calB=48 pts, test=49 pts | inner fit=91 val=17
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[03:49:55] seed 55 LightGBM: trained in 89s, params=3050
+[03:51:38] seed 55 LightGBM: burden + intervals done (192s total)

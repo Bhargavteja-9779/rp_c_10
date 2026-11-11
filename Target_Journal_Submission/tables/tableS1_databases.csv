@@ -6,5 +6,5 @@ MIT-BIH Normal Sinus Rhythm Database,development,USA,PhysioNet nsrdb 1.0.0,ODC-B
 Normal Sinus Rhythm RR Interval Database,development,USA,PhysioNet nsr2db 1.0.0,ODC-By 1.0,54,54,1200,92190,0,0,0.0
 BIDMC Congestive Heart Failure Database,development,USA,PhysioNet chfdb 1.0.0,ODC-By 1.0,15,15,298,27000,4,0,5.9
 SHDB-AF Japanese Holter AF database,external validation,Japan,PhysioNet shdb-af 1.0.1,ODC-By 1.0,97,93,2297,170001,72,12,23.8
-4th China Physiological Signal Challenge 2021,external validation,China,PhysioNet cpsc2021 1.0.0,see LICENSE.txt,1405,105,471,34706,53,2,35.9
-Icentia11k continuous ECG (random subset),external validation,Canada,PhysioNet icentia11k-continuous-ecg 1.0,see LICENSE.txt,790,790,5808,404267,50,25,5.9
+4th China Physiological Signal Challenge 2021,external validation,China,PhysioNet cpsc2021 1.0.0,CC BY 4.0,1405,105,471,34706,53,2,35.9
+Icentia11k continuous ECG (random subset),external validation,Canada,PhysioNet icentia11k-continuous-ecg 1.0,CC BY-NC-SA 4.0,790,790,5808,404267,50,25,5.9

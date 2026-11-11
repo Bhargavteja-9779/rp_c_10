@@ -31,7 +31,7 @@
    "file": "fig3_main_mae",
    "label": "Figure 2",
    "legend": "Per-patient AF-burden mean absolute error (percentage points) of all burden estimators in the development test set and three external cohorts, LightGBM detector. Points, mean over five seeds; bars, \u00b11 SD. Blue, PA-HMMQ variants: pre-registered (calibrated-histogram emissions), final (probability emissions, Amendment A1) and R1 (post-hoc per-detector emission selection). HMM-src (final emissions): fixed source dynamics with the final emissions. Abbreviations as in Table 2.",
-   "alt": "Four dot-plot panels, one per cohort, listing ten burden estimators on the vertical axis and mean absolute error on the horizontal axis; the final PA-HMMQ has the lowest error in every panel."
+   "alt": "Four dot-plot panels, one per cohort, listing twelve burden estimators on the vertical axis and mean absolute error on the horizontal axis; in the external cohorts the final PA-HMMQ and the fixed-dynamics HMM with the same emissions have the lowest errors."
   },
   {
    "file": "fig4_bland_altman",
@@ -42,20 +42,20 @@
   {
    "file": "fig6_intervals",
    "label": "Figure 4",
-   "legend": "Empirical coverage (left) and mean width (right, log scale) of 90% per-patient burden intervals by method and cohort, LightGBM detector (mean \u00b1 SD over seeds). Dashed line, nominal coverage 0.90.",
-   "alt": "Two dot-plot panels. Left: coverage of seven interval methods in four cohorts relative to a dashed 0.90 line. Right: mean interval width on a logarithmic axis, smallest for normalised conformal intervals of the final PA-HMMQ."
+   "legend": "Empirical coverage (left; mean over seeds, bars minimum\u2013maximum) and mean interval width (right, log scale; median over seeds, bars minimum\u2013maximum) of 90% per-patient burden intervals by method and cohort, LightGBM detector. Dashed line, nominal coverage 0.90. Normalised: nonconformity scaled by the posterior standard deviation; constant-width: unscaled absolute residual; CrI, uncalibrated posterior credible interval.",
+   "alt": "Two dot-plot panels. Left: coverage of eight interval methods in four cohorts relative to a dashed 0.90 line; the posterior credible interval under-covers and SHDB-AF is below 0.90 for most methods. Right: mean interval width on a logarithmic axis, smallest for the normalised conformal intervals."
   },
   {
    "file": "fig10_robustness",
    "label": "Figure 5",
-   "legend": "Robustness of burden estimators in SHDB-AF to simulated missed and false R peaks, R-peak timing jitter and premature beats with compensatory pauses, for the LightGBM (left) and RRNet (right) detectors. Mean absolute error \u00b1 SD over seeds.",
-   "alt": "Two line charts of mean absolute error across nine perturbation conditions for five estimators; errors rise with false R peaks and ectopy, and the final PA-HMMQ remains lowest or close to lowest in most conditions."
+   "legend": "Robustness of burden estimators in SHDB-AF to simulated missed and false R peaks (2%, 5%), R-peak timing jitter (SD 10 and 25 ms) and premature beats with compensatory pauses (5%, 10%), for the LightGBM (left) and RRNet (right) detectors. Mean absolute error \u00b1 SD over seeds.",
+   "alt": "Two line charts of mean absolute error across nine perturbation conditions for six estimators; errors rise most with 25-ms jitter and, for RRNet, with missed beats; the final PA-HMMQ has the lowest error in every condition."
   },
   {
    "file": "fig7_error_strata",
    "label": "Figure 6",
-   "legend": "Mean absolute error by reference burden stratum in the pooled external cohorts (LightGBM detector; logarithmic axis). Strata: AF-free (0%), >0\u20131%, >1\u201310%, >10\u201350% and >50% burden.",
-   "alt": "Line chart with five burden strata on the horizontal axis and error on a logarithmic vertical axis for four estimators; errors are largest in intermediate strata."
+   "legend": "Mean absolute error by reference burden stratum in the pooled external cohorts (LightGBM detector; logarithmic axis). Strata: AF-free (0%), >0\u20131%, >1\u201310%, >10\u201350% and >50% burden. Lines connect strata for readability only.",
+   "alt": "Line chart with five burden strata on the horizontal axis and error on a logarithmic vertical axis for four estimators; errors are highest in the >0\u20131% stratum and above 10%; the calibrated-emission HMM is best above 50%."
   }
  ]
 }

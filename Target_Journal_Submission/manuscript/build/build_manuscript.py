@@ -152,8 +152,17 @@ def tok_R1(field, d="2"):
 
 def tok_T2(name, c1, v1, c2, v2, col, part="mean"):
     df = pd.read_csv(os.path.join(TAB, name + ".csv"), dtype=str)
-    cell = str(df.loc[(df[c1] == v1) & (df[c2] == v2), col].iloc[0])
+    sel = df.loc[(df[c1] == v1) & (df[c2] == v2), col]
+    if len(sel) != 1: raise KeyError(f"T2 lookup not unique: {name} {v1} {v2}")
+    cell = str(sel.iloc[0])
     return cell.split(" ± ")[0] if part == "mean" else cell
+
+
+def tok_T3(name, c1, v1, c2, v2, c3, v3, col, part="mean"):
+    df = pd.read_csv(os.path.join(TAB, name + ".csv"), dtype=str)
+    sel = df.loc[(df[c1] == v1) & (df[c2] == v2) & (df[c3] == v3), col]
+    if len(sel) != 1: raise KeyError(f"T3 lookup not unique: {name} {v1} {v2} {v3}")
+    cell = str(sel.iloc[0]); return cell.split(" ± ")[0] if part == "mean" else cell
 
 
 def tok_L(key): return str(L[key]) if not isinstance(L[key], list) else str(len(L[key]))

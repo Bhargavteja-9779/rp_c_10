@@ -1,0 +1,51 @@
+{
+ "title": "Cover letter",
+ "paragraphs": [
+  {
+   "text": "[Date]"
+  },
+  {
+   "text": "Professor [Name], Editor-in-Chief, EP Europace"
+  },
+  {
+   "text": "European Heart Rhythm Association / Oxford University Press"
+  },
+  {
+   "text": "Dear Editor,"
+  },
+  {
+   "text": "We submit the manuscript entitled \"Temporal quantification of atrial fibrillation burden with distribution-free uncertainty intervals: development and multinational external validation\" for consideration as a Clinical Research Article in EP Europace."
+  },
+  {
+   "text": "Atrial fibrillation (AF) burden is becoming a key descriptor for risk stratification and therapy evaluation, and it is now almost always computed automatically from Holter, patch or wearable recordings. Current tools derive burden by counting time windows classified as AF and report no uncertainty. In this study we treated burden as a per-patient quantity to be estimated, combined a temporal (hidden Markov) burden layer that can be placed on top of any RR-interval AF detector with distribution-free conformal intervals, and evaluated it with three detectors in 988 external patients from Japan, China and Canada who were never used for model development or calibration."
+  },
+  {
+   "text": "The main findings are: (i) the burden layer reduced the mean absolute per-patient burden error in the pooled external cohorts from 2.99 to 2.52 percentage points relative to classify-and-count, and raised specificity for AF presence from 0.74 to 0.91; (ii) the improvement was due to temporal modelling, whereas the pre-registered specification, per-patient re-estimation of rhythm dynamics and classical prevalence-correction methods did not help—negative results we report in full; (iii) conformal intervals reached nominal coverage in two of three external cohorts, with under-coverage in the third; and (iv) atrial flutter remained the dominant source of error. We describe the effect size as modest and discuss the limitations openly."
+  },
+  {
+   "text": "We believe the work fits the journal's scope in arrhythmia diagnostics, digital health and artificial intelligence in electrophysiology. The study follows TRIPOD+AI and the 2025 EHRA/HRS/ESC e-Cardiology scientific statement on AI in clinical electrophysiology; the completed EHRA AI checklist is uploaded as a separate supplementary file. The analysis plan was pre-registered in version control before model training, deviations are reported, and all code and per-patient result files that regenerate every number, table and figure will be made publicly available."
+  },
+  {
+   "text": "Use of artificial-intelligence tools. In line with the journal's policy, we disclose that a large language model-based assistant (Claude, Anthropic) was used to write analysis code, run the experiments and draft the manuscript. The authors [to be confirmed by the authors] verified the analyses and take full responsibility for the content. No AI tool is listed as an author."
+  },
+  {
+   "text": "The manuscript is original, has not been published previously, and is not under consideration for publication elsewhere. All authors have approved the submission [to be confirmed]. The study used only publicly available, de-identified databases; no new ethical approval was required. [Conflict-of-interest statement and funding to be completed by the authors.] [If any author is an editor of EP Europace, state it here.]"
+  },
+  {
+   "text": "[Suggested reviewers, optional]"
+  },
+  {
+   "text": "Yours sincerely,"
+  },
+  {
+   "text": "[Corresponding author name, degrees]"
+  },
+  {
+   "text": "[Affiliation, postal address, e-mail, telephone]"
+  },
+  {
+   "text": "On behalf of all authors"
+  }
+ ],
+ "font_size": 22
+}

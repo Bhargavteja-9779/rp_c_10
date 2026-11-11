@@ -10,7 +10,7 @@
   "corresponding": "[Name, postal address, telephone, e-mail]",
   "article_type": "Clinical Research Article (digital health / artificial intelligence)",
   "kind": "main",
-  "word_count": 4499
+  "word_count": 4781
  },
  "sections": [
   {
@@ -45,7 +45,7 @@
        "bold": true
       },
       {
-       "text": " A hidden Markov burden layer (PA-HMMQ) converts the output of any beat-to-beat interval AF detector into burden, modelling the persistence of rhythm and optionally re-estimating each patient's rhythm dynamics; split-conformal calibration gives 90% intervals. Three detectors were developed in 243 patients (USA) and evaluated without recalibration in 988 patients from Japan, China and Canada. The pre-registered primary endpoint was the per-patient absolute burden error in pooled external cohorts."
+       "text": " A patient-adaptive hidden Markov burden layer converts the output of any beat-to-beat interval AF detector into burden, modelling the persistence of rhythm and optionally re-estimating each patient's rhythm dynamics; split-conformal calibration gives 90% intervals. Three detectors were developed in 243 patients (USA) and evaluated without recalibration in 988 patients from Japan, China and Canada. The pre-registered primary endpoint was the per-patient absolute burden error in pooled external cohorts."
       }
      ]
     },
@@ -57,7 +57,7 @@
        "bold": true
       },
       {
-       "text": " The pre-registered specification did not outperform classify-and-count (3.07 ± 0.30 vs 2.99 ± 0.26 percentage points [pp]). With emissions selected on development data before the full analysis, the error was 2.52 ± 0.24 pp (paired difference -0.47 pp, 95% CI -0.56 to -0.38), lower on average than all eight comparators and with all three detectors, although rank tests were not significant against three comparators. Temporal modelling, not per-patient re-estimation of dynamics, explained the gain, and a tuned median filter recovered most of it. Specificity for AF presence (≥30 s) rose from 0.74 to 0.91 while sensitivity fell from 0.99 to 0.94. Conformal intervals covered 0.95 of external patients (target 0.90) but 0.84 in the Japanese cohort. Atrial flutter caused the largest errors."
+       "text": " The pre-registered specification did not outperform classify-and-count (3.07 ± 0.30 vs 2.99 ± 0.26 percentage points [pp]). With emissions selected on development data by a rule specified before the full analysis, the error was 2.52 ± 0.24 pp (paired difference −0.47 pp, 95% CI −0.56 to −0.38), lower on average than all eight comparators and with all three detectors, although rank tests were not significant against three comparators. Temporal modelling, not per-patient re-estimation of dynamics, explained the gain, and a tuned median filter recovered most of it. Specificity for AF presence (≥30 s) rose from 0.74 to 0.91 while sensitivity fell from 0.99 to 0.94. Conformal intervals covered 0.95 of external patients (target 0.90) but 0.84 in the Japanese cohort. Atrial flutter caused the largest errors."
       }
      ]
     },
@@ -389,7 +389,7 @@
        "sup": true
       },
       {
-       "text": ", from which 800 patients were sampled uniformly at random (fixed seed, without inspecting labels) and their first ten 70-min segments used. Only beat and rhythm annotation files were used (Supplementary Table S1 lists versions, licences and exclusions)."
+       "text": ", from which 800 patients were sampled uniformly at random (fixed seed, without inspecting labels) and their first ten 70-min segments used. Only beat and rhythm annotation files were used (Table 1; versions, licences and exclusions in Supplementary Table S1 and Supplementary S2)."
       }
      ]
     },
@@ -774,7 +774,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "For each of five pre-specified seeds, development patients were split, stratified by database and AF presence, into training (45%; 15% of these for early stopping), calibration A (15%; all source calibration quantities), calibration B (20%; conformal quantile only) and test (20%) sets. No patient appeared in more than one set. All estimators used the same detector outputs and the same calibration-A patients, thresholds were fixed at 0.5, and no estimator was tuned on test or external data. Because Amendment A1 used calibration-B and development test patients to choose the final emission model, development test results of the final variant are not independent of its selection; the external cohorts are the only fully independent test. An automated audit fingerprinting all RR windows and recordings across all databases identified one exact duplicate recording in SHDB-AF (two files of the same subject with identical RR series), which was removed (Supplementary Table S1). Features and RR normalisation were computed within each window only."
+       "text": "For each of five pre-specified seeds, development patients were split, stratified by database and AF presence, into training (45%; 15% of these for early stopping), calibration A (15%; all source calibration quantities), calibration B (20%; conformal quantile only) and test (20%) sets. No patient appeared in more than one set. All estimators used the same detector outputs and the same calibration-A patients, thresholds were fixed at 0.5, and no estimator was tuned on test or external data. Because Amendment A1 used calibration-B and development test patients to choose the final emission model, development test results of the final variant are not independent of its selection; the external cohorts are the only fully independent test. An automated audit fingerprinting all RR windows and recordings across all databases identified one exact duplicate recording in SHDB-AF (two files of the same subject with identical RR series), which was removed (Supplementary S2). Features and RR normalisation were computed within each window only."
       }
      ]
     },
@@ -901,7 +901,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "With the pre-registered emission model, PA-HMMQ did not reduce burden error compared with classify-and-count in the pooled external cohorts (3.07 ± 0.30 vs 2.99 ± 0.26 pp; mean paired difference 0.09 pp, 95% CI -0.07 to 0.26; Holm-adjusted P = 0.541) and was worse than median-filtered counting (2.73 ± 0.23 pp) (Table 2; Supplementary Table S14). The primary hypothesis was therefore not supported for the pre-registered specification."
+       "text": "With the pre-registered emission model, PA-HMMQ did not reduce burden error compared with classify-and-count in the pooled external cohorts (3.07 ± 0.30 vs 2.99 ± 0.26 pp; mean paired difference 0.09 pp, 95% CI −0.07 to 0.26; Holm-adjusted P = 0.541) and was worse than median-filtered counting (2.73 ± 0.23 pp) (Table 2; Supplementary Table S14). The primary hypothesis was therefore not supported for the pre-registered specification."
       }
      ]
     },
@@ -909,7 +909,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "By the development-data rule of Amendment A1, applied before the full analysis, probability emissions were selected (development error 2.858 vs 3.186 pp). This final PA-HMMQ had the lowest mean error of all estimators in each external cohort (Table 2, Figure 2): 4.23 ± 0.11 pp in SHDB-AF, 2.88 ± 0.39 pp in CPSC2021 and 2.27 ± 0.33 pp in Icentia11k, versus 4.51 ± 0.12, 3.85 ± 0.76 and 2.69 ± 0.35 pp for classify-and-count. In the development test set—which, unlike the external cohorts, contributed to the A1 selection—it was not better than the pre-registered variant or the fixed-dynamics HMM (3.04 ± 1.26, 2.97 ± 1.03 and 3.00 ± 1.02 pp)."
+       "text": "By the rule of Amendment A1, specified before the full analysis and evaluated on development patients only, probability emissions were selected (development error 2.858 vs 3.186 pp). This final PA-HMMQ had the lowest mean error of the pre-specified estimators in each external cohort (Table 2, Figure 2); the post-hoc fixed-dynamics HMM with identical emissions was equivalent (Icentia11k 2.25 ± 0.31 pp). The final PA-HMMQ error was 4.23 ± 0.11 pp in SHDB-AF, 2.88 ± 0.39 pp in CPSC2021 and 2.27 ± 0.33 pp in Icentia11k, versus 4.51 ± 0.12, 3.85 ± 0.76 and 2.69 ± 0.35 pp for classify-and-count. In the development test set—which, unlike the external cohorts, contributed to the A1 selection—it was not better than the pre-registered variant or the fixed-dynamics HMM (3.04 ± 1.26, 2.97 ± 1.03 and 3.00 ± 1.02 pp)."
       }
      ]
     },
@@ -917,7 +917,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "In the pooled external cohorts, the mean paired difference favoured the final PA-HMMQ over every comparator, with bootstrap 95% CIs excluding zero (Table 4; Supplementary Figure S6): -0.47 pp (-0.56 to -0.38) versus classify-and-count, -0.21 pp (-0.27 to -0.17) versus median-filtered counting and -1.33 pp (-1.50 to -1.16) versus isotonic-recalibrated probability averaging. The pre-specified Wilcoxon signed-rank tests, however, were significant after Holm correction against classify-and-count (P < 0.001), PCC, PCC-iso, EMQ and HMM-src, but not against median-filtered counting (P = 0.229), ACC (P = 0.229) or PACC (P = 0.198). Most external patients were AF-free and received near-zero burden from all estimators, so median paired differences were close to zero. When estimates were reported at 0.1-pp resolution (post hoc), the final PA-HMMQ remained better than median-filtered counting (mean paired difference -0.22 pp, Holm-adjusted P < 0.001), ACC (P < 0.001) and PACC (P < 0.001) (Supplementary Table S17); the mean gain was concentrated in patients with AF (3.82 vs 4.49 pp) and in AF-free patients with false-positive windows (mean false burden 2.24 vs 2.66 pp; Table 3)."
+       "text": "In the pooled external cohorts, the mean paired difference favoured the final PA-HMMQ over every comparator, with bootstrap 95% CIs excluding zero (Table 4; Supplementary Figure S6): −0.47 pp (−0.56 to −0.38) versus classify-and-count, −0.21 pp (−0.27 to −0.17) versus median-filtered counting and −1.33 pp (−1.50 to −1.16) versus isotonic-recalibrated probability averaging. The pre-specified Wilcoxon signed-rank tests, however, were significant after Holm correction against classify-and-count (P < 0.001), PCC, PCC-iso, EMQ and HMM-src, but not against median-filtered counting (P = 0.229), ACC (P = 0.229) or PACC (P = 0.198). Most external patients were AF-free and received near-zero burden from all estimators, so median paired differences were close to zero; the mean gain was concentrated in patients with AF (3.82 vs 4.49 pp) and in AF-free patients with false-positive windows (mean false burden 2.24 vs 2.66 pp; Table 3). Because counting-type estimators return exactly zero for many AF-free patients whereas HMM posteriors are small but non-zero, rank tests were partly driven by differences below clinical resolution: with estimates reported at 0.1-pp resolution (post hoc), the final PA-HMMQ was better than median-filtered counting (mean paired difference −0.22 pp, Holm-adjusted P < 0.001), ACC (P < 0.001) and PACC (P < 0.001) (Supplementary Table S17)."
       }
      ]
     },
@@ -925,7 +925,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "The final PA-HMMQ had a lower mean error than classify-and-count in all nine detector × external-cohort combinations. The ranking was reproduced with the other detectors (Supplementary Tables S3–S4): pooled external error 7.44 ± 0.69 vs 8.54 ± 0.56 pp (Classical-LR) and 3.45 ± 0.70 vs 3.96 ± 0.83 pp (RRNet). Bias was 1.70 pp (classify-and-count 2.00 pp) and Lin's concordance correlation 0.902 (0.900) (Table 3, Figure 3)."
+       "text": "The final PA-HMMQ had a lower mean error than classify-and-count in all nine detector × external-cohort combinations. The ranking was reproduced with the other detectors (Supplementary Tables S3–S4): pooled external error 7.44 ± 0.69 vs 8.54 ± 0.56 pp (Classical-LR) and 3.45 ± 0.70 vs 3.96 ± 0.83 pp (RRNet). Bias was 1.70 pp (classify-and-count 2.00 pp) and Lin's concordance correlation coefficient 0.902 versus 0.900 (Table 3, Figure 3)."
       }
      ]
     },
@@ -942,7 +942,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "Re-estimating rhythm dynamics per patient did not contribute: the final PA-HMMQ and the HMM with the same emissions but fixed source dynamics had identical error (2.52 ± 0.22 pp; mean paired difference 0.00 pp, 95% CI -0.02 to 0.02), and error was insensitive to the prior strength κ (Supplementary Table S5, Supplementary Figure S5). The improvement was therefore attributable to temporal modelling with sharp emission likelihoods. Consistent with this, a longer median filter recovered most of the gain: with the filter length selected on development patients (7 windows; post hoc), median-filtered counting reached 2.63 pp in the pooled external cohorts, versus 2.52 ± 0.24 pp for the final PA-HMMQ (mean paired difference -0.11 pp, 95% CI -0.15 to -0.07; Supplementary Table S19). Classical prevalence-correction estimators that ignore temporal dependence (ACC, PACC, EMQ) did not consistently improve on classify-and-count, and recalibrating window probabilities on development patients worsened burden error (PCC-iso 3.85 ± 0.51 pp)."
+       "text": "Re-estimating rhythm dynamics per patient did not contribute: the final PA-HMMQ and the HMM with the same emissions but fixed source dynamics had identical error (2.52 ± 0.22 pp; mean paired difference 0.00 pp, 95% CI −0.02 to 0.02), and error was insensitive to the prior strength κ (Supplementary Table S5, Supplementary Figure S5). The improvement was therefore attributable to temporal modelling with sharp emission likelihoods. Consistent with this, a longer median filter recovered most of the gain: with the filter length selected on development patients (7 windows; post hoc), median-filtered counting reached 2.63 pp in the pooled external cohorts, versus 2.52 ± 0.24 pp for the final PA-HMMQ (mean paired difference −0.11 pp, 95% CI −0.15 to −0.07; Supplementary Table S19). Classical prevalence-correction estimators that ignore temporal dependence (ACC, PACC, EMQ) did not consistently improve on classify-and-count, and recalibrating window probabilities on development patients worsened burden error (PCC-iso 3.85 ± 0.51 pp)."
       }
      ]
     },
@@ -959,7 +959,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "Using the presence of ≥30 s of AF, the final PA-HMMQ increased specificity from 0.744 to 0.914 and decreased sensitivity from 0.992 to 0.941; on seed-majority classifications it corrected 140 patients misclassified by classify-and-count and misclassified 9 that it had classified correctly (exact McNemar P <0.001). The 9 patients newly classified as AF-free by the final PA-HMMQ had between 0.9 and 8.7 min of reference AF (maximum burden 3.61%); 1 of them had ≥6 min (post hoc; Supplementary Table S16). For a burden of ≥1%, specificity was 0.923 versus 0.850 and sensitivity 0.971 versus 0.992 (Supplementary Table S7)."
+       "text": "Using the presence of ≥30 s of AF, the final PA-HMMQ increased specificity from 0.744 to 0.914 and decreased sensitivity from 0.992 to 0.941; on seed-majority classifications it corrected 140 patients misclassified by classify-and-count and misclassified 9 that it had classified correctly (exact McNemar P < 0.001). The 9 patients newly classified as AF-free by the final PA-HMMQ had between 0.9 and 8.7 min of reference AF (maximum burden 3.61%); 1 of them had ≥6 min (post hoc; Supplementary Table S16). For a burden of ≥1%, specificity was 0.923 versus 0.850 and sensitivity 0.971 versus 0.992 (Supplementary Table S7)."
       }
      ]
     },
@@ -993,7 +993,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "Selecting the emission sharpness per detector on calibration patients (Revision R1, post hoc) gave a pooled external error of 2.74 ± nan pp with LightGBM, 11.07 ± nan pp with Classical-LR and [PENDING] pp with RRNet, and did not improve on the A1 specification (Supplementary Tables S5, S15)."
+       "text": "Selecting the emission sharpness per detector on calibration patients (Revision R1, post hoc) did not improve on the A1 specification: pooled external error 2.56 ± 0.27 pp with LightGBM, 9.79 ± 1.81 pp with Classical-LR and 3.50 ± 0.78 pp with RRNet. The selected emission varied widely between seeds for the same detector (from T = 0.5 to T = 8; Supplementary Table S15), indicating that the small calibration sets could not identify the optimal sharpness reliably."
       }
      ]
     },
@@ -1010,7 +1010,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "In SHDB-AF, errors of all estimators increased with simulated false R peaks and premature beats, while missed beats and timing jitter had smaller effects; the ranking of estimators was largely preserved (Figure 5; Supplementary Tables S9–S10). Reduced training data and 30- or 120-beat windows are reported in Supplementary Table S11."
+       "text": "In SHDB-AF, the error of all estimators increased most with R-peak timing jitter of 25 ms (LightGBM: classify-and-count 4.51 to 8.46 pp; final PA-HMMQ 4.23 to 6.79 pp); missed R peaks affected RRNet more than LightGBM (5% missed beats: RRNet final PA-HMMQ 6.65 pp), simulated false R peaks changed errors little, and premature beats increased errors mainly with RRNet (10% premature beats: final PA-HMMQ 5.41 pp). The final PA-HMMQ had the lowest error of the compared estimators in every perturbation condition for both detectors (Figure 5; Supplementary Table S9), but interval coverage fell under strong jitter (0.746 with LightGBM; Supplementary Table S10). With 25% of the training patients, or with 30- or 120-beat windows, the final PA-HMMQ remained the most accurate of the compared estimators in SHDB-AF and CPSC2021 (the fixed-dynamics HMM with identical emissions was not computed in these runs) (for example, with 25% of training patients 2.92 vs 4.02 pp for counting in CPSC2021; Supplementary Table S11)."
       }
      ]
     },
@@ -1027,7 +1027,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "Errors were largest in patients with intermediate burden and in patients with atrial flutter (Figure 6; Supplementary Tables S6, S13). Of the 988 external patients, 39 had flutter; with an AF+flutter reference the error of the final PA-HMMQ was 1.64 pp, and excluding flutter patients (post hoc) 1.19 pp (classify-and-count 2.11 and 1.67 pp; Supplementary Table S8). Absolute error correlated with flutter burden (Spearman ρ = 0.298) and reference burden (ρ = 0.459), inversely with recording duration (ρ = -0.307), and only weakly with ectopic beats (supraventricular ρ = -0.030; ventricular ρ = 0.108; Supplementary Figure S7). Error did not differ materially by sex or age in SHDB-AF (Supplementary Table S12)."
+       "text": "Errors were largest in patients with a reference burden of >0–1%, many of whom had atrial flutter, and in those with a burden above 10% (Figure 6; Supplementary Tables S6, S13). In patients with a burden above 50%, the variants with calibrated-histogram emissions were more accurate than the final PA-HMMQ (2.90 vs 4.00 pp), indicating that the optimal emission sharpness differs across the burden spectrum. Of the 988 external patients, 39 had flutter; with an AF+flutter reference the error of the final PA-HMMQ was 1.64 pp, and excluding flutter patients (post hoc) 1.19 pp (classify-and-count 2.11 and 1.67 pp; Supplementary Table S8). Absolute error correlated with flutter burden (Spearman ρ = 0.298) and reference burden (ρ = 0.459), inversely with recording duration (ρ = −0.307), and only weakly with ectopic beats (supraventricular ρ = −0.030; ventricular ρ = 0.108; Supplementary Figure S7). Error did not differ materially by sex or age in SHDB-AF (Supplementary Table S12)."
       }
      ]
     },
@@ -1044,7 +1044,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "On a 4-core CPU, the burden layer required a median of 244 ms per 24-h recording (288 ms including posterior sampling for the interval), compared with 797 ms for RR-feature extraction and 12 ms for LightGBM inference (Supplementary Figure S8)."
+       "text": "On a 4-core CPU, the burden layer required a median of 261 ms per 24-h recording (283 ms including posterior sampling for the interval), compared with 904 ms for RR-feature extraction and 7 ms for LightGBM inference (Supplementary Figure S8)."
       }
      ]
     }
@@ -1066,7 +1066,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "In 988 patients from three continents who contributed 8,576 hours of ambulatory recordings, aggregating detector outputs with a hidden Markov burden layer reduced the mean per-patient AF-burden error compared with counting AF-classified windows and with eight alternative estimators, for three detectors of very different complexity, and markedly reduced false AF diagnoses in AF-free patients; conformal calibration produced per-patient intervals whose coverage met the 90% target in two of three external cohorts but fell short in the Japanese cohort. Equally important are the negative findings: the pre-registered specification did not outperform counting, our central hypothesis—that correcting for each patient's own AF prevalence reduces burden error—was refuted, because per-patient re-estimation of rhythm dynamics added nothing, and the absolute improvement was modest."
+       "text": "In 988 patients from three continents who contributed 8,576 hours of ambulatory recordings, aggregating detector outputs with a hidden Markov burden layer reduced the mean per-patient AF-burden error compared with counting AF-classified windows and with eight alternative estimators, for three detectors of very different complexity, and markedly increased specificity for AF presence; conformal calibration produced per-patient intervals whose coverage met the 90% target in two of three external cohorts but fell short in the Japanese cohort. Equally important are the negative findings: the pre-registered specification did not outperform counting, our central hypothesis—that correcting for each patient's own AF prevalence reduces burden error—was refuted, because per-patient re-estimation of rhythm dynamics added nothing, and the absolute improvement was modest."
       }
      ]
     },
@@ -1097,7 +1097,7 @@
        "sup": true
       },
       {
-       "text": "—so the contribution of this study is not the hidden Markov model itself but the burden-specific comparison of aggregation strategies, the refutation of prevalence correction as the mechanism, and the conformal burden intervals. Indeed, a median filter of suitable length captured most of the accuracy gain; the practical advantage of the probabilistic model over a tuned smoother lies less in accuracy than in the posterior distribution it provides, which is what makes per-patient intervals possible. Burden is a property of a patient's rhythm trajectory: an isolated AF-like window inside long sinus rhythm, or a short regular stretch inside persistent AF, is more likely a classification error than a rhythm change. A temporal model removes much of this window-level noise, which is why median filtering and hidden Markov smoothing improved on counting. The magnitude of the gain depended on how sharply detector outputs were translated into evidence: calibration-set class-conditional histograms flattened the likelihood ratios because window labels near rhythm transitions are noisy, letting sticky source dynamics over-smooth genuine rhythm changes, whereas the detector's own probability preserved discriminating evidence. Contrary to our hypothesis, patient-specific prevalence did not need explicit correction once temporal structure was modelled—with sharp emissions the likelihood dominates the prior over rhythm dynamics, which explains the insensitivity to κ. Quantification estimators designed for independent samples (ACC, PACC, EMQ) "
+       "text": "—so the contribution of this study is not the hidden Markov model itself but the burden-specific comparison of aggregation strategies, the refutation of prevalence correction as the mechanism, and the conformal burden intervals. Indeed, a median filter of suitable length captured most of the accuracy gain; the practical advantage of the probabilistic model over a tuned smoother lies less in accuracy than in the posterior distribution it provides, which is what makes per-patient intervals possible. Burden is a property of a patient's rhythm trajectory: an isolated AF-like window inside long sinus rhythm, or a short regular stretch inside persistent AF, is more likely a classification error than a rhythm change. A temporal model removes much of this window-level noise, which is why median filtering and hidden Markov smoothing improved on counting. The magnitude of the gain depended on how sharply detector outputs were translated into evidence: calibration-set class-conditional histograms flattened the likelihood ratios because window labels near rhythm transitions are noisy, letting sticky source dynamics over-smooth genuine rhythm changes, whereas the detector's own probability preserved discriminating evidence; conversely, in patients with mostly persistent AF the flatter emissions were more accurate, so no single emission model was best across the burden spectrum. Contrary to our hypothesis, patient-specific prevalence did not need explicit correction once temporal structure was modelled—with sharp emissions the likelihood dominates the prior over rhythm dynamics, which explains the insensitivity to κ. Quantification estimators designed for independent samples (ACC, PACC, EMQ) "
       },
       {
        "text": "18–20",
@@ -1142,7 +1142,7 @@
        "sup": true
       },
       {
-       "text": ". The clinically most visible effect was the reduction of spurious AF in AF-free patients: with counting, 26% of external patients without ≥30 s of reference AF were assigned ≥30 s of AF (final PA-HMMQ 9%), which in long-term monitoring may trigger further investigation or anticoagulation discussions. This came at the cost of classifying 9 patients with 0.9–8.7 min of reference AF as AF-free, 1 of them above the 6-min threshold used for device-detected subclinical AF; this trade-off should be weighed against the purpose of monitoring, and a lower decision threshold on the posterior AF time may be preferable for screening. The burden layer requires no retraining of an existing detector, adds well under a second of computation per 24-h recording, and supplies an interval indicating whether a reported burden is distinguishable from zero or from a decision threshold. Because conformal coverage is guaranteed only for patients exchangeable with the calibration set, intervals should be recalibrated locally when a device or population differs substantially, as recently argued for AI-ECG classifiers "
+       "text": ". The clinically most visible effect was the reduction of spurious AF in AF-free patients: with counting, 26% of external patients without ≥30 s of reference AF were assigned ≥30 s of AF (final PA-HMMQ 9%), which in long-term monitoring may trigger further investigation or anticoagulation discussions. This came at the cost of classifying 9 patients with 0.9–8.7 min of reference AF as AF-free, 1 of them above the 6-min threshold used for device-detected subclinical AF; this trade-off should be weighed against the purpose of monitoring, and a lower decision threshold on the posterior AF time may be preferable for screening. Because per-patient adaptation added nothing, a hidden Markov layer with fixed dynamics and probability emissions is sufficient in practice. The burden layer requires no retraining of an existing detector, adds well under a second of computation per 24-h recording, and supplies an interval indicating whether a reported burden is distinguishable from zero or from a decision threshold. Because conformal coverage is guaranteed only for patients exchangeable with the calibration set, intervals should be recalibrated locally when a device or population differs substantially, as recently argued for AI-ECG classifiers "
       },
       {
        "text": "26",
@@ -1225,7 +1225,7 @@
      "type": "para",
      "runs": [
       {
-       "text": "First, the pre-registered specification failed; the final emission model was chosen on development data after a one-seed check (Amendment A1) and the per-detector emission selection (R1) and flutter-exclusion analyses were post hoc, so the external results for the final method, although never used for any decision, should be regarded as requiring confirmation in further cohorts. Second, the improvement was modest (a mean of -0.47 pp versus counting), rank-based tests were not significant against three comparators, and the development test set did not favour the final over the pre-registered variant. Third, the study used retrospective public databases with heterogeneous annotation processes; reference labels, particularly in Icentia11k, may contain errors, and R peaks were taken from database annotations rather than from a uniform detector, although simulated R-peak errors were examined. Fourth, the development pool was modest (243 patients, about 49 test patients per seed) and from one country, and development test results of the final variant are not independent of its selection. Fifth, conformal coverage is marginal over patients, was lower in patients with AF, and is not guaranteed under distribution shift. Sixth, 60-beat windows limit resolution for episodes shorter than about 30–60 s, and AF presence was assessed over the analysed time only, which was short for many CPSC2021 recordings. Seventh, the cohorts differed in case mix (SHDB-AF comprised patients with known paroxysmal AF, Icentia11k largely AF-free outpatients), which affects prevalence-dependent metrics; Icentia11k was represented by a random subset of patients and segments, and the reduced-training and window-length analyses omitted it. Finally, no outcome data were available, and photoplethysmography-based wearables, which are increasingly used for burden monitoring "
+       "text": "First, the pre-registered specification failed; the final emission model was chosen on development data after a one-seed check (Amendment A1) and the per-detector emission selection (R1) and flutter-exclusion analyses were post hoc, so the external results for the final method, although never used for any decision, should be regarded as requiring confirmation in further cohorts. Second, the improvement was modest (a mean of −0.47 pp versus counting), rank-based tests were not significant against three comparators, and the development test set did not favour the final over the pre-registered variant. Third, the study used retrospective public databases with heterogeneous annotation processes; reference labels, particularly in Icentia11k, may contain errors, and R peaks were taken from database annotations rather than from a uniform detector, although simulated R-peak errors were examined. Fourth, the development pool was modest (243 patients, about 49 test patients per seed) and from one country, and development test results of the final variant are not independent of its selection. Fifth, conformal coverage is marginal over patients, was lower in patients with AF, and is not guaranteed under distribution shift. Sixth, 60-beat windows limit resolution for episodes shorter than about 30–60 s, and AF presence was assessed over the analysed time only, which was short for many CPSC2021 recordings. Seventh, the cohorts differed in case mix (SHDB-AF comprised patients with known paroxysmal AF, Icentia11k largely AF-free outpatients), which affects prevalence-dependent metrics; Icentia11k was represented by a random subset of patients and segments, and the reduced-training and window-length analyses omitted it. Finally, no outcome data were available, and photoplethysmography-based wearables, which are increasingly used for burden monitoring "
       },
       {
        "text": "48",
@@ -1268,23 +1268,6 @@
      "level": 1,
      "runs": [
       {
-       "text": "Acknowledgements"
-      }
-     ]
-    },
-    {
-     "type": "para",
-     "runs": [
-      {
-       "text": "We thank the creators and maintainers of the PhysioNet, SHDB-AF, CPSC2021 and Icentia11k databases. [Authors to add further acknowledgements.] Use of artificial-intelligence tools: the study code, analyses and a first draft of this manuscript were prepared with the assistance of a large language model-based coding assistant (Claude, Anthropic). All analyses are fully scripted and reproducible from the public code; the authors take full responsibility for the content. [Authors to confirm and adapt this statement as required by the journal policy.]"
-      }
-     ]
-    },
-    {
-     "type": "heading",
-     "level": 1,
-     "runs": [
-      {
        "text": "Funding"
       }
      ]
@@ -1294,6 +1277,23 @@
      "runs": [
       {
        "text": "[None declared / to be completed by the authors.]"
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 1,
+     "runs": [
+      {
+       "text": "Acknowledgements"
+      }
+     ]
+    },
+    {
+     "type": "para",
+     "runs": [
+      {
+       "text": "We thank the creators and maintainers of the PhysioNet, SHDB-AF, CPSC2021 and Icentia11k databases. [Authors to add further acknowledgements.] Use of artificial-intelligence tools: the study code, analyses and a first draft of this manuscript were prepared with the assistance of a large language model-based coding assistant (Claude, Anthropic). All analyses are fully scripted and reproducible from the public code; the authors take full responsibility for the content. [Authors to confirm and adapt this statement as required by the journal policy.]"
       }
      ]
     },
@@ -1557,11 +1557,11 @@
     ],
     [
      "HMM-src[sel] (post hoc R1)",
-     "1.69 ± nan",
-     "4.38 ± nan",
-     "3.56 ± nan",
-     "2.33 ± nan",
-     "2.65 ± nan"
+     "3.13 ± 1.38",
+     "4.27 ± 0.14",
+     "3.42 ± 0.66",
+     "2.26 ± 0.32",
+     "2.57 ± 0.21"
     ],
     [
      "PA-HMMQ (pre-registered)",
@@ -1581,11 +1581,11 @@
     ],
     [
      "PA-HMMQ[sel] (post hoc R1)",
-     "1.96 ± nan",
-     "4.40 ± nan",
-     "3.69 ± nan",
-     "2.42 ± nan",
-     "2.74 ± nan"
+     "3.16 ± 1.28",
+     "4.29 ± 0.12",
+     "3.05 ± 0.47",
+     "2.29 ± 0.35",
+     "2.56 ± 0.27"
     ]
    ],
    "source": "table3_burden_mae_LightGBM.csv"
@@ -1707,14 +1707,14 @@
     ],
     [
      "HMM-src[sel]",
-     "2.65 ± nan",
-     "0.00 ± nan",
-     "12.45 ± nan",
-     "1.93 ± nan",
-     "-22.19 to 26.05",
-     "0.903 ± nan",
-     "2.394 ± nan",
-     "3.86 ± nan"
+     "2.57 ± 0.21",
+     "0.01 ± 0.01",
+     "12.58 ± 0.27",
+     "1.60 ± 0.44",
+     "-22.85 to 26.05",
+     "0.901 ± 0.004",
+     "2.225 ± 0.354",
+     "4.19 ± 0.63"
     ],
     [
      "PA-HMMQ (pre-registered)",
@@ -1740,14 +1740,14 @@
     ],
     [
      "PA-HMMQ[sel]",
-     "2.74 ± nan",
-     "0.00 ± nan",
-     "12.48 ± nan",
-     "2.02 ± nan",
-     "-22.12 to 26.17",
-     "0.903 ± nan",
-     "2.497 ± nan",
-     "3.86 ± nan"
+     "2.56 ± 0.27",
+     "0.00 ± 0.00",
+     "12.57 ± 0.29",
+     "1.68 ± 0.42",
+     "-22.74 to 26.10",
+     "0.901 ± 0.004",
+     "2.257 ± 0.387",
+     "3.97 ± 0.34"
     ]
    ],
    "source": "table4_agreement_pooled_external.csv"
@@ -2170,10 +2170,10 @@
    "file": "/home/user/rp_c_10/Target_Journal_Submission/figures/fig3_main_mae.png",
    "legend": [
     {
-     "text": "Per-patient AF-burden mean absolute error (percentage points) of nine estimators and the pre-registered PA-HMMQ variant in the development test set and three external cohorts, LightGBM detector. Points, mean over five seeds; bars, ±1 SD. Blue, PA-HMMQ variants. Abbreviations as in Table 2."
+     "text": "Per-patient AF-burden mean absolute error (percentage points) of all burden estimators in the development test set and three external cohorts, LightGBM detector. Points, mean over five seeds; bars, ±1 SD. Blue, PA-HMMQ variants: pre-registered (calibrated-histogram emissions), final (probability emissions, Amendment A1) and R1 (post-hoc per-detector emission selection). HMM-src (final emissions): fixed source dynamics with the final emissions. Abbreviations as in Table 2."
     }
    ],
-   "alt": "Four dot-plot panels, one per cohort, listing ten burden estimators on the vertical axis and mean absolute error on the horizontal axis; the final PA-HMMQ has the lowest error in every panel.",
+   "alt": "Four dot-plot panels, one per cohort, listing twelve burden estimators on the vertical axis and mean absolute error on the horizontal axis; in the external cohorts the final PA-HMMQ and the fixed-dynamics HMM with the same emissions have the lowest errors.",
    "label": "Figure 2"
   },
   {
@@ -2190,30 +2190,30 @@
    "file": "/home/user/rp_c_10/Target_Journal_Submission/figures/fig6_intervals.png",
    "legend": [
     {
-     "text": "Empirical coverage (left) and mean width (right, log scale) of 90% per-patient burden intervals by method and cohort, LightGBM detector (mean ± SD over seeds). Dashed line, nominal coverage 0.90."
+     "text": "Empirical coverage (left; mean over seeds, bars minimum–maximum) and mean interval width (right, log scale; median over seeds, bars minimum–maximum) of 90% per-patient burden intervals by method and cohort, LightGBM detector. Dashed line, nominal coverage 0.90. Normalised: nonconformity scaled by the posterior standard deviation; constant-width: unscaled absolute residual; CrI, uncalibrated posterior credible interval."
     }
    ],
-   "alt": "Two dot-plot panels. Left: coverage of seven interval methods in four cohorts relative to a dashed 0.90 line. Right: mean interval width on a logarithmic axis, smallest for normalised conformal intervals of the final PA-HMMQ.",
+   "alt": "Two dot-plot panels. Left: coverage of eight interval methods in four cohorts relative to a dashed 0.90 line; the posterior credible interval under-covers and SHDB-AF is below 0.90 for most methods. Right: mean interval width on a logarithmic axis, smallest for the normalised conformal intervals.",
    "label": "Figure 4"
   },
   {
    "file": "/home/user/rp_c_10/Target_Journal_Submission/figures/fig10_robustness.png",
    "legend": [
     {
-     "text": "Robustness of burden estimators in SHDB-AF to simulated missed and false R peaks, R-peak timing jitter and premature beats with compensatory pauses, for the LightGBM (left) and RRNet (right) detectors. Mean absolute error ± SD over seeds."
+     "text": "Robustness of burden estimators in SHDB-AF to simulated missed and false R peaks (2%, 5%), R-peak timing jitter (SD 10 and 25 ms) and premature beats with compensatory pauses (5%, 10%), for the LightGBM (left) and RRNet (right) detectors. Mean absolute error ± SD over seeds."
     }
    ],
-   "alt": "Two line charts of mean absolute error across nine perturbation conditions for five estimators; errors rise with false R peaks and ectopy, and the final PA-HMMQ remains lowest or close to lowest in most conditions.",
+   "alt": "Two line charts of mean absolute error across nine perturbation conditions for six estimators; errors rise most with 25-ms jitter and, for RRNet, with missed beats; the final PA-HMMQ has the lowest error in every condition.",
    "label": "Figure 5"
   },
   {
    "file": "/home/user/rp_c_10/Target_Journal_Submission/figures/fig7_error_strata.png",
    "legend": [
     {
-     "text": "Mean absolute error by reference burden stratum in the pooled external cohorts (LightGBM detector; logarithmic axis). Strata: AF-free (0%), >0–1%, >1–10%, >10–50% and >50% burden."
+     "text": "Mean absolute error by reference burden stratum in the pooled external cohorts (LightGBM detector; logarithmic axis). Strata: AF-free (0%), >0–1%, >1–10%, >10–50% and >50% burden. Lines connect strata for readability only."
     }
    ],
-   "alt": "Line chart with five burden strata on the horizontal axis and error on a logarithmic vertical axis for four estimators; errors are largest in intermediate strata.",
+   "alt": "Line chart with five burden strata on the horizontal axis and error on a logarithmic vertical axis for four estimators; errors are highest in the >0–1% stratum and above 10%; the calibrated-emission HMM is best above 50%.",
    "label": "Figure 6"
   }
  ],
@@ -2268,5 +2268,5 @@
   "48. Aguilar M, Macle L, Chamieh R, Khairy P, Deyell MW, Bennett RG, et al. Wearable smartwatches for atrial fibrillation detection and burden estimation after ablation: comparison with continuous monitoring. Europace 2026;28(9):euaf280. doi:10.1093/europace/euaf280"
  ],
  "missing_tables": [],
- "word_count_main_text": 4499
+ "word_count_main_text": 4781
 }

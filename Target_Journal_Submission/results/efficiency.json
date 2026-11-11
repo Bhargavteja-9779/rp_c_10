@@ -1,0 +1,91 @@
+{
+ "cpu": "x86_64",
+ "torch_threads": 4,
+ "python": "3.13.18",
+ "components": {
+  "RR features (16, per window)": {
+   "seconds_per_24h_median": 0.903679609298706,
+   "seconds_per_24h_iqr": [
+    0.8860908150672913,
+    1.1290340423583984
+   ]
+  },
+  "Classical-LR inference": {
+   "seconds_per_24h_median": 0.0004262715228833258,
+   "seconds_per_24h_iqr": [
+    0.0003089297388214618,
+    0.000571343582123518
+   ]
+  },
+  "LightGBM inference": {
+   "seconds_per_24h_median": 0.006626777816563845,
+   "seconds_per_24h_iqr": [
+    0.004585654474794865,
+    0.00907647330313921
+   ]
+  },
+  "burden: CC": {
+   "seconds_per_24h_median": 0.0006681826198473573,
+   "seconds_per_24h_iqr": [
+    0.0005190122756175697,
+    0.0006848468328826129
+   ]
+  },
+  "burden: ACC": {
+   "seconds_per_24h_median": 0.0005925568984821439,
+   "seconds_per_24h_iqr": [
+    0.0004920160863548517,
+    0.0006485593621619046
+   ]
+  },
+  "burden: EMQ": {
+   "seconds_per_24h_median": 0.001136970124207437,
+   "seconds_per_24h_iqr": [
+    0.0009580316254869103,
+    0.0012617881875485182
+   ]
+  },
+  "burden: HMM-src": {
+   "seconds_per_24h_median": 0.08798239380121231,
+   "seconds_per_24h_iqr": [
+    0.07858984917402267,
+    0.1008971557021141
+   ]
+  },
+  "burden: PA-HMMQ": {
+   "seconds_per_24h_median": 0.22502490878105164,
+   "seconds_per_24h_iqr": [
+    0.14792859554290771,
+    0.23559913039207458
+   ]
+  },
+  "burden: PA-HMMQ (probability emissions)": {
+   "seconds_per_24h_median": 0.2608739733695984,
+   "seconds_per_24h_iqr": [
+    0.1588200330734253,
+    0.29570645093917847
+   ]
+  },
+  "PA-HMMQ + 200 FFBS samples (for interval)": {
+   "seconds_per_24h_median": 0.28277403116226196,
+   "seconds_per_24h_iqr": [
+    0.20684422552585602,
+    0.395992636680603
+   ]
+  },
+  "RRNet inference": {
+   "seconds_per_24h_median": 0.1194651648402214,
+   "seconds_per_24h_iqr": [
+    0.10794102400541306,
+    0.1468917280435562
+   ]
+  }
+ },
+ "params": {
+  "Classical-LR": 4,
+  "LightGBM": 17690,
+  "RRNet": 27681
+ },
+ "peak_mem_MB_PA-HMMQ+FFBS": 1.4048269987106323,
+ "n_recordings": 5
+}

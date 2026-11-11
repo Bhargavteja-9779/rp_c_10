@@ -16,7 +16,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 def sh(cmd):
     print(f"\n$ {cmd}", flush=True)
-    t = time.time(); r = subprocess.run(cmd, shell=True, cwd=HERE)
+    t = time.time(); r = subprocess.run(cmd.replace("python ", sys.executable + " ", 1) if cmd.startswith("python ") else cmd, shell=True, cwd=HERE)
     if r.returncode != 0:
         sys.exit(f"step failed ({r.returncode}): {cmd}")
     print(f"  done in {time.time()-t:.0f}s", flush=True)

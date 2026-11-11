@@ -1,0 +1,11 @@
+perturbed datasets built in 414s
+seed 11 LightGBM done (579s)
+seed 11 RRNet done (862s)
+seed 22 LightGBM done (1012s)
+seed 22 RRNet done (1282s)
+seed 33 LightGBM done (1448s)
+seed 33 RRNet done (1726s)
+seed 44 LightGBM done (1891s)
+seed 44 RRNet done (2171s)
+seed 55 LightGBM done (2322s)
+seed 55 RRNet done (2600s)

@@ -1,6 +1,7 @@
 [Date]
 
 Professor [Name], Editor-in-Chief, *EP Europace*
+
 European Heart Rhythm Association / Oxford University Press
 
 Dear Editor,
@@ -22,5 +23,7 @@ The manuscript is original, has not been published previously, and is not under 
 Yours sincerely,
 
 [Corresponding author name, degrees]
+
 [Affiliation, postal address, e-mail, telephone]
+
 On behalf of all authors

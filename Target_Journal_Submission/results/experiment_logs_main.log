@@ -1,0 +1,77 @@
+[22:20:37] device=cpu torch threads=4
+[22:20:39] dev windows=319503 patients=243; shdb-af: windows=170001 patients=93; cpsc2021: windows=34706 patients=105; icentia11k: windows=404267 patients=790
+[22:20:40] seed 11: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
+[22:20:40] seed 11 Classical-LR: trained in 0s, params=4
+[22:24:43] seed 11 Classical-LR: burden + intervals done (243s total)
+[02:45:06] device=cpu torch threads=4
+[02:45:11] dev windows=319503 patients=243; shdb-af: windows=170001 patients=93; cpsc2021: windows=34706 patients=105; icentia11k: windows=404267 patients=790
+[02:45:12] resuming: already done [(11, 'Classical-LR')]
+[02:45:12] seed 11: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
+[02:45:16] seed 11 LightGBM: trained in 1s, params=17690
+[02:48:35] seed 11 LightGBM: burden + intervals done (203s total)
+[02:51:33]     RRNet seed=11 epoch 1 train=0.1301 val=0.0238 (174s)
+[02:51:53]     RRNet seed=11 epoch 2 train=0.0658 val=0.0345 (20s)
+[02:52:12]     RRNet seed=11 epoch 3 train=0.0595 val=0.0236 (19s)
+[02:52:33]     RRNet seed=11 epoch 4 train=0.0545 val=0.0317 (20s)
+[02:52:52]     RRNet seed=11 epoch 5 train=0.0501 val=0.0473 (19s)
+[02:53:12]     RRNet seed=11 epoch 6 train=0.0469 val=0.0275 (20s)
+[02:53:57] seed 11 RRNet: trained in 276s, params=27681
+[02:56:53] seed 11 RRNet: burden + intervals done (497s total)
+[02:56:54] seed 22: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
+[02:56:54] seed 22 Classical-LR: trained in 0s, params=4
+[03:00:38] seed 22 Classical-LR: burden + intervals done (224s total)
+[03:04:40] seed 22 LightGBM: trained in 239s, params=9211
+[03:08:10] seed 22 LightGBM: burden + intervals done (451s total)
+[03:33:25]     RRNet seed=22 epoch 1 train=0.0855 val=0.0365 (1513s)
+[03:51:46]     RRNet seed=22 epoch 2 train=0.0212 val=0.0142 (1101s)
+[03:52:04]     RRNet seed=22 epoch 3 train=0.0182 val=0.0121 (19s)
+[03:52:23]     RRNet seed=22 epoch 4 train=0.0158 val=0.0107 (19s)
+[03:52:42]     RRNet seed=22 epoch 5 train=0.0145 val=0.0121 (19s)
+[03:53:01]     RRNet seed=22 epoch 6 train=0.0130 val=0.0126 (19s)
+[03:53:20]     RRNet seed=22 epoch 7 train=0.0128 val=0.0119 (19s)
+[03:54:06] seed 22 RRNet: trained in 2709s, params=27681
+[03:57:07] seed 22 RRNet: burden + intervals done (2936s total)
+[03:57:09] seed 33: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
+[03:57:09] seed 33 Classical-LR: trained in 0s, params=4
+[04:00:23] seed 33 Classical-LR: burden + intervals done (194s total)
+[04:00:28] seed 33 LightGBM: trained in 1s, params=20496
+[04:03:57] seed 33 LightGBM: burden + intervals done (212s total)
+[04:04:20]     RRNet seed=33 epoch 1 train=0.1204 val=0.0352 (21s)
+[04:04:40]     RRNet seed=33 epoch 2 train=0.0607 val=0.0392 (20s)
+[04:05:01]     RRNet seed=33 epoch 3 train=0.0551 val=0.0319 (20s)
+[04:05:21]     RRNet seed=33 epoch 4 train=0.0479 val=0.0321 (20s)
+[04:05:40]     RRNet seed=33 epoch 5 train=0.0453 val=0.0300 (20s)
+[04:06:01]     RRNet seed=33 epoch 6 train=0.0419 val=0.0319 (21s)
+[04:06:21]     RRNet seed=33 epoch 7 train=0.0390 val=0.0291 (20s)
+[04:06:41]     RRNet seed=33 epoch 8 train=0.0372 val=0.0345 (20s)
+[04:07:01]     RRNet seed=33 epoch 9 train=0.0347 val=0.0316 (20s)
+[04:07:21]     RRNet seed=33 epoch 10 train=0.0329 val=0.0361 (20s)
+[04:08:05] seed 33 RRNet: trained in 202s, params=27681
+[04:11:19] seed 33 RRNet: burden + intervals done (440s total)
+[04:11:21] seed 44: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
+[04:11:21] seed 44 Classical-LR: trained in 0s, params=4
+[04:14:43] seed 44 Classical-LR: burden + intervals done (201s total)
+[04:14:46] seed 44 LightGBM: trained in 1s, params=3965
+[04:18:05] seed 44 LightGBM: burden + intervals done (200s total)
+[04:18:29]     RRNet seed=44 epoch 1 train=0.1340 val=0.1597 (20s)
+[04:18:48]     RRNet seed=44 epoch 2 train=0.0716 val=0.1662 (20s)
+[04:19:08]     RRNet seed=44 epoch 3 train=0.0615 val=0.1525 (20s)
+[04:19:29]     RRNet seed=44 epoch 4 train=0.0550 val=0.1879 (21s)
+[04:19:48]     RRNet seed=44 epoch 5 train=0.0495 val=0.1580 (19s)
+[04:20:07]     RRNet seed=44 epoch 6 train=0.0458 val=0.1756 (19s)
+[04:20:51] seed 44 RRNet: trained in 119s, params=27681
+[04:23:59] seed 44 RRNet: burden + intervals done (351s total)
+[04:24:03] seed 55: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
+[04:24:03] seed 55 Classical-LR: trained in 0s, params=4
+[04:27:38] seed 55 Classical-LR: burden + intervals done (216s total)
+[04:27:42] seed 55 LightGBM: trained in 0s, params=3965
+[04:31:39] seed 55 LightGBM: burden + intervals done (238s total)
+[04:32:02]     RRNet seed=55 epoch 1 train=0.1129 val=0.1616 (19s)
+[04:32:20]     RRNet seed=55 epoch 2 train=0.0465 val=0.1156 (18s)
+[04:32:39]     RRNet seed=55 epoch 3 train=0.0429 val=0.1723 (19s)
+[04:32:58]     RRNet seed=55 epoch 4 train=0.0374 val=0.0600 (19s)
+[04:33:17]     RRNet seed=55 epoch 5 train=0.0351 val=0.0980 (19s)
+[04:33:36]     RRNet seed=55 epoch 6 train=0.0320 val=0.1529 (19s)
+[04:33:56]     RRNet seed=55 epoch 7 train=0.0310 val=0.1074 (19s)
+[04:34:39] seed 55 RRNet: trained in 133s, params=27681
+[04:37:56] seed 55 RRNet: burden + intervals done (374s total)

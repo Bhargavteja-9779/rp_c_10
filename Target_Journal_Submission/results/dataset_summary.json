@@ -1,0 +1,108 @@
+{
+ "ltafdb": {
+  "patients": 84,
+  "recordings": 84,
+  "windows": 149760,
+  "hours": 1896.8160850694444,
+  "patients_af": 83,
+  "patients_afl": 0,
+  "af_window_fraction": 0.5807491987179487,
+  "median_hours": 23.72527126736111
+ },
+ "afdb": {
+  "patients": 25,
+  "recordings": 25,
+  "windows": 20312,
+  "hours": 248.3155102443695,
+  "patients_af": 25,
+  "patients_afl": 8,
+  "af_window_fraction": 0.4245273729814888,
+  "median_hours": 9.98297664006551
+ },
+ "mitdb": {
+  "patients": 47,
+  "recordings": 48,
+  "windows": 1787,
+  "hours": 23.463719875547625,
+  "patients_af": 7,
+  "patients_afl": 3,
+  "af_window_fraction": 0.10576385002797986,
+  "median_hours": 0.4962561713324653
+ },
+ "nsrdb": {
+  "patients": 18,
+  "recordings": 18,
+  "windows": 28454,
+  "hours": 378.0819270833333,
+  "patients_af": 0,
+  "patients_afl": 0,
+  "af_window_fraction": 0.0,
+  "median_hours": 20.79218315972222
+ },
+ "nsr2db": {
+  "patients": 54,
+  "recordings": 54,
+  "windows": 92190,
+  "hours": 1200.145004340278,
+  "patients_af": 0,
+  "patients_afl": 0,
+  "af_window_fraction": 0.0,
+  "median_hours": 22.68189887152778
+ },
+ "chfdb": {
+  "patients": 15,
+  "recordings": 15,
+  "windows": 27000,
+  "hours": 297.75626589245263,
+  "patients_af": 4,
+  "patients_afl": 0,
+  "af_window_fraction": 0.05907407407407408,
+  "median_hours": 19.935454427931045
+ },
+ "shdb-af": {
+  "patients": 93,
+  "recordings": 97,
+  "windows": 170001,
+  "hours": 2297.0595794359842,
+  "patients_af": 72,
+  "patients_afl": 12,
+  "af_window_fraction": 0.23788095364144918,
+  "median_hours": 23.96799860689375
+ },
+ "cpsc2021": {
+  "patients": 105,
+  "recordings": 1405,
+  "windows": 34706,
+  "hours": 470.97545141802897,
+  "patients_af": 53,
+  "patients_afl": 2,
+  "af_window_fraction": 0.35861234368697054,
+  "median_hours": 3.7346791717741223
+ },
+ "icentia11k": {
+  "patients": 790,
+  "recordings": 790,
+  "windows": 404267,
+  "hours": 5808.107445659107,
+  "patients_af": 50,
+  "patients_afl": 25,
+  "af_window_fraction": 0.058864562281858275,
+  "median_hours": 7.7769550188382475
+ },
+ "dev_total": {
+  "patients": 243,
+  "recordings": 244,
+  "windows": 319503,
+  "hours": 4044.5785125054254,
+  "patients_af": 119
+ },
+ "ext_total": {
+  "patients": 988,
+  "recordings": 2292,
+  "windows": 608974,
+  "hours": 8576.14247651312,
+  "patients_af": 175,
+  "patients_afl": 39
+ },
+ "icentia_sampled": 800
+}

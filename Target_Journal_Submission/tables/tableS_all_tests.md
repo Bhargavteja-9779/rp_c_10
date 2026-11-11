@@ -90,51 +90,51 @@
 | Classical-LR | PA-HMMQ | ext_icentia11k | EMQ | 790 | 9.53 | 8.66 | 0.001 [0.000, 0.001] | 0.86 [0.63, 1.08] | 0.741 | 8.2e-73 | 5.8e-72 | 790 |
 | Classical-LR | PA-HMMQ | ext_icentia11k | HMM-src | 790 | 9.53 | 9.33 | -0.001 [-0.001, -0.001] | 0.20 [0.15, 0.26] | -0.148 | 0.00032 | 0.00064 | 790 |
 | Classical-LR | PA-HMMQ | ext_icentia11k | HMM-src (post hoc, same emissions) | 790 | 9.53 | 9.33 | -0.001 [-0.001, -0.001] | 0.20 [0.15, 0.26] | -0.148 | 0.00032 | 0.00032 | 790 |
-| Classical-LR | PA-HMMQ[sel] | ext_pooled | CC | 988 | 11.07 | 8.54 | 0.000 [0.000, 0.000] | 2.53 [1.87, 3.18] | 0.288 | 4.4e-15 | 1.3e-14 | 988 |
-| Classical-LR | PA-HMMQ[sel] | ext_pooled | CC-MF | 988 | 11.07 | 8.14 | 0.001 [0.000, 0.001] | 2.92 [2.25, 3.60] | 0.575 | 3.1e-55 | 1.9e-54 | 988 |
-| Classical-LR | PA-HMMQ[sel] | ext_pooled | PCC | 988 | 11.07 | 13.90 | -4.408 [-4.721, -4.114] | -2.83 [-3.53, -2.09] | -0.481 | 2.9e-39 | 1.5e-38 | 988 |
-| Classical-LR | PA-HMMQ[sel] | ext_pooled | PCC-iso | 988 | 11.07 | 11.70 | -1.332 [-1.472, -1.191] | -0.63 [-1.20, -0.05] | -0.364 | 3.8e-23 | 1.5e-22 | 988 |
-| Classical-LR | PA-HMMQ[sel] | ext_pooled | ACC | 988 | 11.07 | 8.40 | 0.001 [0.001, 0.002] | 2.67 [2.01, 3.31] | 0.673 | 5.2e-75 | 4.2e-74 | 988 |
-| Classical-LR | PA-HMMQ[sel] | ext_pooled | PACC | 988 | 11.07 | 10.37 | 0.000 [0.000, 0.000] | 0.70 [0.10, 1.26] | 0.081 | 0.028 | 0.056 | 988 |
-| Classical-LR | PA-HMMQ[sel] | ext_pooled | EMQ | 988 | 11.07 | 9.95 | 0.001 [0.001, 0.001] | 1.11 [0.70, 1.51] | 0.665 | 2.7e-73 | 1.9e-72 | 988 |
-| Classical-LR | PA-HMMQ[sel] | ext_pooled | HMM-src | 988 | 11.07 | 10.23 | -0.001 [-0.001, -0.000] | 0.83 [0.59, 1.08] | 0.050 | 0.17 | 0.17 | 988 |
-| Classical-LR | PA-HMMQ[sel] | ext_pooled | HMM-src[sel] (post hoc, same emissions) | 988 | 11.07 | 10.96 | -0.002 [-0.003, -0.002] | 0.11 [0.04, 0.17] | -0.293 | 1.6e-15 | 1.6e-15 | 988 |
-| Classical-LR | PA-HMMQ[sel] | dev_test | CC | 49 | 10.21 | 8.71 | 0.000 [-0.415, 0.000] | 1.50 [-3.30, 7.10] | -0.064 | 0.7 | 1 | 49 |
-| Classical-LR | PA-HMMQ[sel] | dev_test | CC-MF | 49 | 10.21 | 8.21 | 0.000 [-0.000, 0.007] | 2.00 [-2.71, 7.69] | 0.104 | 0.53 | 1 | 49 |
-| Classical-LR | PA-HMMQ[sel] | dev_test | PCC | 49 | 10.21 | 14.97 | -4.283 [-6.380, -3.400] | -4.76 [-9.41, -0.13] | -0.608 | 0.00012 | 0.00097 | 49 |
-| Classical-LR | PA-HMMQ[sel] | dev_test | PCC-iso | 49 | 10.21 | 12.99 | -2.120 [-5.771, -1.454] | -2.78 [-6.70, 1.31] | -0.512 | 0.0014 | 0.01 | 49 |
-| Classical-LR | PA-HMMQ[sel] | dev_test | ACC | 49 | 10.21 | 8.68 | 0.000 [-0.000, 0.000] | 1.53 [-3.05, 7.17] | 0.078 | 0.64 | 1 | 49 |
-| Classical-LR | PA-HMMQ[sel] | dev_test | PACC | 49 | 10.21 | 11.64 | 0.000 [-1.112, 0.000] | -1.42 [-5.59, 2.90] | -0.171 | 0.3 | 1 | 49 |
-| Classical-LR | PA-HMMQ[sel] | dev_test | EMQ | 49 | 10.21 | 10.74 | 0.000 [-0.000, 0.000] | -0.53 [-2.68, 1.15] | 0.048 | 0.77 | 1 | 49 |
-| Classical-LR | PA-HMMQ[sel] | dev_test | HMM-src | 49 | 10.21 | 10.91 | -0.000 [-0.008, -0.000] | -0.70 [-1.79, 0.19] | -0.202 | 0.22 | 1 | 49 |
-| Classical-LR | PA-HMMQ[sel] | dev_test | HMM-src[sel] (post hoc, same emissions) | 49 | 10.21 | 10.95 | -0.001 [-0.006, -0.000] | -0.74 [-1.63, -0.05] | -0.280 | 0.089 | 0.089 | 49 |
-| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | CC | 93 | 11.28 | 9.94 | 0.000 [-0.025, 0.585] | 1.34 [0.00, 2.70] | 0.234 | 0.05 | 0.25 | 93 |
-| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | CC-MF | 93 | 11.28 | 9.69 | 0.014 [0.000, 0.877] | 1.59 [0.21, 2.99] | 0.363 | 0.0024 | 0.017 | 93 |
-| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | PCC | 93 | 11.28 | 12.31 | -2.039 [-2.720, -1.237] | -1.03 [-2.65, 0.60] | -0.296 | 0.013 | 0.079 | 93 |
-| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | PCC-iso | 93 | 11.28 | 11.13 | -0.627 [-1.266, -0.353] | 0.15 [-1.31, 1.57] | -0.140 | 0.24 | 0.84 | 93 |
-| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | ACC | 93 | 11.28 | 11.01 | 0.000 [-0.000, 0.382] | 0.27 [-1.13, 1.56] | 0.102 | 0.39 | 0.84 | 93 |
-| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | PACC | 93 | 11.28 | 12.16 | -0.174 [-1.463, 0.000] | -0.88 [-2.26, 0.48] | -0.149 | 0.21 | 0.84 | 93 |
-| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | EMQ | 93 | 11.28 | 11.42 | 0.000 [-0.133, 0.000] | -0.14 [-1.36, 1.01] | -0.023 | 0.85 | 0.85 | 93 |
-| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | HMM-src | 93 | 11.28 | 10.38 | 0.029 [-0.000, 0.334] | 0.91 [0.15, 1.66] | 0.408 | 0.00063 | 0.005 | 93 |
-| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | HMM-src[sel] (post hoc, same emissions) | 93 | 11.28 | 11.21 | -0.000 [-0.001, 0.001] | 0.07 [-0.06, 0.22] | 0.026 | 0.83 | 0.83 | 93 |
-| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | CC | 105 | 17.79 | 17.34 | 0.000 [-0.198, 0.328] | 0.45 [-2.55, 3.49] | 0.094 | 0.4 | 0.81 | 105 |
-| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | CC-MF | 105 | 17.79 | 16.95 | 0.006 [0.001, 0.491] | 0.84 [-2.24, 3.84] | 0.259 | 0.021 | 0.12 | 105 |
-| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | PCC | 105 | 17.79 | 22.10 | -5.579 [-7.229, -2.766] | -4.31 [-7.54, -0.86] | -0.263 | 0.02 | 0.12 | 105 |
-| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | PCC-iso | 105 | 17.79 | 20.82 | -2.981 [-5.744, -1.134] | -3.03 [-5.85, -0.19] | -0.235 | 0.037 | 0.15 | 105 |
-| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | ACC | 105 | 17.79 | 17.75 | 0.005 [0.001, 0.030] | 0.04 [-2.87, 2.86] | 0.279 | 0.013 | 0.091 | 105 |
-| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | PACC | 105 | 17.79 | 20.05 | 0.002 [0.000, 0.013] | -2.26 [-5.21, 0.55] | 0.034 | 0.76 | 0.81 | 105 |
-| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | EMQ | 105 | 17.79 | 18.32 | 0.006 [0.001, 0.062] | -0.53 [-2.70, 1.36] | 0.347 | 0.002 | 0.016 | 105 |
-| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src | 105 | 17.79 | 16.94 | -0.002 [-0.008, 0.212] | 0.85 [-0.22, 1.81] | 0.182 | 0.1 | 0.31 | 105 |
-| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src[sel] (post hoc, same emissions) | 105 | 17.79 | 17.75 | -0.021 [-0.043, -0.006] | 0.04 [-0.27, 0.35] | -0.169 | 0.13 | 0.13 | 105 |
-| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | CC | 790 | 10.15 | 7.20 | 0.000 [0.000, 0.000] | 2.94 [2.26, 3.62] | 0.342 | 7.8e-17 | 2.3e-16 | 790 |
-| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | CC-MF | 790 | 10.15 | 6.79 | 0.001 [0.000, 0.001] | 3.35 [2.67, 4.06] | 0.661 | 2.3e-58 | 1.4e-57 | 790 |
-| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | PCC | 790 | 10.15 | 12.99 | -4.592 [-4.949, -4.303] | -2.84 [-3.60, -2.14] | -0.540 | 1.7e-39 | 8.7e-39 | 790 |
-| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | PCC-iso | 790 | 10.15 | 10.55 | -1.354 [-1.497, -1.216] | -0.41 [-1.01, 0.14] | -0.422 | 8.4e-25 | 3.4e-24 | 790 |
-| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | ACC | 790 | 10.15 | 6.84 | 0.001 [0.001, 0.002] | 3.30 [2.65, 4.02] | 0.825 | 7.5e-90 | 5.3e-89 | 790 |
-| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | PACC | 790 | 10.15 | 8.87 | 0.000 [0.000, 0.000] | 1.28 [0.71, 1.84] | 0.111 | 0.0071 | 0.014 | 790 |
-| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | EMQ | 790 | 10.15 | 8.66 | 0.001 [0.001, 0.001] | 1.48 [1.07, 1.88] | 0.827 | 4.3e-90 | 3.5e-89 | 790 |
-| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | HMM-src | 790 | 10.15 | 9.33 | -0.001 [-0.001, -0.000] | 0.82 [0.56, 1.09] | -0.030 | 0.46 | 0.46 | 790 |
-| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | HMM-src[sel] (post hoc, same emissions) | 790 | 10.15 | 10.03 | -0.002 [-0.003, -0.002] | 0.12 [0.06, 0.19] | -0.355 | 5.2e-18 | 5.2e-18 | 790 |
+| Classical-LR | PA-HMMQ[sel] | ext_pooled | CC | 988 | 9.79 | 8.54 | 0.001 [0.001, 0.001] | 1.26 [0.87, 1.66] | 0.216 | 4.2e-09 | 8.4e-09 | 988 |
+| Classical-LR | PA-HMMQ[sel] | ext_pooled | CC-MF | 988 | 9.79 | 8.14 | 0.002 [0.002, 0.004] | 1.65 [1.25, 2.06] | 0.555 | 1.3e-51 | 6.3e-51 | 988 |
+| Classical-LR | PA-HMMQ[sel] | ext_pooled | PCC | 988 | 9.79 | 13.90 | -4.741 [-5.069, -4.483] | -4.10 [-4.61, -3.57] | -0.640 | 6.2e-68 | 5e-67 | 988 |
+| Classical-LR | PA-HMMQ[sel] | ext_pooled | PCC-iso | 988 | 9.79 | 11.70 | -1.640 [-1.813, -1.494] | -1.90 [-2.27, -1.51] | -0.583 | 1.1e-56 | 6.8e-56 | 988 |
+| Classical-LR | PA-HMMQ[sel] | ext_pooled | ACC | 988 | 9.79 | 8.40 | 0.003 [0.002, 0.004] | 1.40 [1.02, 1.78] | 0.611 | 3.2e-62 | 2.2e-61 | 988 |
+| Classical-LR | PA-HMMQ[sel] | ext_pooled | PACC | 988 | 9.79 | 10.37 | 0.000 [0.000, 0.000] | -0.57 [-0.91, -0.24] | -0.115 | 0.0018 | 0.0018 | 988 |
+| Classical-LR | PA-HMMQ[sel] | ext_pooled | EMQ | 988 | 9.79 | 9.95 | 0.001 [0.001, 0.002] | -0.16 [-0.40, 0.06] | 0.386 | 7e-26 | 2.8e-25 | 988 |
+| Classical-LR | PA-HMMQ[sel] | ext_pooled | HMM-src | 988 | 9.79 | 10.23 | -0.001 [-0.002, -0.001] | -0.44 [-0.57, -0.31] | -0.385 | 1.1e-25 | 3.4e-25 | 988 |
+| Classical-LR | PA-HMMQ[sel] | ext_pooled | HMM-src[sel] (post hoc, same emissions) | 988 | 9.79 | 9.64 | -0.004 [-0.004, -0.003] | 0.16 [0.11, 0.22] | -0.071 | 0.054 | 0.054 | 988 |
+| Classical-LR | PA-HMMQ[sel] | dev_test | CC | 160 | 8.34 | 8.46 | 0.000 [0.000, 0.000] | -0.12 [-1.86, 1.79] | -0.058 | 0.52 | 0.94 | 160 |
+| Classical-LR | PA-HMMQ[sel] | dev_test | CC-MF | 160 | 8.34 | 8.17 | 0.000 [0.000, 0.000] | 0.16 [-1.59, 2.10] | 0.066 | 0.47 | 0.94 | 160 |
+| Classical-LR | PA-HMMQ[sel] | dev_test | PCC | 160 | 8.34 | 13.80 | -5.003 [-6.221, -4.115] | -5.47 [-7.41, -3.52] | -0.685 | 5.6e-14 | 4.4e-13 | 160 |
+| Classical-LR | PA-HMMQ[sel] | dev_test | PCC-iso | 160 | 8.34 | 11.40 | -1.746 [-2.536, -1.378] | -3.07 [-4.71, -1.49] | -0.600 | 4.8e-11 | 3.3e-10 | 160 |
+| Classical-LR | PA-HMMQ[sel] | dev_test | ACC | 160 | 8.34 | 8.27 | 0.000 [0.000, 0.000] | 0.07 [-1.63, 1.92] | 0.146 | 0.11 | 0.33 | 160 |
+| Classical-LR | PA-HMMQ[sel] | dev_test | PACC | 160 | 8.34 | 9.86 | 0.000 [-0.000, 0.000] | -1.52 [-3.01, 0.01] | -0.225 | 0.014 | 0.083 | 160 |
+| Classical-LR | PA-HMMQ[sel] | dev_test | EMQ | 160 | 8.34 | 8.32 | 0.000 [0.000, 0.000] | 0.02 [-0.84, 0.89] | 0.161 | 0.077 | 0.31 | 160 |
+| Classical-LR | PA-HMMQ[sel] | dev_test | HMM-src | 160 | 8.34 | 8.37 | -0.000 [-0.000, -0.000] | -0.03 [-0.60, 0.62] | -0.219 | 0.016 | 0.083 | 160 |
+| Classical-LR | PA-HMMQ[sel] | dev_test | HMM-src[sel] (post hoc, same emissions) | 160 | 8.34 | 8.51 | -0.001 [-0.001, -0.000] | -0.17 [-0.46, 0.07] | -0.269 | 0.0032 | 0.0032 | 160 |
+| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | CC | 93 | 10.29 | 9.94 | 0.000 [-0.052, 0.031] | 0.35 [-0.36, 1.02] | 0.089 | 0.46 | 0.46 | 93 |
+| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | CC-MF | 93 | 10.29 | 9.69 | 0.001 [0.000, 0.152] | 0.60 [-0.11, 1.27] | 0.326 | 0.0063 | 0.031 | 93 |
+| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | PCC | 93 | 10.29 | 12.31 | -2.448 [-3.334, -1.949] | -2.02 [-3.17, -0.84] | -0.500 | 2.8e-05 | 0.00022 | 93 |
+| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | PCC-iso | 93 | 10.29 | 11.13 | -1.181 [-1.583, -0.709] | -0.84 [-1.86, 0.20] | -0.392 | 0.001 | 0.0062 | 93 |
+| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | ACC | 93 | 10.29 | 11.01 | -0.000 [-0.887, 0.000] | -0.72 [-1.50, 0.03] | -0.173 | 0.15 | 0.3 | 93 |
+| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | PACC | 93 | 10.29 | 12.16 | -0.408 [-2.143, -0.000] | -1.87 [-2.77, -0.99] | -0.426 | 0.00036 | 0.0025 | 93 |
+| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | EMQ | 93 | 10.29 | 11.42 | -0.046 [-1.352, 0.000] | -1.13 [-1.78, -0.49] | -0.310 | 0.0094 | 0.038 | 93 |
+| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | HMM-src | 93 | 10.29 | 10.38 | -0.001 [-0.074, -0.000] | -0.09 [-0.31, 0.15] | -0.208 | 0.081 | 0.24 | 93 |
+| Classical-LR | PA-HMMQ[sel] | ext_shdb-af | HMM-src[sel] (post hoc, same emissions) | 93 | 10.29 | 10.13 | 0.001 [-0.001, 0.025] | 0.16 [0.06, 0.26] | 0.286 | 0.017 | 0.017 | 93 |
+| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | CC | 105 | 16.94 | 17.34 | -0.125 [-0.224, 0.011] | -0.40 [-2.17, 1.41] | 0.011 | 0.92 | 0.92 | 105 |
+| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | CC-MF | 105 | 16.94 | 16.95 | 0.033 [0.004, 0.376] | -0.01 [-1.78, 1.81] | 0.279 | 0.013 | 0.079 | 105 |
+| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | PCC | 105 | 16.94 | 22.10 | -5.590 [-7.209, -3.541] | -5.16 [-7.39, -2.79] | -0.467 | 3.2e-05 | 0.00026 | 105 |
+| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | PCC-iso | 105 | 16.94 | 20.82 | -2.979 [-4.741, -1.682] | -3.88 [-5.61, -1.98] | -0.463 | 3.8e-05 | 0.00027 | 105 |
+| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | ACC | 105 | 16.94 | 17.75 | 0.037 [0.004, 0.196] | -0.81 [-2.50, 0.79] | 0.203 | 0.071 | 0.28 | 105 |
+| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | PACC | 105 | 16.94 | 20.05 | 0.001 [-0.999, 0.009] | -3.11 [-4.80, -1.47] | -0.273 | 0.015 | 0.079 | 105 |
+| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | EMQ | 105 | 16.94 | 18.32 | 0.002 [0.001, 0.015] | -1.38 [-2.59, -0.17] | -0.114 | 0.31 | 0.8 | 105 |
+| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src | 105 | 16.94 | 16.94 | -0.005 [-0.028, 0.001] | 0.01 [-0.62, 0.65] | -0.125 | 0.27 | 0.8 | 105 |
+| Classical-LR | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src[sel] (post hoc, same emissions) | 105 | 16.94 | 16.77 | -0.011 [-0.073, -0.002] | 0.17 [-0.17, 0.50] | -0.024 | 0.83 | 0.83 | 105 |
+| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | CC | 790 | 8.79 | 7.20 | 0.001 [0.001, 0.001] | 1.58 [1.18, 1.98] | 0.283 | 5.7e-12 | 1.1e-11 | 790 |
+| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | CC-MF | 790 | 8.79 | 6.79 | 0.002 [0.001, 0.003] | 1.99 [1.60, 2.41] | 0.630 | 3.9e-53 | 2e-52 | 790 |
+| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | PCC | 790 | 8.79 | 12.99 | -4.916 [-5.286, -4.622] | -4.21 [-4.76, -3.72] | -0.679 | 1.9e-61 | 1.3e-60 | 790 |
+| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | PCC-iso | 790 | 8.79 | 10.55 | -1.655 [-1.827, -1.498] | -1.77 [-2.16, -1.41] | -0.639 | 1.6e-54 | 9.4e-54 | 790 |
+| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | ACC | 790 | 8.79 | 6.84 | 0.003 [0.002, 0.005] | 1.94 [1.57, 2.36] | 0.792 | 7.2e-83 | 5.8e-82 | 790 |
+| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | PACC | 790 | 8.79 | 8.87 | 0.000 [0.000, 0.000] | -0.08 [-0.39, 0.22] | -0.057 | 0.16 | 0.16 | 790 |
+| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | EMQ | 790 | 8.79 | 8.66 | 0.002 [0.001, 0.002] | 0.12 [-0.11, 0.33] | 0.578 | 5.4e-45 | 2.2e-44 | 790 |
+| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | HMM-src | 790 | 8.79 | 9.33 | -0.001 [-0.002, -0.001] | -0.54 [-0.67, -0.42] | -0.451 | 4.2e-28 | 1.3e-27 | 790 |
+| Classical-LR | PA-HMMQ[sel] | ext_icentia11k | HMM-src[sel] (post hoc, same emissions) | 790 | 8.79 | 8.63 | -0.004 [-0.004, -0.003] | 0.16 [0.11, 0.21] | -0.125 | 0.0023 | 0.0023 | 790 |
 | LightGBM | PA-HMMQ[rawE] | ext_pooled | CC | 988 | 2.52 | 2.99 | 0.000 [0.000, 0.000] | -0.47 [-0.56, -0.38] | -0.219 | 2.6e-09 | 1e-08 | 988 |
 | LightGBM | PA-HMMQ[rawE] | ext_pooled | CC-MF | 988 | 2.52 | 2.73 | 0.000 [0.000, 0.000] | -0.21 [-0.27, -0.17] | 0.058 | 0.11 | 0.23 | 988 |
 | LightGBM | PA-HMMQ[rawE] | ext_pooled | PCC | 988 | 2.52 | 3.94 | -0.543 [-0.559, -0.522] | -1.42 [-1.57, -1.28] | -0.888 | 3.1e-129 | 2.4e-128 | 988 |
@@ -225,51 +225,51 @@
 | LightGBM | PA-HMMQ | ext_icentia11k | EMQ | 790 | 2.84 | 2.72 | 0.000 [0.000, 0.000] | 0.12 [0.04, 0.20] | 0.807 | 6.1e-86 | 3.6e-85 | 790 |
 | LightGBM | PA-HMMQ | ext_icentia11k | HMM-src | 790 | 2.84 | 2.82 | -0.000 [-0.000, -0.000] | 0.02 [0.00, 0.04] | -0.625 | 2.7e-52 | 1.4e-51 | 790 |
 | LightGBM | PA-HMMQ | ext_icentia11k | HMM-src (post hoc, same emissions) | 790 | 2.84 | 2.82 | -0.000 [-0.000, -0.000] | 0.02 [0.00, 0.04] | -0.625 | 2.7e-52 | 2.7e-52 | 790 |
-| LightGBM | PA-HMMQ[sel] | ext_pooled | CC | 988 | 2.74 | 2.99 | 0.000 [0.000, 0.000] | -0.25 [-0.37, -0.13] | -0.135 | 0.00025 | 0.00049 | 988 |
-| LightGBM | PA-HMMQ[sel] | ext_pooled | CC-MF | 988 | 2.74 | 2.73 | 0.000 [0.000, 0.000] | 0.01 [-0.10, 0.11] | 0.213 | 6.2e-09 | 2.5e-08 | 988 |
-| LightGBM | PA-HMMQ[sel] | ext_pooled | PCC | 988 | 2.74 | 3.94 | -0.529 [-0.551, -0.516] | -1.20 [-1.36, -1.04] | -0.841 | 3.6e-116 | 2.5e-115 | 988 |
-| LightGBM | PA-HMMQ[sel] | ext_pooled | PCC-iso | 988 | 2.74 | 3.85 | -0.290 [-0.321, -0.252] | -1.11 [-1.28, -0.94] | -0.842 | 2.9e-116 | 2.3e-115 | 988 |
-| LightGBM | PA-HMMQ[sel] | ext_pooled | ACC | 988 | 2.74 | 2.89 | 0.000 [0.000, 0.000] | -0.15 [-0.26, -0.04] | 0.172 | 2.7e-06 | 8e-06 | 988 |
-| LightGBM | PA-HMMQ[sel] | ext_pooled | PACC | 988 | 2.74 | 3.21 | 0.000 [0.000, 0.000] | -0.47 [-0.61, -0.34] | -0.006 | 0.87 | 0.87 | 988 |
-| LightGBM | PA-HMMQ[sel] | ext_pooled | EMQ | 988 | 2.74 | 3.04 | 0.000 [0.000, 0.000] | -0.30 [-0.52, -0.11] | 0.416 | 9.7e-30 | 4.9e-29 | 988 |
-| LightGBM | PA-HMMQ[sel] | ext_pooled | HMM-src | 988 | 2.74 | 3.05 | -0.000 [-0.000, -0.000] | -0.31 [-0.49, -0.15] | -0.680 | 1.8e-76 | 1.1e-75 | 988 |
-| LightGBM | PA-HMMQ[sel] | ext_pooled | HMM-src[sel] (post hoc, same emissions) | 988 | 2.74 | 2.65 | -0.000 [-0.000, -0.000] | 0.08 [0.05, 0.12] | -0.478 | 8.5e-39 | 8.5e-39 | 988 |
-| LightGBM | PA-HMMQ[sel] | dev_test | CC | 49 | 1.96 | 2.76 | -0.000 [-0.128, 0.000] | -0.81 [-1.83, -0.12] | -0.339 | 0.039 | 0.15 | 49 |
-| LightGBM | PA-HMMQ[sel] | dev_test | CC-MF | 49 | 1.96 | 2.23 | 0.000 [-0.000, 0.000] | -0.28 [-1.05, 0.26] | -0.056 | 0.74 | 1 | 49 |
-| LightGBM | PA-HMMQ[sel] | dev_test | PCC | 49 | 1.96 | 3.59 | -0.711 [-1.051, -0.156] | -1.64 [-2.94, -0.70] | -0.731 | 2.1e-06 | 1.4e-05 | 49 |
-| LightGBM | PA-HMMQ[sel] | dev_test | PCC-iso | 49 | 1.96 | 4.26 | -1.193 [-1.546, -0.876] | -2.31 [-3.60, -1.22] | -0.755 | 7.8e-07 | 6.2e-06 | 49 |
-| LightGBM | PA-HMMQ[sel] | dev_test | ACC | 49 | 1.96 | 2.82 | 0.000 [-0.000, 0.000] | -0.87 [-1.69, -0.27] | -0.164 | 0.32 | 0.97 | 49 |
-| LightGBM | PA-HMMQ[sel] | dev_test | PACC | 49 | 1.96 | 3.17 | 0.000 [-0.308, 0.000] | -1.21 [-2.24, -0.46] | -0.365 | 0.026 | 0.13 | 49 |
-| LightGBM | PA-HMMQ[sel] | dev_test | EMQ | 49 | 1.96 | 2.23 | 0.000 [-0.000, 0.000] | -0.27 [-1.07, 0.61] | -0.069 | 0.68 | 1 | 49 |
-| LightGBM | PA-HMMQ[sel] | dev_test | HMM-src | 49 | 1.96 | 1.80 | -0.000 [-0.003, -0.000] | 0.16 [-0.50, 0.92] | -0.402 | 0.013 | 0.081 | 49 |
-| LightGBM | PA-HMMQ[sel] | dev_test | HMM-src[sel] (post hoc, same emissions) | 49 | 1.96 | 1.69 | -0.000 [-0.000, 0.000] | 0.26 [0.03, 0.65] | 0.040 | 0.81 | 0.81 | 49 |
-| LightGBM | PA-HMMQ[sel] | ext_shdb-af | CC | 93 | 4.40 | 4.51 | -0.007 [-0.080, 0.000] | -0.11 [-0.51, 0.36] | -0.286 | 0.017 | 0.05 | 93 |
-| LightGBM | PA-HMMQ[sel] | ext_shdb-af | CC-MF | 93 | 4.40 | 4.31 | -0.000 [-0.013, 0.000] | 0.09 [-0.33, 0.64] | -0.170 | 0.15 | 0.22 | 93 |
-| LightGBM | PA-HMMQ[sel] | ext_shdb-af | PCC | 93 | 4.40 | 5.21 | -0.497 [-0.640, -0.477] | -0.80 [-1.25, -0.31] | -0.733 | 8.2e-10 | 6.6e-09 | 93 |
-| LightGBM | PA-HMMQ[sel] | ext_shdb-af | PCC-iso | 93 | 4.40 | 5.13 | -0.235 [-0.487, -0.158] | -0.72 [-1.17, -0.29] | -0.688 | 8.4e-09 | 5.9e-08 | 93 |
-| LightGBM | PA-HMMQ[sel] | ext_shdb-af | ACC | 93 | 4.40 | 4.73 | -0.252 [-0.379, -0.000] | -0.33 [-0.73, 0.10] | -0.437 | 0.00025 | 0.0013 | 93 |
-| LightGBM | PA-HMMQ[sel] | ext_shdb-af | PACC | 93 | 4.40 | 5.04 | -0.372 [-0.466, -0.157] | -0.64 [-1.04, -0.23] | -0.589 | 8.1e-07 | 4.9e-06 | 93 |
-| LightGBM | PA-HMMQ[sel] | ext_shdb-af | EMQ | 93 | 4.40 | 4.92 | -0.106 [-0.210, 0.000] | -0.52 [-1.09, -0.00] | -0.391 | 0.0011 | 0.0043 | 93 |
-| LightGBM | PA-HMMQ[sel] | ext_shdb-af | HMM-src | 93 | 4.40 | 4.53 | -0.000 [-0.004, -0.000] | -0.12 [-0.51, 0.21] | -0.191 | 0.11 | 0.22 | 93 |
-| LightGBM | PA-HMMQ[sel] | ext_shdb-af | HMM-src[sel] (post hoc, same emissions) | 93 | 4.40 | 4.38 | -0.000 [-0.000, 0.000] | 0.02 [-0.04, 0.11] | -0.019 | 0.87 | 0.87 | 93 |
-| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | CC | 105 | 3.69 | 3.85 | 0.000 [-0.288, 0.000] | -0.16 [-0.82, 0.42] | -0.208 | 0.064 | 0.19 | 105 |
-| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | CC-MF | 105 | 3.69 | 3.38 | 0.000 [0.000, 0.000] | 0.31 [-0.29, 0.92] | 0.049 | 0.66 | 1 | 105 |
-| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | PCC | 105 | 3.69 | 5.54 | -1.447 [-1.976, -0.848] | -1.86 [-2.64, -1.13] | -0.624 | 2.8e-08 | 2e-07 | 105 |
-| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | PCC-iso | 105 | 3.69 | 5.50 | -1.131 [-1.729, -0.753] | -1.81 [-2.61, -1.09] | -0.628 | 2.3e-08 | 1.8e-07 | 105 |
-| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | ACC | 105 | 3.69 | 3.53 | 0.000 [0.000, 0.000] | 0.16 [-0.43, 0.73] | 0.028 | 0.8 | 1 | 105 |
-| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | PACC | 105 | 3.69 | 4.26 | 0.000 [-0.142, 0.000] | -0.57 [-1.21, 0.05] | -0.233 | 0.038 | 0.17 | 105 |
-| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | EMQ | 105 | 3.69 | 3.78 | 0.000 [0.000, 0.000] | -0.09 [-0.92, 0.73] | 0.240 | 0.033 | 0.17 | 105 |
-| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src | 105 | 3.69 | 3.48 | -0.002 [-0.009, -0.001] | 0.21 [-0.58, 1.08] | -0.348 | 0.002 | 0.012 | 105 |
-| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src[sel] (post hoc, same emissions) | 105 | 3.69 | 3.56 | -0.000 [-0.000, -0.000] | 0.13 [-0.08, 0.34] | -0.240 | 0.033 | 0.033 | 105 |
-| LightGBM | PA-HMMQ[sel] | ext_icentia11k | CC | 790 | 2.42 | 2.69 | 0.000 [0.000, 0.000] | -0.28 [-0.39, -0.16] | -0.076 | 0.066 | 0.066 | 790 |
-| LightGBM | PA-HMMQ[sel] | ext_icentia11k | CC-MF | 790 | 2.42 | 2.46 | 0.000 [0.000, 0.000] | -0.04 [-0.13, 0.05] | 0.328 | 1.5e-15 | 6e-15 | 790 |
-| LightGBM | PA-HMMQ[sel] | ext_icentia11k | PCC | 790 | 2.42 | 3.58 | -0.520 [-0.540, -0.509] | -1.16 [-1.32, -1.00] | -0.895 | 3.1e-105 | 2.2e-104 | 790 |
-| LightGBM | PA-HMMQ[sel] | ext_icentia11k | PCC-iso | 790 | 2.42 | 3.48 | -0.260 [-0.294, -0.227] | -1.06 [-1.24, -0.89] | -0.902 | 7.1e-107 | 5.7e-106 | 790 |
-| LightGBM | PA-HMMQ[sel] | ext_icentia11k | ACC | 790 | 2.42 | 2.59 | 0.000 [0.000, 0.000] | -0.17 [-0.27, -0.07] | 0.320 | 7.2e-15 | 2.1e-14 | 790 |
-| LightGBM | PA-HMMQ[sel] | ext_icentia11k | PACC | 790 | 2.42 | 2.86 | 0.000 [0.000, 0.000] | -0.44 [-0.59, -0.31] | 0.150 | 0.00026 | 0.00053 | 790 |
-| LightGBM | PA-HMMQ[sel] | ext_icentia11k | EMQ | 790 | 2.42 | 2.72 | 0.000 [0.000, 0.000] | -0.31 [-0.54, -0.11] | 0.603 | 9.8e-49 | 4.9e-48 | 790 |
-| LightGBM | PA-HMMQ[sel] | ext_icentia11k | HMM-src | 790 | 2.42 | 2.82 | -0.000 [-0.000, -0.000] | -0.41 [-0.61, -0.23] | -0.812 | 4.3e-87 | 2.6e-86 | 790 |
-| LightGBM | PA-HMMQ[sel] | ext_icentia11k | HMM-src[sel] (post hoc, same emissions) | 790 | 2.42 | 2.33 | -0.000 [-0.000, -0.000] | 0.09 [0.05, 0.12] | -0.604 | 6.2e-49 | 6.2e-49 | 790 |
+| LightGBM | PA-HMMQ[sel] | ext_pooled | CC | 988 | 2.56 | 2.99 | 0.000 [0.000, 0.001] | -0.43 [-0.52, -0.34] | -0.199 | 6.4e-08 | 2.6e-07 | 988 |
+| LightGBM | PA-HMMQ[sel] | ext_pooled | CC-MF | 988 | 2.56 | 2.73 | 0.001 [0.001, 0.001] | -0.17 [-0.22, -0.12] | 0.104 | 0.0048 | 0.0096 | 988 |
+| LightGBM | PA-HMMQ[sel] | ext_pooled | PCC | 988 | 2.56 | 3.94 | -0.539 [-0.556, -0.519] | -1.38 [-1.52, -1.24] | -0.883 | 9e-128 | 7.2e-127 | 988 |
+| LightGBM | PA-HMMQ[sel] | ext_pooled | PCC-iso | 988 | 2.56 | 3.85 | -0.296 [-0.332, -0.261] | -1.29 [-1.45, -1.12] | -0.870 | 5.7e-124 | 4e-123 | 988 |
+| LightGBM | PA-HMMQ[sel] | ext_pooled | ACC | 988 | 2.56 | 2.89 | 0.001 [0.001, 0.001] | -0.33 [-0.41, -0.25] | 0.118 | 0.0014 | 0.0041 | 988 |
+| LightGBM | PA-HMMQ[sel] | ext_pooled | PACC | 988 | 2.56 | 3.21 | 0.001 [0.001, 0.001] | -0.65 [-0.79, -0.53] | -0.016 | 0.66 | 0.66 | 988 |
+| LightGBM | PA-HMMQ[sel] | ext_pooled | EMQ | 988 | 2.56 | 3.04 | 0.001 [0.001, 0.001] | -0.48 [-0.71, -0.28] | 0.439 | 5.6e-33 | 3.4e-32 | 988 |
+| LightGBM | PA-HMMQ[sel] | ext_pooled | HMM-src | 988 | 2.56 | 3.05 | 0.000 [0.000, 0.000] | -0.49 [-0.70, -0.30] | 0.237 | 1.2e-10 | 5.8e-10 | 988 |
+| LightGBM | PA-HMMQ[sel] | ext_pooled | HMM-src[sel] (post hoc, same emissions) | 988 | 2.56 | 2.57 | -0.003 [-0.004, -0.003] | -0.01 [-0.04, 0.01] | -0.479 | 7.8e-39 | 7.8e-39 | 988 |
+| LightGBM | PA-HMMQ[sel] | dev_test | CC | 160 | 2.69 | 3.09 | 0.000 [-0.046, 0.000] | -0.40 [-0.76, -0.05] | -0.284 | 0.0018 | 0.011 | 160 |
+| LightGBM | PA-HMMQ[sel] | dev_test | CC-MF | 160 | 2.69 | 2.77 | 0.000 [0.000, 0.000] | -0.08 [-0.35, 0.18] | 0.120 | 0.19 | 0.56 | 160 |
+| LightGBM | PA-HMMQ[sel] | dev_test | PCC | 160 | 2.69 | 4.02 | -0.827 [-1.132, -0.578] | -1.33 [-1.88, -0.84] | -0.789 | 5.1e-18 | 4.1e-17 | 160 |
+| LightGBM | PA-HMMQ[sel] | dev_test | PCC-iso | 160 | 2.69 | 3.76 | -0.300 [-0.591, -0.167] | -1.07 [-1.68, -0.46] | -0.650 | 9.7e-13 | 6.8e-12 | 160 |
+| LightGBM | PA-HMMQ[sel] | dev_test | ACC | 160 | 2.69 | 3.06 | 0.000 [0.000, 0.000] | -0.37 [-0.69, -0.05] | -0.041 | 0.66 | 0.72 | 160 |
+| LightGBM | PA-HMMQ[sel] | dev_test | PACC | 160 | 2.69 | 3.29 | 0.000 [-0.000, 0.000] | -0.60 [-1.04, -0.17] | -0.191 | 0.036 | 0.14 | 160 |
+| LightGBM | PA-HMMQ[sel] | dev_test | EMQ | 160 | 2.69 | 2.61 | 0.000 [0.000, 0.000] | 0.08 [-0.62, 0.90] | 0.083 | 0.36 | 0.72 | 160 |
+| LightGBM | PA-HMMQ[sel] | dev_test | HMM-src | 160 | 2.69 | 2.57 | -0.000 [-0.000, -0.000] | 0.11 [-0.41, 0.71] | -0.224 | 0.014 | 0.071 | 160 |
+| LightGBM | PA-HMMQ[sel] | dev_test | HMM-src[sel] (post hoc, same emissions) | 160 | 2.69 | 2.66 | -0.000 [-0.001, -0.000] | 0.03 [0.00, 0.06] | -0.188 | 0.039 | 0.039 | 160 |
+| LightGBM | PA-HMMQ[sel] | ext_shdb-af | CC | 93 | 4.29 | 4.51 | -0.007 [-0.050, 0.000] | -0.22 [-0.52, 0.02] | -0.232 | 0.052 | 0.16 | 93 |
+| LightGBM | PA-HMMQ[sel] | ext_shdb-af | CC-MF | 93 | 4.29 | 4.31 | 0.000 [-0.000, 0.000] | -0.02 [-0.19, 0.13] | 0.009 | 0.94 | 1 | 93 |
+| LightGBM | PA-HMMQ[sel] | ext_shdb-af | PCC | 93 | 4.29 | 5.21 | -0.491 [-0.623, -0.476] | -0.91 [-1.36, -0.52] | -0.722 | 1.5e-09 | 1.2e-08 | 93 |
+| LightGBM | PA-HMMQ[sel] | ext_shdb-af | PCC-iso | 93 | 4.29 | 5.13 | -0.178 [-0.428, -0.135] | -0.84 [-1.40, -0.37] | -0.605 | 4e-07 | 2.8e-06 | 93 |
+| LightGBM | PA-HMMQ[sel] | ext_shdb-af | ACC | 93 | 4.29 | 4.73 | -0.220 [-0.380, 0.000] | -0.44 [-0.79, -0.15] | -0.458 | 0.00013 | 0.00063 | 93 |
+| LightGBM | PA-HMMQ[sel] | ext_shdb-af | PACC | 93 | 4.29 | 5.04 | -0.317 [-0.483, -0.000] | -0.75 [-1.24, -0.33] | -0.514 | 1.7e-05 | 0.0001 | 93 |
+| LightGBM | PA-HMMQ[sel] | ext_shdb-af | EMQ | 93 | 4.29 | 4.92 | -0.000 [-0.149, 0.000] | -0.63 [-1.66, 0.22] | -0.299 | 0.012 | 0.049 | 93 |
+| LightGBM | PA-HMMQ[sel] | ext_shdb-af | HMM-src | 93 | 4.29 | 4.53 | 0.000 [-0.000, 0.000] | -0.24 [-0.97, 0.41] | 0.031 | 0.8 | 1 | 93 |
+| LightGBM | PA-HMMQ[sel] | ext_shdb-af | HMM-src[sel] (post hoc, same emissions) | 93 | 4.29 | 4.27 | -0.000 [-0.001, 0.002] | 0.02 [-0.01, 0.07] | 0.148 | 0.22 | 0.22 | 93 |
+| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | CC | 105 | 3.05 | 3.85 | -0.248 [-0.411, 0.001] | -0.80 [-1.23, -0.37] | -0.424 | 0.00016 | 0.00096 | 105 |
+| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | CC-MF | 105 | 3.05 | 3.38 | 0.001 [-0.045, 0.002] | -0.33 [-0.61, -0.07] | -0.182 | 0.11 | 0.33 | 105 |
+| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | PCC | 105 | 3.05 | 5.54 | -1.768 [-2.597, -1.334] | -2.50 [-3.17, -1.85] | -0.775 | 5.4e-12 | 3.8e-11 | 105 |
+| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | PCC-iso | 105 | 3.05 | 5.50 | -1.504 [-2.144, -0.861] | -2.46 [-3.20, -1.73] | -0.779 | 4.3e-12 | 3.5e-11 | 105 |
+| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | ACC | 105 | 3.05 | 3.53 | 0.001 [-0.048, 0.003] | -0.48 [-0.86, -0.08] | -0.157 | 0.16 | 0.33 | 105 |
+| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | PACC | 105 | 3.05 | 4.26 | 0.000 [-0.589, 0.001] | -1.21 [-1.80, -0.62] | -0.349 | 0.0019 | 0.0096 | 105 |
+| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | EMQ | 105 | 3.05 | 3.78 | 0.004 [0.002, 0.066] | -0.73 [-1.61, 0.06] | 0.196 | 0.082 | 0.33 | 105 |
+| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src | 105 | 3.05 | 3.48 | 0.003 [0.001, 0.051] | -0.43 [-1.35, 0.62] | 0.109 | 0.33 | 0.33 | 105 |
+| LightGBM | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src[sel] (post hoc, same emissions) | 105 | 3.05 | 3.42 | -0.024 [-0.102, -0.008] | -0.38 [-0.59, -0.19] | -0.542 | 1.4e-06 | 1.4e-06 | 105 |
+| LightGBM | PA-HMMQ[sel] | ext_icentia11k | CC | 790 | 2.29 | 2.69 | 0.001 [0.000, 0.001] | -0.40 [-0.49, -0.31] | -0.135 | 0.001 | 0.0021 | 790 |
+| LightGBM | PA-HMMQ[sel] | ext_icentia11k | CC-MF | 790 | 2.29 | 2.46 | 0.001 [0.001, 0.001] | -0.17 [-0.22, -0.12] | 0.181 | 1.1e-05 | 3.2e-05 | 790 |
+| LightGBM | PA-HMMQ[sel] | ext_icentia11k | PCC | 790 | 2.29 | 3.58 | -0.522 [-0.544, -0.512] | -1.28 [-1.43, -1.14] | -0.929 | 2.2e-113 | 1.7e-112 | 790 |
+| LightGBM | PA-HMMQ[sel] | ext_icentia11k | PCC-iso | 790 | 2.29 | 3.48 | -0.268 [-0.302, -0.235] | -1.19 [-1.36, -1.02] | -0.927 | 8.9e-113 | 6.3e-112 | 790 |
+| LightGBM | PA-HMMQ[sel] | ext_icentia11k | ACC | 790 | 2.29 | 2.59 | 0.001 [0.001, 0.001] | -0.30 [-0.37, -0.22] | 0.266 | 9.4e-11 | 3.7e-10 | 790 |
+| LightGBM | PA-HMMQ[sel] | ext_icentia11k | PACC | 790 | 2.29 | 2.86 | 0.001 [0.001, 0.001] | -0.57 [-0.69, -0.45] | 0.128 | 0.0018 | 0.0021 | 790 |
+| LightGBM | PA-HMMQ[sel] | ext_icentia11k | EMQ | 790 | 2.29 | 2.72 | 0.001 [0.001, 0.001] | -0.43 [-0.66, -0.25] | 0.607 | 2.4e-49 | 1.4e-48 | 790 |
+| LightGBM | PA-HMMQ[sel] | ext_icentia11k | HMM-src | 790 | 2.29 | 2.82 | 0.000 [0.000, 0.000] | -0.53 [-0.73, -0.35] | 0.290 | 1.6e-12 | 7.9e-12 | 790 |
+| LightGBM | PA-HMMQ[sel] | ext_icentia11k | HMM-src[sel] (post hoc, same emissions) | 790 | 2.29 | 2.26 | -0.003 [-0.004, -0.003] | 0.03 [0.02, 0.04] | -0.548 | 1.1e-40 | 1.1e-40 | 790 |
 | RRNet | PA-HMMQ[rawE] | ext_pooled | CC | 988 | 3.45 | 3.96 | 0.000 [0.000, 0.000] | -0.51 [-0.59, -0.43] | -0.328 | 3.8e-19 | 1.5e-18 | 988 |
 | RRNet | PA-HMMQ[rawE] | ext_pooled | CC-MF | 988 | 3.45 | 3.72 | 0.000 [0.000, 0.000] | -0.27 [-0.32, -0.23] | -0.104 | 0.0047 | 0.014 | 988 |
 | RRNet | PA-HMMQ[rawE] | ext_pooled | PCC | 988 | 3.45 | 4.37 | -0.123 [-0.170, -0.101] | -0.92 [-1.05, -0.81] | -0.859 | 5.6e-121 | 4.5e-120 | 988 |
@@ -360,48 +360,48 @@
 | RRNet | PA-HMMQ | ext_icentia11k | EMQ | 790 | 3.57 | 3.37 | 0.000 [0.000, 0.000] | 0.20 [0.13, 0.26] | 0.803 | 4.5e-85 | 3.2e-84 | 790 |
 | RRNet | PA-HMMQ | ext_icentia11k | HMM-src | 790 | 3.57 | 3.53 | -0.000 [-0.000, -0.000] | 0.04 [0.02, 0.06] | -0.446 | 1.6e-27 | 8.1e-27 | 790 |
 | RRNet | PA-HMMQ | ext_icentia11k | HMM-src (post hoc, same emissions) | 790 | 3.57 | 3.53 | -0.000 [-0.000, -0.000] | 0.04 [0.02, 0.06] | -0.446 | 1.6e-27 | 1.6e-27 | 790 |
-| RRNet | PA-HMMQ[sel] | ext_pooled | CC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_pooled | CC-MF | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_pooled | PCC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_pooled | PCC-iso | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_pooled | ACC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_pooled | PACC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_pooled | EMQ | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_pooled | HMM-src | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_pooled | HMM-src[sel] (post hoc, same emissions) | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | dev_test | CC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | dev_test | CC-MF | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | dev_test | PCC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | dev_test | PCC-iso | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | dev_test | ACC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | dev_test | PACC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | dev_test | EMQ | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | dev_test | HMM-src | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | dev_test | HMM-src[sel] (post hoc, same emissions) | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_shdb-af | CC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_shdb-af | CC-MF | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_shdb-af | PCC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_shdb-af | PCC-iso | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_shdb-af | ACC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_shdb-af | PACC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_shdb-af | EMQ | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_shdb-af | HMM-src | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_shdb-af | HMM-src[sel] (post hoc, same emissions) | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | CC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | CC-MF | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | PCC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | PCC-iso | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | ACC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | PACC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | EMQ | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src[sel] (post hoc, same emissions) | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_icentia11k | CC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_icentia11k | CC-MF | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_icentia11k | PCC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_icentia11k | PCC-iso | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_icentia11k | ACC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_icentia11k | PACC | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_icentia11k | EMQ | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_icentia11k | HMM-src | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
-| RRNet | PA-HMMQ[sel] | ext_icentia11k | HMM-src[sel] (post hoc, same emissions) | 0 | nan | nan | nan [nan, nan] | nan [nan, nan] | 0.000 | 1 | 1 | 0 |
+| RRNet | PA-HMMQ[sel] | ext_pooled | CC | 988 | 3.50 | 3.96 | 0.000 [0.000, 0.000] | -0.46 [-0.54, -0.38] | -0.301 | 2.5e-16 | 1.2e-15 | 988 |
+| RRNet | PA-HMMQ[sel] | ext_pooled | CC-MF | 988 | 3.50 | 3.72 | 0.000 [0.000, 0.000] | -0.23 [-0.28, -0.17] | -0.029 | 0.43 | 0.63 | 988 |
+| RRNet | PA-HMMQ[sel] | ext_pooled | PCC | 988 | 3.50 | 4.37 | -0.119 [-0.161, -0.096] | -0.88 [-1.00, -0.76] | -0.847 | 9.5e-118 | 7.6e-117 | 988 |
+| RRNet | PA-HMMQ[sel] | ext_pooled | PCC-iso | 988 | 3.50 | 4.22 | -0.269 [-0.309, -0.237] | -0.73 [-0.83, -0.63] | -0.825 | 1.1e-111 | 7.7e-111 | 988 |
+| RRNet | PA-HMMQ[sel] | ext_pooled | ACC | 988 | 3.50 | 3.85 | 0.000 [0.000, 0.000] | -0.35 [-0.43, -0.28] | 0.037 | 0.31 | 0.63 | 988 |
+| RRNet | PA-HMMQ[sel] | ext_pooled | PACC | 988 | 3.50 | 4.10 | 0.000 [0.000, 0.000] | -0.60 [-0.70, -0.50] | -0.071 | 0.052 | 0.16 | 988 |
+| RRNet | PA-HMMQ[sel] | ext_pooled | EMQ | 988 | 3.50 | 3.63 | 0.000 [0.000, 0.000] | -0.14 [-0.27, -0.02] | 0.467 | 5.7e-37 | 3.4e-36 | 988 |
+| RRNet | PA-HMMQ[sel] | ext_pooled | HMM-src | 988 | 3.50 | 3.73 | 0.000 [0.000, 0.000] | -0.23 [-0.34, -0.14] | 0.183 | 6.4e-07 | 2.6e-06 | 988 |
+| RRNet | PA-HMMQ[sel] | ext_pooled | HMM-src[sel] (post hoc, same emissions) | 988 | 3.50 | 3.49 | -0.001 [-0.001, -0.001] | 0.01 [-0.02, 0.04] | -0.380 | 4.3e-25 | 4.3e-25 | 988 |
+| RRNet | PA-HMMQ[sel] | dev_test | CC | 160 | 2.62 | 3.19 | 0.000 [0.000, 0.000] | -0.57 [-1.27, -0.07] | -0.111 | 0.22 | 1 | 160 |
+| RRNet | PA-HMMQ[sel] | dev_test | CC-MF | 160 | 2.62 | 2.93 | 0.000 [0.000, 0.000] | -0.31 [-0.78, 0.06] | 0.013 | 0.88 | 1 | 160 |
+| RRNet | PA-HMMQ[sel] | dev_test | PCC | 160 | 2.62 | 3.69 | -0.168 [-0.307, -0.098] | -1.07 [-1.81, -0.52] | -0.646 | 1.4e-12 | 1.1e-11 | 160 |
+| RRNet | PA-HMMQ[sel] | dev_test | PCC-iso | 160 | 2.62 | 3.23 | -0.245 [-0.452, -0.091] | -0.61 [-1.22, 0.03] | -0.625 | 6.9e-12 | 4.8e-11 | 160 |
+| RRNet | PA-HMMQ[sel] | dev_test | ACC | 160 | 2.62 | 3.18 | 0.000 [0.000, 0.000] | -0.56 [-1.24, -0.09] | -0.047 | 0.6 | 1 | 160 |
+| RRNet | PA-HMMQ[sel] | dev_test | PACC | 160 | 2.62 | 3.36 | 0.000 [0.000, 0.000] | -0.74 [-1.41, -0.22] | -0.113 | 0.21 | 1 | 160 |
+| RRNet | PA-HMMQ[sel] | dev_test | EMQ | 160 | 2.62 | 2.57 | 0.000 [0.000, 0.000] | 0.05 [-0.99, 1.16] | 0.105 | 0.25 | 1 | 160 |
+| RRNet | PA-HMMQ[sel] | dev_test | HMM-src | 160 | 2.62 | 2.07 | -0.000 [-0.000, -0.000] | 0.55 [-0.21, 1.64] | -0.203 | 0.026 | 0.16 | 160 |
+| RRNet | PA-HMMQ[sel] | dev_test | HMM-src[sel] (post hoc, same emissions) | 160 | 2.62 | 2.58 | -0.000 [-0.000, -0.000] | 0.04 [-0.08, 0.17] | -0.269 | 0.0031 | 0.0031 | 160 |
+| RRNet | PA-HMMQ[sel] | ext_shdb-af | CC | 93 | 4.43 | 4.78 | -0.011 [-0.084, 0.000] | -0.35 [-0.62, -0.13] | -0.320 | 0.0074 | 0.029 | 93 |
+| RRNet | PA-HMMQ[sel] | ext_shdb-af | CC-MF | 93 | 4.43 | 4.52 | 0.000 [-0.001, 0.000] | -0.09 [-0.22, 0.04] | -0.042 | 0.72 | 1 | 93 |
+| RRNet | PA-HMMQ[sel] | ext_shdb-af | PCC | 93 | 4.43 | 5.06 | -0.146 [-0.336, -0.049] | -0.63 [-0.99, -0.33] | -0.595 | 6.4e-07 | 5.1e-06 | 93 |
+| RRNet | PA-HMMQ[sel] | ext_shdb-af | PCC-iso | 93 | 4.43 | 5.00 | -0.196 [-0.317, -0.162] | -0.58 [-0.93, -0.27] | -0.594 | 6.6e-07 | 5.1e-06 | 93 |
+| RRNet | PA-HMMQ[sel] | ext_shdb-af | ACC | 93 | 4.43 | 4.97 | -0.321 [-0.604, -0.023] | -0.54 [-0.80, -0.31] | -0.551 | 3.9e-06 | 2e-05 | 93 |
+| RRNet | PA-HMMQ[sel] | ext_shdb-af | PACC | 93 | 4.43 | 5.18 | -0.330 [-0.678, -0.012] | -0.76 [-1.10, -0.45] | -0.560 | 2.8e-06 | 1.7e-05 | 93 |
+| RRNet | PA-HMMQ[sel] | ext_shdb-af | EMQ | 93 | 4.43 | 4.85 | -0.003 [-0.105, 0.000] | -0.42 [-1.01, 0.12] | -0.247 | 0.038 | 0.12 | 93 |
+| RRNet | PA-HMMQ[sel] | ext_shdb-af | HMM-src | 93 | 4.43 | 4.55 | -0.000 [-0.000, 0.003] | -0.13 [-0.53, 0.21] | -0.001 | 1 | 1 | 93 |
+| RRNet | PA-HMMQ[sel] | ext_shdb-af | HMM-src[sel] (post hoc, same emissions) | 93 | 4.43 | 4.37 | -0.000 [-0.000, 0.001] | 0.06 [0.00, 0.12] | 0.175 | 0.14 | 0.14 | 93 |
+| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | CC | 105 | 4.39 | 5.01 | -0.054 [-0.223, 0.001] | -0.62 [-1.07, -0.22] | -0.311 | 0.0057 | 0.029 | 105 |
+| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | CC-MF | 105 | 4.39 | 4.73 | 0.000 [-0.027, 0.005] | -0.34 [-0.67, -0.03] | -0.114 | 0.31 | 0.62 | 105 |
+| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | PCC | 105 | 4.39 | 5.86 | -0.820 [-1.450, -0.490] | -1.47 [-2.00, -0.98] | -0.721 | 1.4e-10 | 1.1e-09 | 105 |
+| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | PCC-iso | 105 | 4.39 | 5.50 | -0.827 [-1.069, -0.435] | -1.11 [-1.58, -0.67] | -0.665 | 3.2e-09 | 2.3e-08 | 105 |
+| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | ACC | 105 | 4.39 | 4.81 | 0.001 [0.000, 0.005] | -0.42 [-0.85, -0.01] | -0.094 | 0.4 | 0.62 | 105 |
+| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | PACC | 105 | 4.39 | 5.27 | 0.000 [-0.259, 0.001] | -0.88 [-1.41, -0.41] | -0.295 | 0.0088 | 0.035 | 105 |
+| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | EMQ | 105 | 4.39 | 4.51 | 0.039 [0.005, 0.125] | -0.12 [-0.76, 0.44] | 0.409 | 0.00027 | 0.0016 | 105 |
+| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src | 105 | 4.39 | 4.49 | 0.007 [0.000, 0.060] | -0.10 [-0.58, 0.39] | 0.222 | 0.048 | 0.14 | 105 |
+| RRNet | PA-HMMQ[sel] | ext_cpsc2021 | HMM-src[sel] (post hoc, same emissions) | 105 | 4.39 | 4.68 | -0.008 [-0.023, -0.003] | -0.29 [-0.53, -0.07] | -0.382 | 0.00068 | 0.00068 | 105 |
+| RRNet | PA-HMMQ[sel] | ext_icentia11k | CC | 790 | 3.27 | 3.72 | 0.000 [0.000, 0.000] | -0.45 [-0.53, -0.37] | -0.289 | 2e-12 | 1e-11 | 790 |
+| RRNet | PA-HMMQ[sel] | ext_icentia11k | CC-MF | 790 | 3.27 | 3.50 | 0.000 [0.000, 0.000] | -0.23 [-0.28, -0.18] | -0.003 | 0.94 | 0.94 | 790 |
+| RRNet | PA-HMMQ[sel] | ext_icentia11k | PCC | 790 | 3.27 | 4.10 | -0.096 [-0.117, -0.079] | -0.83 [-0.95, -0.71] | -0.905 | 1e-107 | 8.3e-107 | 790 |
+| RRNet | PA-HMMQ[sel] | ext_icentia11k | PCC-iso | 790 | 3.27 | 3.96 | -0.247 [-0.283, -0.218] | -0.69 [-0.79, -0.59] | -0.881 | 4e-102 | 2.8e-101 | 790 |
+| RRNet | PA-HMMQ[sel] | ext_icentia11k | ACC | 790 | 3.27 | 3.59 | 0.000 [0.000, 0.000] | -0.32 [-0.39, -0.26] | 0.165 | 5.8e-05 | 0.00017 | 790 |
+| RRNet | PA-HMMQ[sel] | ext_icentia11k | PACC | 790 | 3.27 | 3.82 | 0.000 [0.000, 0.000] | -0.55 [-0.65, -0.45] | 0.056 | 0.17 | 0.35 | 790 |
+| RRNet | PA-HMMQ[sel] | ext_icentia11k | EMQ | 790 | 3.27 | 3.37 | 0.000 [0.000, 0.000] | -0.10 [-0.22, -0.01] | 0.598 | 4.3e-48 | 2.6e-47 | 790 |
+| RRNet | PA-HMMQ[sel] | ext_icentia11k | HMM-src | 790 | 3.27 | 3.53 | 0.000 [0.000, 0.000] | -0.26 [-0.36, -0.18] | 0.193 | 2.6e-06 | 1e-05 | 790 |
+| RRNet | PA-HMMQ[sel] | ext_icentia11k | HMM-src[sel] (post hoc, same emissions) | 790 | 3.27 | 3.23 | -0.001 [-0.001, -0.001] | 0.04 [0.02, 0.06] | -0.455 | 1.7e-28 | 1.7e-28 | 790 |

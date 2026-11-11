@@ -1,0 +1,27 @@
+[07:42:05] device=cpu torch threads=4
+[07:42:09] dev windows=158015 patients=243; shdb-af: windows=84719 patients=93; cpsc2021: windows=16964 patients=105
+[07:42:09] seed 11: train=107 pts, calA=40 pts, calB=47 pts, test=49 pts | inner fit=91 val=16
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[07:44:15] seed 11 LightGBM: trained in 125s, params=10553
+[07:44:49] seed 11 LightGBM: burden + intervals done (159s total)
+[07:44:49] seed 22: train=107 pts, calA=40 pts, calB=47 pts, test=49 pts | inner fit=91 val=16
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[07:45:45] seed 22 LightGBM: trained in 55s, params=10431
+[07:46:14] seed 22 LightGBM: burden + intervals done (85s total)
+[07:46:14] seed 33: train=107 pts, calA=40 pts, calB=47 pts, test=49 pts | inner fit=91 val=16
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[07:49:43] seed 33 LightGBM: trained in 208s, params=16592
+[07:50:13] seed 33 LightGBM: burden + intervals done (239s total)
+[07:50:14] seed 44: train=107 pts, calA=40 pts, calB=47 pts, test=49 pts | inner fit=91 val=16
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[07:52:05] seed 44 LightGBM: trained in 110s, params=14152
+[07:52:35] seed 44 LightGBM: burden + intervals done (141s total)
+[07:52:35] seed 55: train=107 pts, calA=40 pts, calB=47 pts, test=49 pts | inner fit=91 val=16
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+[07:56:22] seed 55 LightGBM: trained in 225s, params=16409
+[07:56:52] seed 55 LightGBM: burden + intervals done (257s total)

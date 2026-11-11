@@ -4,3 +4,5 @@ S:amendment_A1|dev_mae_pre_registered,3.186
 L:duplicate_windows_shared_across_patients,2
 L:windows_total,928477
 param:RRNet,"27,681"
+E:peak_mem_MB_PA-HMMQ+FFBS|1,1.4
+E:torch_threads,4

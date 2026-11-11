@@ -1,0 +1,17 @@
+[03:27:29] device=cpu torch threads=4
+[03:27:33] dev windows=643324 patients=243; shdb-af: windows=340701 patients=93; cpsc2021: windows=70072 patients=105
+[03:27:34] seed 11: train=108 pts, calA=38 pts, calB=48 pts, test=49 pts | inner fit=91 val=17
+[03:31:41] seed 11 LightGBM: trained in 245s, params=9821
+[03:33:08] seed 11 LightGBM: burden + intervals done (334s total)
+[03:33:08] seed 22: train=108 pts, calA=38 pts, calB=48 pts, test=49 pts | inner fit=91 val=17
+[03:37:51] seed 22 LightGBM: trained in 278s, params=18483
+[03:39:20] seed 22 LightGBM: burden + intervals done (372s total)
+[03:39:21] seed 33: train=108 pts, calA=38 pts, calB=48 pts, test=49 pts | inner fit=91 val=17
+[03:43:50] seed 33 LightGBM: trained in 266s, params=11102
+[03:45:13] seed 33 LightGBM: burden + intervals done (352s total)
+[03:45:14] seed 44: train=108 pts, calA=38 pts, calB=48 pts, test=49 pts | inner fit=91 val=17
+[03:47:02] seed 44 LightGBM: trained in 108s, params=2562
+[03:48:25] seed 44 LightGBM: burden + intervals done (191s total)
+[03:48:26] seed 55: train=108 pts, calA=38 pts, calB=48 pts, test=49 pts | inner fit=91 val=17
+[03:49:55] seed 55 LightGBM: trained in 89s, params=3050
+[03:51:38] seed 55 LightGBM: burden + intervals done (192s total)

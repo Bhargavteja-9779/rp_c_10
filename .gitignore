@@ -4,6 +4,6 @@ __pycache__/
 *.pyc
 *.part
 Target_Journal_Submission/results/preds/
-Target_Journal_Submission/results/models/
-# TEMPORARY while experiments run; final results committed at the end
-Target_Journal_Submission/results/
+Target_Journal_Submission/results_quick/
+Target_Journal_Submission/figures_quick/
+Target_Journal_Submission/tables_quick/

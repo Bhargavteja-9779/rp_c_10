@@ -1,0 +1,11 @@
+[ltafdb] records=84 files=168 missing=0 sha_mismatch=0
+[afdb] records=25 files=75 missing=0 sha_mismatch=0
+[mitdb] records=48 files=96 missing=0 sha_mismatch=0
+[nsrdb] records=18 files=36 missing=0 sha_mismatch=0
+[nsr2db] records=54 files=108 missing=0 sha_mismatch=0
+[chfdb] records=15 files=30 missing=0 sha_mismatch=0
+[shdb-af] records=128 files=386 missing=30 sha_mismatch=0
+  missing (first 10): ['053.atr', '057.atr', '058.atr', '059.atr', '060.atr', '061.atr', '063.atr', '066.atr', '067.atr', '068.atr']
+[cpsc2021] records=1436 files=2873 missing=22 sha_mismatch=0
+  missing (first 10): ['Training_set_I/data_51_7.atr', 'Training_set_I/data_51_7.hea', 'Training_set_I/data_51_6.atr', 'Training_set_I/data_51_6.hea', 'Training_set_I/data_51_1.atr', 'Training_set_I/data_51_1.hea', 'Training_set_I/data_51_2.atr', 'Training_set_I/data_51_2.hea', 'Training_set_I/data_51_4.atr', 'Training_set_I/data_51_4.hea']
+[icentia11k] patients=800 segments/patient=10 files=16001 missing=35
