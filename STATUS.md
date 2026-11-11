@@ -1,12 +1,13 @@
 # Pipeline status (for resumption after interruptions)
-Last update: 2026-11-11 03:07 UTC
-- DONE: journal selection (EP Europace), pre-registration (+A1, +R1), data download/caches (W60, W30; W120 building),
-  leakage audit (SHDB-AF dup removed), unit tests, manuscript sources/builder/DOCX renderer, EHRA checklist, cover letter draft.
-- RUNNING (restart if killed; all resumable/skip-done):
-  1. `cd Target_Journal_Submission/code && python experiments/run_main.py --config config/default.yaml --out ../results` (resume supported)
-  2. `python experiments/run_sensitivity.py --res ../results --only trainfrac_25 trainfrac_50 window_30` (rerun restarts unfinished variants)
-  3. `python -m src.data.dataset --W 120 --dbs ltafdb afdb mitdb nsrdb nsr2db chfdb shdb-af cpsc2021`
-- NEXT after main: `python experiments/run_revision.py` (R1) -> `python experiments/run_robustness.py` -> `run_sensitivity.py --only window_120`
-  -> `run_efficiency.py` (on idle machine) -> `analyze.py` -> `summarize_sensitivity.py` -> figures -> build manuscript
-  (`cd manuscript/build && python build_manuscript.py && python build_manuscript.py layout_supp.json && node make_docx.js ...`)
-  -> 10 review rounds (REVIEW/) -> final audit -> risk report.
+Last update: 2026-11-11 08:03 UTC
+- DONE: journal selection; pre-registration (+A1, R1 amendment); data; leakage audit; main 5-seed experiment;
+  sensitivity (trainfrac 25/50, window 30/120); smoother check; local recalibration; manuscript sources rewritten to
+  final evidence; reviews 01–09 written (REVIEW/); graphical abstract; EHRA checklist; cover letter draft.
+- RUNNING: `cd Target_Journal_Submission/code && python experiments/run_revision.py` (R1, not resumable; rerun fully if killed)
+  then `python experiments/run_robustness.py --out ../results --detectors LightGBM RRNet --procs 3`.
+- AFTER THEY FINISH (in this order):
+  1. `python experiments/run_efficiency.py` (idle machine)
+  2. `python experiments/analyze.py && python experiments/local_recalibration.py && python experiments/run_smoother_check.py && python experiments/summarize_sensitivity.py && python scripts/dataset_summary.py && python -m src.visualization.figures`
+  3. Update R1/robustness sentences in manuscript/source/04_results.md from tables 12/13/15
+  4. `cd ../manuscript/build && python final_audit.py` (strict build) → `node make_docx.js manuscript.json ../Final_Manuscript.docx`, supplement, cover letter, EHRA checklist; render PDF; inspect pages
+  5. review_10.md (final adversarial), final_audit.md, rejection_risk_report.md; un-ignore results/ in .gitignore and commit final results.
