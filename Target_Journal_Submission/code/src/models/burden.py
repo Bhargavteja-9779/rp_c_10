@@ -66,6 +66,17 @@ class RawEmission:
         return np.stack([1 - p, p], 1)
 
 
+class TemperedEmission:
+    """Likelihood ratio (p/(1-p))^(1/T): T=1 equals RawEmission; T>1 flattens, T<1 sharpens."""
+    def __init__(self, T):
+        self.T = float(T)
+
+    def __call__(self, p):
+        z = _logit(p) / self.T
+        z = np.clip(z, -30, 30)
+        return np.stack([np.ones_like(z), np.exp(z)], 1) / (1 + np.exp(z))[:, None]
+
+
 class BurdenCalibrator:
     """Holds every source-calibration quantity, estimated on calibration patients only."""
     def __init__(self, thr=0.5, kappa=10.0, bins=50):
@@ -92,7 +103,22 @@ def _seq_index(seqkey):
     return rank[inv]
 
 
-def estimate(cal: BurdenCalibrator, p, d, seqkey, patient, estimators=ESTIMATORS, n_samples=200, seed=0, raw_emission=False):
+def select_emission(cal, p, y, d, seqkey, patient, af_frac, grid=(0.5, 1, 2, 4, 8)):
+    """Revision R1: choose the emission model on labelled calibration-A patients by the per-patient burden
+    MAE of the fixed-dynamics HMM. Stores cal.emis_sel and cal.emis_sel_name; returns the score table."""
+    cands = {"hist": cal.emis, **{f"T={t}": TemperedEmission(t) for t in grid}}
+    tb, _ = true_burden(af_frac, d, patient)
+    scores = {}
+    for name, em in cands.items():
+        cal.emis_sel = em
+        e, _, _ = estimate(cal, p, d, seqkey, patient, ["HMM-src"], n_samples=0, emission="sel")
+        scores[name] = float(np.mean(np.abs(e["HMM-src"] - tb)) * 100)
+    best = min(scores, key=scores.get)
+    cal.emis_sel, cal.emis_sel_name = cands[best], best
+    return scores
+
+
+def estimate(cal: BurdenCalibrator, p, d, seqkey, patient, estimators=ESTIMATORS, n_samples=200, seed=0, raw_emission=False, emission=None):
     """Return dict estimator -> per-patient burden array, the list of patients, and
     posterior burden samples for PA-HMMQ (K, P) when n_samples > 0."""
     pats, pidx = np.unique(patient, return_inverse=True)
@@ -134,7 +160,7 @@ def estimate(cal: BurdenCalibrator, p, d, seqkey, patient, estimators=ESTIMATORS
         out["EMQ"] = b
     samples = None
     if "HMM-src" in estimators or "PA-HMMQ" in estimators:
-        E = cal.emis_raw(p) if raw_emission else cal.emis(p)
+        E = cal.emis_sel(p) if emission == "sel" else (cal.emis_raw(p) if raw_emission else cal.emis(p))
         # patient of each sequence
         pos = np.zeros(sidx.max() + 1, dtype=np.int64); pos[sidx] = pidx
         if "HMM-src" in estimators:

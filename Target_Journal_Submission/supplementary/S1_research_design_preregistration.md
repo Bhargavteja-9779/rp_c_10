@@ -74,3 +74,18 @@ held-out patients only* (calB ∪ dev_test, pooled over the 5 seeds, primary det
 absolute error). External cohorts play no role in this choice. Both variants will be reported in the
 manuscript (main tables + ablation), and the choice will be described as a post-hoc, development-data-driven
 modification. The pre-registered variant remains in all tables.
+
+## 7. Revision R1 (post hoc; recorded 2026-11-11 after inspecting seed-11/22 results, before the full 5-seed analysis)
+**Observation (development data).** (i) The best emission model differs by detector: on development held-out
+patients (calB ∪ dev_test) probability emissions were better for LightGBM and Classical-LR, but calibrated-histogram
+emissions were better for RRNet (A1 had been decided on LightGBM only). (ii) Per-patient adaptation of the dynamics
+(PA-HMMQ vs HMM-src with the same emissions) changed errors by ≤0.2 pp in either direction, and errors were flat over κ.
+**Hypothesis.** Burden error depends mainly on the *sharpness* of the emission likelihood ratio relative to the detector's
+actual reliability; this sharpness can be calibrated per detector on labelled calibration patients.
+**Change.** Emission model selected per seed and detector on calibration-A patients only, by the mean per-patient
+burden error of the fixed-dynamics HMM, among {calibrated histogram; probability emissions with likelihood ratio
+(p/(1−p))^(1/T), T ∈ {0.5, 1, 2, 4, 8}}. Estimators "HMM-src[sel]" and "PA-HMMQ[sel]" (+ normalised conformal interval,
+quantile on calB) are added. calB, development test and external cohorts are not used for the selection.
+**Reporting.** R1 is reported as a post-hoc analysis. The pre-registered PA-HMMQ and the A1 variant remain in all tables,
+the ablation states explicitly that patient adaptation did not contribute, and the primary pre-specified test is
+reported unchanged. The fixed-dynamics HMM with the same emission is added as the fair comparator for every PA-HMMQ variant.

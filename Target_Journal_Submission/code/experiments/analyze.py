@@ -12,7 +12,8 @@ from src.evaluation.metrics import burden_metrics
 from scipy import stats
 
 BASELINES = ["CC", "CC-MF", "PCC", "PCC-iso", "ACC", "PACC", "EMQ", "HMM-src"]
-PA_PRE, PA_RAW = "PA-HMMQ", "PA-HMMQ[rawE]"
+PA_PRE, PA_RAW, PA_SEL = "PA-HMMQ", "PA-HMMQ[rawE]", "PA-HMMQ[sel]"
+FAIR = {"PA-HMMQ": "HMM-src", "PA-HMMQ[rawE]": "HMM-src[rawE]", "PA-HMMQ[sel]": "HMM-src[sel]"}  # same emissions, fixed dynamics
 EXT = ["ext_shdb-af", "ext_cpsc2021", "ext_icentia11k"]
 COH = ["dev_test"] + EXT
 
@@ -32,6 +33,9 @@ def md_table(df, path, floatfmt=None):
 
 def load(res):
     R = pd.read_csv(os.path.join(res, "raw_results.csv"))
+    rp = os.path.join(res, "revision_results.csv")
+    if os.path.exists(rp):  # Revision R1 (post hoc)
+        R = pd.concat([R, pd.read_csv(rp)], ignore_index=True)
     R["err"] = (R.estimate - R.true_burden) * 100
     R["ae"] = R.err.abs()
     R["ae_afafl"] = (R.estimate - R.true_burden_af_afl).abs() * 100
@@ -55,7 +59,8 @@ def main(res, tab, cfg_primary="LightGBM"):
                              dev_mae_pre_registered=float(dm[PA_PRE]), dev_mae_raw_emission=float(dm[PA_RAW]), chosen=FINAL)
     print("A1 decision:", S["amendment_A1"])
     RP = pooled(R)
-    EST_MAIN = BASELINES + [PA_PRE, PA_RAW]
+    has_sel = PA_SEL in set(R.estimator)
+    EST_MAIN = BASELINES + ["HMM-src[rawE]"] + (["HMM-src[sel]"] if has_sel else []) + [PA_PRE, PA_RAW] + ([PA_SEL] if has_sel else [])
 
     # ---------------- Table: cohort characteristics ----------------
     one = RP[(RP.seed == RP.seed.min()) & (RP.detector == cfg_primary) & (RP.estimator == "CC")]
@@ -91,7 +96,7 @@ def main(res, tab, cfg_primary="LightGBM"):
     for det in sorted(R.detector.unique()):
         rows = []
         for est in EST_MAIN:
-            r = {"Estimator": est + (" (final)" if est == FINAL else "") + (" (pre-registered)" if est == PA_PRE else "")}
+            r = {"Estimator": est + (" (final)" if est == FINAL else "") + (" (pre-registered)" if est == PA_PRE else "") + (" (post hoc R1)" if est in (PA_SEL, "HMM-src[sel]") else "")}
             for c in COH + ["ext_pooled"]:
                 g = per_seed[(per_seed.detector == det) & (per_seed.estimator == est) & (per_seed.cohort == c)]
                 r[c] = fmt(g.mae_pp.mean(), g.mae_pp.std())
@@ -115,7 +120,7 @@ def main(res, tab, cfg_primary="LightGBM"):
     S["tests"] = {}
     rows = []
     for det in sorted(R.detector.unique()):
-        for target in [FINAL, PA_PRE] if FINAL != PA_PRE else [PA_PRE]:
+        for target in ([FINAL, PA_PRE] if FINAL != PA_PRE else [PA_PRE]) + ([PA_SEL] if has_sel else []):
             for cname, cset in [("ext_pooled", EXT)] + [(c, [c]) for c in COH]:
                 a = seed_avg(det, target, cset)
                 res_ = {}
@@ -125,8 +130,14 @@ def main(res, tab, cfg_primary="LightGBM"):
                 adj = holm({b: v["p"] for b, v in res_.items()})
                 for b, v in res_.items():
                     v["p_holm"] = adj[b]
+                # post hoc: fair comparator with identical emissions and fixed dynamics (isolates patient adaptation)
+                fb = FAIR[target]
+                fv = paired_wilcoxon(a.values, seed_avg(det, fb, cset).loc[a.index].values, n_boot=2000, seed=0)
+                fv["p_holm"] = fv["p"]; res_[fb + " (post hoc, same emissions)"] = fv
+                for b, v in res_.items():
+                    bname = b.split(" (post hoc")[0]
                     rows.append({"Detector": det, "Proposed": target, "Cohort": cname, "Comparator": b, "n patients": v["n"],
-                                 "Mean AE proposed (pp)": f"{a.mean():.2f}", "Mean AE comparator (pp)": f"{seed_avg(det, b, cset).mean():.2f}",
+                                 "Mean AE proposed (pp)": f"{a.mean():.2f}", "Mean AE comparator (pp)": f"{seed_avg(det, bname, cset).loc[a.index].mean():.2f}",
                                  "Median paired diff (pp) [95% CI]": f"{v['median_diff']:.3f} [{v['median_ci'][0]:.3f}, {v['median_ci'][1]:.3f}]",
                                  "Mean paired diff (pp) [95% CI]": f"{v['mean_diff']:.2f} [{v['mean_ci'][0]:.2f}, {v['mean_ci'][1]:.2f}]",
                                  "Rank-biserial r": f"{v['rank_biserial']:.3f}", "p (Wilcoxon)": f"{v['p']:.2g}", "p (Holm)": f"{v['p_holm']:.2g}",
@@ -139,7 +150,7 @@ def main(res, tab, cfg_primary="LightGBM"):
     # ---------------- Threshold classification ----------------
     rows = []; S["mcnemar"] = {}
     thr_list = [("present_30s", None), ("ge1pct", 0.01), ("ge10pct", 0.10)]
-    for est in ["CC", "CC-MF", "PCC-iso", "ACC", "EMQ", "HMM-src", PA_PRE, PA_RAW]:
+    for est in ["CC", "CC-MF", "PCC-iso", "ACC", "EMQ", "HMM-src", "HMM-src[rawE]", PA_PRE, PA_RAW] + ([PA_SEL] if has_sel else []):
         g = per_seed[(per_seed.detector == cfg_primary) & (per_seed.estimator == est) & (per_seed.cohort == "ext_pooled")]
         r = {"Estimator": est}
         for t, _ in thr_list:
@@ -161,6 +172,8 @@ def main(res, tab, cfg_primary="LightGBM"):
 
     # ---------------- Intervals ----------------
     I = pd.read_csv(os.path.join(res, "intervals.csv"))
+    if os.path.exists(os.path.join(res, "revision_intervals.csv")):
+        I = pd.concat([I, pd.read_csv(os.path.join(res, "revision_intervals.csv"))], ignore_index=True)
     I["cov"] = (I.true_burden >= I.lo - 1e-12) & (I.true_burden <= I.hi + 1e-12); I["width"] = (I.hi - I.lo) * 100
     Ie = I[I.cohort.isin(EXT)].copy(); Ie["cohort"] = "ext_pooled"; I = pd.concat([I, Ie])
     rows = []; M["intervals"] = {}
@@ -182,18 +195,25 @@ def main(res, tab, cfg_primary="LightGBM"):
 
     # ---------------- Ablation ----------------
     abl = [e for e in R.estimator.unique() if e.startswith("PA-HMMQ") or e.startswith("HMM-src")] + ["EMQ", "CC"]
-    rows = []
-    for est in sorted(set(abl), key=lambda s: (not s.startswith("PA"), s)):
-        r = {"Variant": est}
-        for c in ["calB", "dev_test"] + EXT + ["ext_pooled"]:
-            g = per_seed[(per_seed.detector == cfg_primary) & (per_seed.estimator == est) & (per_seed.cohort == c)]
-            r[c] = fmt(g.mae_pp.mean(), g.mae_pp.std()) if len(g) else "–"
-        rows.append(r)
-    md_table(pd.DataFrame(rows), os.path.join(tab, "table8_ablation"))
+    for det in sorted(R.detector.unique()):
+        rows = []
+        for est in sorted(set(abl), key=lambda s: (not s.startswith("PA"), s)):
+            r = {"Variant": est}
+            for c in ["calB", "dev_test"] + EXT + ["ext_pooled"]:
+                g = per_seed[(per_seed.detector == det) & (per_seed.estimator == est) & (per_seed.cohort == c)]
+                r[c] = fmt(g.mae_pp.mean(), g.mae_pp.std()) if len(g) else "–"
+            rows.append(r)
+        md_table(pd.DataFrame(rows), os.path.join(tab, "table8_ablation" + ("" if det == cfg_primary else f"_{det}")))
+    if os.path.exists(os.path.join(res, "revision_selection.json")):
+        sel = json.load(open(os.path.join(res, "revision_selection.json")))
+        md_table(pd.DataFrame([{"Seed": k.split("_")[0], "Detector": k.split("_", 1)[1], "Selected emission": v["chosen"],
+                                **{f"calA MAE {kk} (pp)": f"{vv:.2f}" for kk, vv in v["calA_mae"].items()}} for k, v in sel.items()]),
+                 os.path.join(tab, "table15_R1_emission_selection"))
+        S["R1_selection"] = sel
 
     # ---------------- AF+AFL sensitivity & burden strata & subgroups ----------------
     rows = []; S["afl"] = {}
-    for est in BASELINES + [PA_PRE, PA_RAW]:
+    for est in BASELINES + ["HMM-src[rawE]", PA_PRE, PA_RAW] + ([PA_SEL] if has_sel else []):
         g = RP[(RP.detector == cfg_primary) & (RP.estimator == est) & (RP.cohort == "ext_pooled")]
         g0 = g[g.afl_burden == 0]
         a, b, c = g.groupby('seed').ae.mean(), g.groupby('seed').ae_afafl.mean(), g0.groupby('seed').ae.mean()
@@ -218,7 +238,7 @@ def main(res, tab, cfg_primary="LightGBM"):
     bins = [-0.001, 0, 0.01, 0.10, 0.50, 1.0]; labels = ["0 (AF-free)", "(0,1%]", "(1,10%]", "(10,50%]", ">50%"]
     RP["stratum"] = pd.cut(RP.true_burden, bins, labels=labels)
     rows = []
-    for est in ["CC", "CC-MF", "PCC-iso", "ACC", "EMQ", "HMM-src", PA_PRE, PA_RAW]:
+    for est in ["CC", "CC-MF", "PCC-iso", "ACC", "EMQ", "HMM-src", "HMM-src[rawE]", PA_PRE, PA_RAW] + ([PA_SEL] if has_sel else []):
         g = RP[(RP.detector == cfg_primary) & (RP.estimator == est) & (RP.cohort == "ext_pooled")]
         r = {"Estimator": est}
         for lab in labels:

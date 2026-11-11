@@ -49,19 +49,27 @@ def main(cfg, out, db, detectors, seeds, procs):
     for seed in seeds:
         for det_name in detectors:
             det, cal = load_model(out, seed, det_name)
+            r1p = os.path.join(out, "models", f"seed{seed}_{det_name}_calibrator_R1.pkl")
+            cal_r1 = pickle.load(open(r1p, "rb")) if os.path.exists(r1p) else None
+            sel = json.load(open(os.path.join(out, "revision_selection.json"))) if cal_r1 is not None else {}
             q = cstats[f"{seed}_{det_name}"]["conformal_q"]
             for cond, D in data.items():
                 p = det.predict(D["X"], D["rr"])
                 e, pts, samp = estimate(cal, p, D["dur"], D["seqkey"], D["patient"], EST, n_samples=cfg["ffbs_samples"], seed=seed)
                 e2, _, samp2 = estimate(cal, p, D["dur"], D["seqkey"], D["patient"], ["PA-HMMQ"], n_samples=cfg["ffbs_samples"], seed=seed, raw_emission=True)
                 e["PA-HMMQ[rawE]"] = e2["PA-HMMQ"]
+                samp3 = None
+                if cal_r1 is not None:
+                    e3, _, samp3 = estimate(cal_r1, p, D["dur"], D["seqkey"], D["patient"], ["HMM-src", "PA-HMMQ"], n_samples=cfg["ffbs_samples"], seed=seed, emission="sel")
+                    e["PA-HMMQ[sel]"] = e3["PA-HMMQ"]; e["HMM-src[sel]"] = e3["HMM-src"]
                 pt = patient_table(D).set_index("patient").loc[pts].reset_index()
                 for est_name, bh in e.items():
                     df = pt[["patient", "true_burden", "hours", "db"]].copy(); df["estimate"] = bh
                     df["seed"], df["detector"], df["estimator"], df["condition"] = seed, det_name, est_name, cond
                     rows.append(df)
                 for nm, est_, sg, qq in (("PA-HMMQ+conformal(norm)", e["PA-HMMQ"], samp.std(0), q["norm"]),
-                                         ("PA-HMMQ[rawE]+conformal(norm)", e["PA-HMMQ[rawE]"], samp2.std(0), q["norm_raw"])):
+                                         ("PA-HMMQ[rawE]+conformal(norm)", e["PA-HMMQ[rawE]"], samp2.std(0), q["norm_raw"])) + (
+                                         (("PA-HMMQ[sel]+conformal(norm)", e["PA-HMMQ[sel]"], samp3.std(0), sel[f"{seed}_{det_name}"]["conformal_q_norm"]),) if samp3 is not None else ()):
                     lo, hi = predict_interval(est_, qq, sg, cfg["eps"])
                     irows.append(pd.DataFrame(dict(seed=seed, detector=det_name, condition=cond, method=nm, patient=pts,
                                                    true_burden=pt["true_burden"].values, lo=lo, hi=hi)))
