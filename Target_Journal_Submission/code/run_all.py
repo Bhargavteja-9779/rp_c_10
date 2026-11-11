@@ -33,7 +33,7 @@ def main():
     if not a.skip_download:
         sh("python -m src.data.download --root data/raw" + (" --icentia-patients 800 --icentia-segments 10" if not q else " --icentia-patients 800 --icentia-segments 10"))
     sh("python -m src.data.dataset --W 60")
-    sh("python scripts/leakage_audit.py")
+    sh(f"python scripts/leakage_audit.py {res}")
     if a.force or not os.path.exists(os.path.join(HERE, res, "raw_results.csv")):
         sh(f"python experiments/run_main.py --config {cfg} --out {res}")
     if a.force or not os.path.exists(os.path.join(HERE, res, "robustness_results.csv")):
@@ -45,6 +45,7 @@ def main():
     sh(f"python experiments/local_recalibration.py {res} {tab}")  # post hoc (review round 5); appends to statistics.json
     if not q: sh(f"python experiments/run_smoother_check.py {res} {tab}")  # post hoc (review round 8)
     sh(f"python experiments/summarize_sensitivity.py --res {res} --tables {tab}")
+    sh(f"python scripts/dataset_summary.py {res} {tab}")
     sh(f"python -m src.visualization.figures --res {res} --out {fig}")
     sh("python -m pytest -q tests")
     print("\nAll steps completed.")

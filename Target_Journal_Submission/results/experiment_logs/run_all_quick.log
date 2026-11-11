@@ -1,0 +1,177 @@
+
+$ python -m src.data.dataset --W 60
+  done in 1s
+
+$ python scripts/leakage_audit.py ../results_quick
+{
+ "windows_total": 928477,
+ "duplicate_window_hashes": 23,
+ "duplicate_windows_shared_across_patients": 2,
+ "examples_cross_patient": [
+  [
+   "icentia_p03923",
+   "icentia_p10516"
+  ],
+  [
+   "icentia_p02328",
+   "icentia_p03340",
+   "icentia_p05651"
+  ]
+ ],
+ "recordings_fingerprinted": 1908,
+ "recording_fingerprint_collisions": [],
+ "dev_external_patient_overlap": 0,
+ "preprocessing_scope": {
+  "features": "computed per window from that window's 60 RR intervals only (no cross-window or global statistics)",
+  "RRNet normalisation": "per-window (log RR minus window mean); no dataset-level statistics",
+  "Classical-LR scaler": "StandardScaler fit on inner-fit training patients only",
+  "early stopping": "inner validation patients (subset of training split)",
+  "burden calibration (thresholds, isotonic, emissions, source HMM dynamics)": "calA patients only",
+  "conformal quantile": "calB patients only",
+  "external cohorts": "never used for training, calibration, tuning or model selection",
+  "per-patient EM (EMQ, PA-HMMQ)": "unsupervised: uses only the test patient's own detector outputs, never its labels"
+ }
+}
+{11: {'calA&train': 0, 'calA&calB': 0, 'calA&test': 0, 'calB&train': 0, 'calB&test': 0, 'test&train': 0}, 22: {'calA&train': 0, 'calA&calB': 0, 'calA&test': 0, 'calB&train': 0, 'calB&test': 0, 'test&train': 0}, 33: {'calA&train': 0, 'calA&calB': 0, 'calA&test': 0, 'calB&train': 0, 'calB&test': 0, 'test&train': 0}, 44: {'calA&train': 0, 'calA&calB': 0, 'calA&test': 0, 'calB&train': 0, 'calB&test': 0, 'test&train': 0}, 55: {'calA&train': 0, 'calA&calB': 0, 'calA&test': 0, 'calB&train': 0, 'calB&test': 0, 'test&train': 0}}
+  done in 49s
+
+$ python experiments/run_efficiency.py --res ../results_quick --config config/quick.yaml
+{
+ "cpu": "x86_64",
+ "torch_threads": 4,
+ "python": "3.13.18",
+ "components": {
+  "RR features (16, per window)": {
+   "seconds_per_24h_median": 1.3654519319534302,
+   "seconds_per_24h_iqr": [
+    1.1571910381317139,
+    1.4546619653701782
+   ]
+  },
+  "Classical-LR inference": {
+   "seconds_per_24h_median": 0.0003509855305310339,
+   "seconds_per_24h_iqr": [
+    0.00027120389859192073,
+    0.00035811500856652856
+   ]
+  },
+  "LightGBM inference": {
+   "seconds_per_24h_median": 0.0026680694427341223,
+   "seconds_per_24h_iqr": [
+    0.001911213155835867,
+    0.003023589728400111
+   ]
+  },
+  "burden: CC": {
+   "seconds_per_24h_median": 0.0006038721185177565,
+   "seconds_per_24h_iqr": [
+    0.0004859593464061618,
+    0.0006611977587454021
+   ]
+  },
+  "burden: ACC": {
+   "seconds_per_24h_median": 0.0005358753260225058,
+   "seconds_per_24h_iqr": [
+    0.0004360087332315743,
+    0.0005417938227765262
+   ]
+  },
+  "burden: EMQ": {
+   "seconds_per_24h_median": 0.0010303438175469637,
+   "seconds_per_24h_iqr": [
+    0.0007536863558925688,
+    0.0011249544331803918
+   ]
+  },
+  "burden: HMM-src": {
+   "seconds_per_24h_median": 0.08566533774137497,
+   "seconds_per_24h_iqr": [
+    0.0764443501830101,
+    0.12806792557239532
+   ]
+  },
+  "burden: PA-HMMQ": {
+   "seconds_per_24h_median": 0.2663889229297638,
+   "seconds_per_24h_iqr": [
+    0.18766888976097107,
+    0.2714296281337738
+   ]
+  },
+  "burden: PA-HMMQ (probability emissions)": {
+   "seconds_per_24h_median": 0.26976585388183594,
+   "seconds_per_24h_iqr": [
+    0.24897310137748718,
+    0.32509687542915344
+   ]
+  },
+  "PA-HMMQ + 200 FFBS samples (for interval)": {
+   "seconds_per_24h_median": 0.36344900727272034,
+   "seconds_per_24h_iqr": [
+    0.3114430010318756,
+    0.3785575330257416
+   ]
+  },
+  "RRNet inference": {
+   "seconds_per_24h_median": 0.12670043110847473,
+   "seconds_per_24h_iqr": [
+    0.12377513200044632,
+    0.1677829623222351
+   ]
+  }
+ },
+ "params": {
+  "Classical-LR": 4,
+  "LightGBM": 6100,
+  "RRNet": 27681
+ },
+ "peak_mem_MB_PA-HMMQ+FFBS": 0.5430284142494202,
+ "n_recordings": 5
+}
+  done in 51s
+
+$ python experiments/analyze.py --res ../results_quick --tables ../tables_quick
+A1 decision: {'rule': 'lower mean per-patient AE on calB ∪ dev_test, LightGBM, pooled over seeds', 'dev_mae_pre_registered': 1.916605949816465, 'dev_mae_raw_emission': 1.4486724728734641, 'chosen': 'PA-HMMQ[rawE]'}
+/home/user/rp_c_10/Target_Journal_Submission/code/experiments/analyze.py:196: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  miss = meta[meta.truth & ~v[FINAL] & v["CC"]].assign(af_minutes=lambda d: d.true_burden * d.hours * 60)
+/home/user/rp_c_10/Target_Journal_Submission/code/experiments/analyze.py:197: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  fpfix = meta[~meta.truth & ~v[FINAL] & v["CC"]]
+analysis done
+  done in 7s
+
+$ python experiments/local_recalibration.py ../results_quick ../tables_quick
+/home/user/rp_c_10/Target_Journal_Submission/code/experiments/local_recalibration.py:30: RuntimeWarning: Mean of empty slice
+  cov.append(c.mean()); wid.append(100 * (hi - lo).mean())
+/usr/local/lib/python3.13/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/usr/local/lib/python3.13/site-packages/numpy/_core/fromnumeric.py:3862: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+           Cohort  Local calibration patients Coverage, mean Coverage, 5th–95th percentile Coverage in AF patients Mean width (pp)
+0    ext_cpsc2021                          10          0.899                   0.732–1.000                   0.884           15.32
+1    ext_cpsc2021                          20          0.895                   0.650–1.000                   0.887           10.99
+2    ext_cpsc2021                          40            nan                       nan–nan                     nan             nan
+3  ext_icentia11k                          10          0.901                   0.698–1.000                   0.966            3.22
+4  ext_icentia11k                          20          0.915                   0.750–1.000                   1.000            1.20
+5  ext_icentia11k                          40            nan                       nan–nan                     nan             nan
+6     ext_shdb-af                          10          0.893                   0.667–1.000                   0.867           18.40
+7     ext_shdb-af                          20          0.909                   0.750–1.000                   0.887           14.91
+8     ext_shdb-af                          40            nan                       nan–nan                     nan             nan
+  done in 1s
+
+$ python experiments/summarize_sensitivity.py --res ../results_quick --tables ../tables_quick
+sensitivity tables done
+  done in 2s
+
+$ python scripts/dataset_summary.py ../results_quick ../tables_quick
+{"dev_total": {"patients": 243, "recordings": 244, "windows": 319503, "hours": 4044.5785125054254, "patients_af": 119}, "ext_total": {"patients": 988, "recordings": 2292, "windows": 608974, "hours": 8576.14247651312, "patients_af": 175, "patients_afl": 39}, "icentia_sampled": 800}
+  done in 4s
+
+$ python -m src.visualization.figures --res ../results_quick --out ../figures_quick
+figures done
+  done in 9s
+
+$ python -m pytest -q tests
+...........                                                              [100%]
+11 passed in 1.27s
+  done in 2s
+
+All steps completed.

@@ -40,4 +40,4 @@ def main(out="../results/dataset_summary.json", tab="../tables"):
 
 
 if __name__ == "__main__":
-    main()
+    main(*(a for a in [sys.argv[1] + "/dataset_summary.json" if len(sys.argv) > 1 else None, sys.argv[2] if len(sys.argv) > 2 else None] if a))

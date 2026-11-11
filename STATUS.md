@@ -1,5 +1,4 @@
 # Pipeline status
-Last update: 2026-11-11 13:05 UTC
-ALL PHASES COMPLETE except the end-to-end quick-mode reproduction check (running: `python run_all.py --mode quick --skip-download`,
-log: Target_Journal_Submission/results/experiment_logs/run_all_quick.log). After it finishes, record the outcome in
-REVIEW/final_audit.md (section 2) and commit. Final package: Target_Journal_Submission/ (see its README.md).
+Last update: 2026-11-11 13:20 UTC — ALL PHASES COMPLETE (0–42). Final package: Target_Journal_Submission/ (see its README.md).
+Final decision (REVIEW/rejection_risk_report.md): READY FOR SUBMISSION after mandatory author actions (author list, affiliations,
+funding, COI, repository URL, AI-use confirmation, personal verification of analyses).

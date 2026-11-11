@@ -71,4 +71,4 @@ def main(out="../results/leakage_audit.json"):
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1] + "/leakage_audit.json" if len(sys.argv) > 1 else "../results/leakage_audit.json")
