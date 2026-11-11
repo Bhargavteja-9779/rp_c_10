@@ -53,15 +53,18 @@ def main(cfg, out, db, detectors, seeds, procs):
             for cond, D in data.items():
                 p = det.predict(D["X"], D["rr"])
                 e, pts, samp = estimate(cal, p, D["dur"], D["seqkey"], D["patient"], EST, n_samples=cfg["ffbs_samples"], seed=seed)
+                e2, _, samp2 = estimate(cal, p, D["dur"], D["seqkey"], D["patient"], ["PA-HMMQ"], n_samples=cfg["ffbs_samples"], seed=seed, raw_emission=True)
+                e["PA-HMMQ[rawE]"] = e2["PA-HMMQ"]
                 pt = patient_table(D).set_index("patient").loc[pts].reset_index()
                 for est_name, bh in e.items():
                     df = pt[["patient", "true_burden", "hours", "db"]].copy(); df["estimate"] = bh
                     df["seed"], df["detector"], df["estimator"], df["condition"] = seed, det_name, est_name, cond
                     rows.append(df)
-                sig = samp.std(0)
-                lo, hi = predict_interval(e["PA-HMMQ"], q["norm"], sig, cfg["eps"])
-                irows.append(pd.DataFrame(dict(seed=seed, detector=det_name, condition=cond, patient=pts,
-                                               true_burden=pt["true_burden"].values, lo=lo, hi=hi)))
+                for nm, est_, sg, qq in (("PA-HMMQ+conformal(norm)", e["PA-HMMQ"], samp.std(0), q["norm"]),
+                                         ("PA-HMMQ[rawE]+conformal(norm)", e["PA-HMMQ[rawE]"], samp2.std(0), q["norm_raw"])):
+                    lo, hi = predict_interval(est_, qq, sg, cfg["eps"])
+                    irows.append(pd.DataFrame(dict(seed=seed, detector=det_name, condition=cond, method=nm, patient=pts,
+                                                   true_burden=pt["true_burden"].values, lo=lo, hi=hi)))
             print(f"seed {seed} {det_name} done ({time.time()-t0:.0f}s)", flush=True)
             pd.concat(rows).to_csv(os.path.join(out, "robustness_results.csv"), index=False)
             pd.concat(irows).to_csv(os.path.join(out, "robustness_intervals.csv"), index=False)

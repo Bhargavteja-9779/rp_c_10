@@ -107,15 +107,25 @@ def parse_icentia_segment(path_noext: str, seq_id: int):
     return _build(smp, a.symbol, rh, fs, seq_id)
 
 
+# Recordings excluded after the leakage audit (scripts/leakage_audit.py):
+# SHDB-AF Data_ID 020 is an exact RR-level duplicate of Data_ID 005 (same Subject_ID, different
+# metadata date); the later duplicate is removed.
+EXCLUDE = {"shdb-af": {"020"}}
+
+
 def _shdb_patient_map(root):
+    """Map SHDB-AF record name (Data_ID, zero-padded) -> patient key built from Subject_ID.
+    (The CSV header uses Data_ID/Subject_ID, not the UID/Study ID names given in the README.)"""
     p = os.path.join(root, "shdb-af", "AdditionalData.csv")
     m = {}
-    if os.path.exists(p):
-        with open(p, newline="", encoding="utf-8-sig") as f:
-            for row in csv.DictReader(f):
-                uid = (row.get("UID") or "").strip()
-                if uid:
-                    m[uid.zfill(3)] = "shdb_" + (row.get("Study ID") or uid).strip()
+    with open(p, newline="", encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            uid = (row.get("Data_ID") or row.get("UID") or "").strip()
+            sid = (row.get("Subject_ID") or row.get("Study ID") or "").strip()
+            if uid and sid:
+                m[uid.zfill(3)] = "shdb_" + sid
+    if not m:
+        raise RuntimeError("SHDB-AF metadata could not be parsed")
     return m
 
 
@@ -135,6 +145,8 @@ def load_database(name: str, root: str):
     records = [l.strip() for l in open(os.path.join(d, "RECORDS")) if l.strip()]
     shdb = _shdb_patient_map(root) if name == "shdb-af" else {}
     for r in records:
+        if r in EXCLUDE.get(name, set()):
+            continue
         base = os.path.join(d, r)
         try:
             if name in ("ltafdb", "mitdb", "cpsc2021"):
@@ -157,7 +169,7 @@ def load_database(name: str, root: str):
             m = re.match(r"(Training_set_I+)/data_(\d+)_(\d+)", r)
             patient = f"cpsc_{m.group(1)[-2:]}_{m.group(2)}"
         elif name == "shdb-af":
-            patient = shdb.get(r.zfill(3), f"shdb_uid{r}")
+            patient = shdb[r.zfill(3)]
         else:
             patient = f"{name}_{r}"
         recs.append(dict(db=name, record=r, patient=patient, **out))

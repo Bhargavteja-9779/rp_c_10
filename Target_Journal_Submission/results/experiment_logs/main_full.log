@@ -1,4 +1,7 @@
-[22:06:18] device=cpu torch threads=4
-[22:06:20] dev windows=319503 patients=243; shdb-af: windows=171698 patients=98; cpsc2021: windows=34706 patients=105; icentia11k: windows=404267 patients=790
-[22:06:20] seed 11: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
-[22:06:20] seed 11 Classical-LR: trained in 0s, params=4
+[22:20:37] device=cpu torch threads=4
+[22:20:39] dev windows=319503 patients=243; shdb-af: windows=170001 patients=93; cpsc2021: windows=34706 patients=105; icentia11k: windows=404267 patients=790
+[22:20:40] seed 11: train=107 pts, calA=39 pts, calB=48 pts, test=49 pts | inner fit=90 val=17
+[22:20:40] seed 11 Classical-LR: trained in 0s, params=4
+[22:24:43] seed 11 Classical-LR: burden + intervals done (243s total)
+/usr/local/lib/python3.13/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)

@@ -68,6 +68,21 @@ def run(cfg, out, detectors=None, seeds=None):
     pdb = DEV["db"][first]
     has_af = np.array([DEV["y"][DEV["patient"] == p].any() for p in pats])
     rows, wrows, irows, hist, calstats, crows, relrows = [], [], [], [], {}, [], []
+    # ---- resume support: keep finished (seed, detector) results from a previous interrupted run ----
+    done = set()
+    rp = os.path.join(out, "raw_results.csv")
+    if os.path.exists(rp) and os.path.exists(os.path.join(out, "intervals.csv")):
+        prev = pd.read_csv(rp)
+        done = set(map(tuple, prev[["seed", "detector"]].drop_duplicates().values.tolist()))
+        rows = [prev]
+        irows = [pd.read_csv(os.path.join(out, "intervals.csv"))]
+        wrows = pd.read_csv(os.path.join(out, "window_metrics.csv")).to_dict("records")
+        hp = os.path.join(out, "training_history.csv")
+        hist = pd.read_csv(hp).to_dict("records") if os.path.exists(hp) and os.path.getsize(hp) > 1 else []
+        crows = [pd.read_csv(os.path.join(out, "curves.csv"))]
+        relrows = pd.read_csv(os.path.join(out, "reliability.csv")).to_dict("records")
+        calstats = json.load(open(os.path.join(out, "calibration_stats.json")))
+        log(f"resuming: already done {sorted(done)}", fh)
     detectors = detectors or cfg["detectors"]
     for seed in (seeds or cfg["seeds"]):
         sp = patient_split(pats, pdb, has_af, {k: v for k, v in cfg["split"].items() if k != "inner_val_of_train"}, seed)
@@ -86,6 +101,8 @@ def run(cfg, out, detectors=None, seeds=None):
         log(f"seed {seed}: " + ", ".join(f"{k}={len(v)} pts" for k, v in sp.items()) + f" | inner fit={len(inner['fit'])} val={len(inner['val'])}", fh)
         cohorts = {"dev_test": S["test"], **{f"ext_{k}": v for k, v in EXT.items()}}
         for det_name in detectors:
+            if (seed, det_name) in done:
+                continue
             t0 = time.time()
             Det = DETECTORS[det_name]
             kw = {}
@@ -126,21 +143,29 @@ def run(cfg, out, detectors=None, seeds=None):
             for k, v in {"calB": S["calB"], **cohorts}.items():
                 e, pts, samp = estimate(cal, P[k], v["dur"], v["seqkey"], v["patient"], ESTIMATORS,
                                         n_samples=cfg["ffbs_samples"], seed=seed)
-                # ablations: raw-score emissions and kappa grid
-                e.update(_ablations(cal, cfg, P[k], v))
+                # raw-probability-emission variant (Amendment A1) with its own posterior samples
+                e2, _, samp2 = estimate(cal, P[k], v["dur"], v["seqkey"], v["patient"], ["PA-HMMQ"],
+                                        n_samples=cfg["ffbs_samples"], seed=seed, raw_emission=True)
+                e["PA-HMMQ[rawE]"] = e2["PA-HMMQ"]
+                # ablations: kappa grid (calibrated emissions)
+                if cfg.get("ablations", True):
+                    e.update(_ablations(cal, cfg, P[k], v))
                 sig = samp.std(0) if samp is not None else None
+                sig2 = samp2.std(0)
                 lo_cr, hi_cr = (np.quantile(samp, cfg["alpha"] / 2, 0), np.quantile(samp, 1 - cfg["alpha"] / 2, 0)) if samp is not None else (None, None)
-                ests[k] = (e, pts, sig, lo_cr, hi_cr)
+                ests[k] = (e, pts, sig, lo_cr, hi_cr, sig2)
             # conformal calibration on calB (true burden known there)
-            eB, ptsB, sigB, _, _ = ests["calB"]
+            eB, ptsB, sigB, _, _, sigB2 = ests["calB"]
             tb_B, _ = true_burden(S["calB"]["af_frac"], S["calB"]["dur"], S["calB"]["patient"])
             q = dict(norm=fit_interval(tb_B, eB["PA-HMMQ"], sigB, cfg["alpha"], cfg["eps"]),
                      const_pa=fit_interval(tb_B, eB["PA-HMMQ"], None, cfg["alpha"]),
+                     norm_raw=fit_interval(tb_B, eB["PA-HMMQ[rawE]"], sigB2, cfg["alpha"], cfg["eps"]),
+                     const_raw=fit_interval(tb_B, eB["PA-HMMQ[rawE]"], None, cfg["alpha"]),
                      const_cc=fit_interval(tb_B, eB["CC"], None, cfg["alpha"]),
                      const_pcciso=fit_interval(tb_B, eB["PCC-iso"], None, cfg["alpha"]))
             calstats[f"{seed}_{det_name}"]["conformal_q"] = q
             for k, v in {"calB": S["calB"], **cohorts}.items():
-                e, pts, sig, lo_cr, hi_cr = ests[k]
+                e, pts, sig, lo_cr, hi_cr, sig2 = ests[k]
                 pt = patient_table(v).set_index("patient").loc[pts].reset_index()
                 for est_name, bh in e.items():
                     df = pt.copy(); df["estimate"] = bh
@@ -148,13 +173,15 @@ def run(cfg, out, detectors=None, seeds=None):
                     rows.append(df)
                 ivs = {"PA-HMMQ+conformal(norm)": ("PA-HMMQ",) + predict_interval(e["PA-HMMQ"], q["norm"], sig, cfg["eps"]),
                        "PA-HMMQ+conformal(const)": ("PA-HMMQ",) + predict_interval(e["PA-HMMQ"], q["const_pa"]),
+                       "PA-HMMQ[rawE]+conformal(norm)": ("PA-HMMQ[rawE]",) + predict_interval(e["PA-HMMQ[rawE]"], q["norm_raw"], sig2, cfg["eps"]),
+                       "PA-HMMQ[rawE]+conformal(const)": ("PA-HMMQ[rawE]",) + predict_interval(e["PA-HMMQ[rawE]"], q["const_raw"]),
                        "CC+conformal(const)": ("CC",) + predict_interval(e["CC"], q["const_cc"]),
                        "PCC-iso+conformal(const)": ("PCC-iso",) + predict_interval(e["PCC-iso"], q["const_pcciso"]),
                        "PA-HMMQ posterior 90% CrI": ("PA-HMMQ", lo_cr, hi_cr)}
                 for iv_name, (base, lo, hi) in ivs.items():
                     irows.append(pd.DataFrame(dict(seed=seed, detector=det_name, cohort=k, method=iv_name, patient=pts,
                                                    true_burden=pt["true_burden"].values, estimate=e[base], lo=lo, hi=hi,
-                                                   sigma=sig, db=pt["db"].values)))
+                                                   sigma=sig2 if "rawE" in iv_name else sig, db=pt["db"].values)))
             log(f"seed {seed} {det_name}: burden + intervals done ({time.time()-t0:.0f}s total)", fh)
             # incremental save (crash safety)
             pd.concat(rows).to_csv(os.path.join(out, "raw_results.csv"), index=False)
@@ -200,16 +227,18 @@ def _ablations(cal, cfg, p, v):
     pats, pidx = np.unique(v["patient"], return_inverse=True); P = len(pats)
     sidx = _seq_index(v["seqkey"]); pos = np.zeros(sidx.max() + 1, dtype=np.int64); pos[sidx] = pidx
     out = {}
-    # (a) raw-score emissions: likelihood proportional to (1-p, p) — no source calibration of emissions
-    Eraw = np.stack([1 - np.clip(p, 1e-6, 1 - 1e-6), np.clip(p, 1e-6, 1 - 1e-6)], 1)
-    g, _ = cal.hmm_pa.infer(Eraw, sidx, pos, P)
-    out["PA-HMMQ[rawE]"] = group_mean(g, v["dur"], pidx, P)
+    # (b2) raw emissions without patient adaptation (fixed source dynamics)
+    g, _ = cal.hmm_src.infer(cal.emis_raw(p), sidx, pos, P)
+    out["HMM-src[rawE]"] = group_mean(g, v["dur"], pidx, P)
     # (b) prior strength grid
     E = cal.emis(p)
     for k in cfg["kappa_grid"]:
         h = BurdenHMM(kappa=float(k)); h.A_src, h.pi_src = cal.hmm_pa.A_src, cal.hmm_pa.pi_src
         g, _ = h.infer(E, sidx, pos, P)
         out[f"PA-HMMQ[k={k}]"] = group_mean(g, v["dur"], pidx, P)
+        h.A_src = cal.hmm_pa.A_src  # same prior for raw-emission kappa grid
+        g, _ = h.infer(cal.emis_raw(p), sidx, pos, P)
+        out[f"PA-HMMQ[rawE,k={k}]"] = group_mean(g, v["dur"], pidx, P)
     return out
 
 

@@ -58,6 +58,14 @@ class EmissionModel:
         return np.stack([self.dens[0][b], self.dens[1][b]], 1)
 
 
+class RawEmission:
+    """Emission likelihoods taken directly from the detector probability: e(x|AF) ∝ p, e(x|non-AF) ∝ 1-p
+    (i.e. the detector's posterior under a balanced training prior is used as a likelihood ratio)."""
+    def __call__(self, p):
+        p = np.clip(p, P_CLIP, 1 - P_CLIP)
+        return np.stack([1 - p, p], 1)
+
+
 class BurdenCalibrator:
     """Holds every source-calibration quantity, estimated on calibration patients only."""
     def __init__(self, thr=0.5, kappa=10.0, bins=50):
@@ -71,6 +79,7 @@ class BurdenCalibrator:
         self.prior = w1.sum() / d.sum()
         self.iso = IsotonicRegression(y_min=P_CLIP, y_max=1 - P_CLIP, out_of_bounds="clip").fit(p, y, sample_weight=d)
         self.emis = EmissionModel(bins=self.bins).fit(p, y)
+        self.emis_raw = RawEmission()
         self.hmm_src = BurdenHMM(kappa=None).fit_source(y.astype(int), seq_index)
         self.hmm_pa = BurdenHMM(kappa=self.kappa).fit_source(y.astype(int), seq_index)
         return self
@@ -83,7 +92,7 @@ def _seq_index(seqkey):
     return rank[inv]
 
 
-def estimate(cal: BurdenCalibrator, p, d, seqkey, patient, estimators=ESTIMATORS, n_samples=200, seed=0):
+def estimate(cal: BurdenCalibrator, p, d, seqkey, patient, estimators=ESTIMATORS, n_samples=200, seed=0, raw_emission=False):
     """Return dict estimator -> per-patient burden array, the list of patients, and
     posterior burden samples for PA-HMMQ (K, P) when n_samples > 0."""
     pats, pidx = np.unique(patient, return_inverse=True)
@@ -125,7 +134,7 @@ def estimate(cal: BurdenCalibrator, p, d, seqkey, patient, estimators=ESTIMATORS
         out["EMQ"] = b
     samples = None
     if "HMM-src" in estimators or "PA-HMMQ" in estimators:
-        E = cal.emis(p)
+        E = cal.emis_raw(p) if raw_emission else cal.emis(p)
         # patient of each sequence
         pos = np.zeros(sidx.max() + 1, dtype=np.int64); pos[sidx] = pidx
         if "HMM-src" in estimators:

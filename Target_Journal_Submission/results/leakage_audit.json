@@ -1,0 +1,116 @@
+{
+ "windows_total": 928477,
+ "duplicate_window_hashes": 23,
+ "duplicate_windows_shared_across_patients": 2,
+ "examples_cross_patient": [
+  [
+   "icentia_p03923",
+   "icentia_p10516"
+  ],
+  [
+   "icentia_p02328",
+   "icentia_p03340",
+   "icentia_p05651"
+  ]
+ ],
+ "recordings_fingerprinted": 1908,
+ "recording_fingerprint_collisions": [],
+ "splits": {
+  "11": {
+   "sizes": {
+    "train": 107,
+    "calA": 39,
+    "calB": 48,
+    "test": 49
+   },
+   "overlaps": {
+    "calA&train": 0,
+    "calA&calB": 0,
+    "calA&test": 0,
+    "calB&train": 0,
+    "calB&test": 0,
+    "test&train": 0
+   },
+   "covers_all": true
+  },
+  "22": {
+   "sizes": {
+    "train": 107,
+    "calA": 39,
+    "calB": 48,
+    "test": 49
+   },
+   "overlaps": {
+    "calA&train": 0,
+    "calA&calB": 0,
+    "calA&test": 0,
+    "calB&train": 0,
+    "calB&test": 0,
+    "test&train": 0
+   },
+   "covers_all": true
+  },
+  "33": {
+   "sizes": {
+    "train": 107,
+    "calA": 39,
+    "calB": 48,
+    "test": 49
+   },
+   "overlaps": {
+    "calA&train": 0,
+    "calA&calB": 0,
+    "calA&test": 0,
+    "calB&train": 0,
+    "calB&test": 0,
+    "test&train": 0
+   },
+   "covers_all": true
+  },
+  "44": {
+   "sizes": {
+    "train": 107,
+    "calA": 39,
+    "calB": 48,
+    "test": 49
+   },
+   "overlaps": {
+    "calA&train": 0,
+    "calA&calB": 0,
+    "calA&test": 0,
+    "calB&train": 0,
+    "calB&test": 0,
+    "test&train": 0
+   },
+   "covers_all": true
+  },
+  "55": {
+   "sizes": {
+    "train": 107,
+    "calA": 39,
+    "calB": 48,
+    "test": 49
+   },
+   "overlaps": {
+    "calA&train": 0,
+    "calA&calB": 0,
+    "calA&test": 0,
+    "calB&train": 0,
+    "calB&test": 0,
+    "test&train": 0
+   },
+   "covers_all": true
+  }
+ },
+ "dev_external_patient_overlap": 0,
+ "preprocessing_scope": {
+  "features": "computed per window from that window's 60 RR intervals only (no cross-window or global statistics)",
+  "RRNet normalisation": "per-window (log RR minus window mean); no dataset-level statistics",
+  "Classical-LR scaler": "StandardScaler fit on inner-fit training patients only",
+  "early stopping": "inner validation patients (subset of training split)",
+  "burden calibration (thresholds, isotonic, emissions, source HMM dynamics)": "calA patients only",
+  "conformal quantile": "calB patients only",
+  "external cohorts": "never used for training, calibration, tuning or model selection",
+  "per-patient EM (EMQ, PA-HMMQ)": "unsupervised: uses only the test patient's own detector outputs, never its labels"
+ }
+}
